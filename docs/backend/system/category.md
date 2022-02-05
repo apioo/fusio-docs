@@ -4,15 +4,17 @@ sidebar_position: 1
 
 # Category
 
-A category allows you to divide your API into different sections. I.e. the
-internal Fusio backend API has also many Actions and Schemas registered but you
-dont see them if you login at the backend. This is because they are all
-registered under the category "backend".
+Fusio has the concept of a category. A category is basically only a string which allows you to split your API into
+different categories. If we take a look at a default installation we see the following categories:
 
-Every role is assigned to a specific category. A user can then only see and
-create resources for this specific category. By default every user is assigned
-to the "default" category.
+![category_list](/img/backend/system/category_list.png)
 
-This allows you also to split up your API development into different parts. I.e.
-you could create a category "Reporting" and "Order" and every developer can
-work independent on each category.
+Every user role at the system is also assigned to such a category. At the backend a user then only sees the resources
+which are assigned to this category. This means you could i.e. create a category "shop" and developers assigned to this
+category basically have its own workspace and dont see other resources. Through this you can basically create different
+areas where multiple developers can build different parts of an API.
+
+The internal API of Fusio is also build with Fusio. If you login with a user which is assigned to the backend category
+you can see and manage all internal endpoints also through the backend app.
+
+![category_list_routes_backend](/img/backend/system/category_list_routes_backend.png)

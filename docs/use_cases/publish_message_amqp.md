@@ -1,0 +1,3 @@
+
+# Publish message AMQP
+

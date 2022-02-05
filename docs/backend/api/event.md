@@ -4,21 +4,19 @@ sidebar_position: 6
 
 # Event
 
-Fusio has an event system which helps to build a pub/sub system. This means
-consumer of your API can subscribe to specific events. Inside your API endpoint
-you can then trigger such an event. Fusio will then send the payload to each
+Fusio has an event system which helps to build a pub/sub system. This means consumer of your API can subscribe to
+specific events. Inside your API endpoint you can then trigger such an event. Fusio will then send the payload to each
 subscriber in the background.
 
 ## Installation
 
-To enable Fusio to send messages in the background you need to activate the
-cronjob logic which enables the execution of an action at specific intervals.
-Please take a look at the cronjob section for installation instructions.
+To enable Fusio to send messages at the background you need to activate the Cronjob feature. The event system creates a
+cronjob which distributes the pending events.
 
 ## Subscribe
 
-To subscribe for such an event the user needs to send a HTTP POST request to the
-`/consumer/subscription` endpoint with the following payload:
+To subscribe for such an event the user needs to send a HTTP POST request to the `/consumer/subscription` endpoint with
+the following payload:
 
 ```json
 {
@@ -29,9 +27,8 @@ To subscribe for such an event the user needs to send a HTTP POST request to the
 
 ## Publish
 
-To publish an event you need to use the dispatcher to create an event. I.e. the
-following action shows how to dispatch data to the event `my_event` which then
-will send the provided data JSON encoded to the subscribed endpoints.
+To publish an event you need to use the dispatcher to create an event. I.e. the following action shows how to dispatch
+data to the event "my_event" which then will send the provided data JSON encoded to the subscribed endpoints.
 
 ```php
 <?php
@@ -57,9 +54,8 @@ class Collection extends ActionAbstract
 
 ## Callback
 
-Fusio will send the following HTTP POST request to every subscribed endpoint. In
-case the endpoint returns a non successful status code Fusio will try to resend
-the message up to 3 times.
+Fusio will send the following HTTP POST request to every subscribed endpoint. In case the endpoint returns a non
+successful status code Fusio will try to resend the message up to 3 times.
 
 ```
 POST /callback HTTP/1.1
