@@ -1,5 +1,5 @@
 
-# Builder
+# SQL Builder
 
 Through the SQL builder action you can create complex nested queries using a JSON
 notation. The following example provides a first overview:

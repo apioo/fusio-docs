@@ -52,9 +52,32 @@ const config = {
             type: 'doc',
             docId: 'bootstrap',
             position: 'left',
-            label: 'Introduction',
+            label: 'Get started',
           },
           {
+            type: 'doc',
+            docId: 'installation/index',
+            position: 'left',
+            label: 'Installation',
+          },
+          {
+            type: 'doc',
+            docId: 'use_cases/index',
+            position: 'left',
+            label: 'Use-Cases',
+          },
+          {
+            type: 'doc',
+            docId: 'backend/index',
+            position: 'left',
+            label: 'Backend',
+          },
+          {
+            type: 'doc',
+            docId: 'concepts/index',
+            position: 'left',
+            label: 'Concepts',
+          },          {
             href: 'https://github.com/apioo/fusio',
             label: 'GitHub',
             position: 'right',
@@ -68,8 +91,24 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Getting started',
+                label: 'Get started',
                 to: '/docs/bootstrap',
+              },
+              {
+                label: 'Installation',
+                to: '/docs/installation',
+              },
+              {
+                label: 'Use-Cases',
+                to: '/docs/use_cases',
+              },
+              {
+                label: 'Backend',
+                to: '/docs/backend',
+              },
+              {
+                label: 'Concepts',
+                to: '/docs/concepts',
               },
             ],
           },
