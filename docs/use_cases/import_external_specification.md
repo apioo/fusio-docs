@@ -1,10 +1,10 @@
 
 # Import external specification
 
-To import an existing specification into Fusio you need to go to the routes panel and click there on top right briefcase
-button, then you should see the following dialog:
+To import an existing specification into Fusio you need to go to the routes panel and click there on the top right
+briefcase button, then you should see the following dialog:
 
-![import_openapi](/img/use_cases/routes_provider_openapi.png)
+![routes_provider_openapi](/img/use_cases/routes_provider_openapi.png)
 
 There you can select one of the following importer at the class field:
 

@@ -1,5 +1,5 @@
 
-# Develop deployment system
+# Deployment system
 
 Fusio has a deployment system which allows you to store your complete Fusio configuration into `.yaml` config files.
 This allows you to store all config in a VCS so that you can easily reproduce a Fusio installation without sharing a
