@@ -10,7 +10,7 @@ for common tasks i.e. to execute database operations or push data to a message q
 
 It is possible to execute an action in async mode which means that the action directly returns a 202 accepted response
 and the request gets executed later on in the background. To enable the async feature you need to setup a cronjob,
-please take a look at the [cronjob](./cronjob) section for installation instructions.
+please take a look at the [cronjob](../cronjob) section for installation instructions.
 
 ## Development
 
