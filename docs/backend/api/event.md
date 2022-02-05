@@ -28,12 +28,12 @@ the following payload:
 ## Publish
 
 To publish an event you need to use the dispatcher to create an event. I.e. the following action shows how to dispatch
-data to the event "my_event" which then will send the provided data JSON encoded to the subscribed endpoints.
+data to the event "my_event" which then sends the provided data JSON encoded to the subscribed endpoints.
 
 ```php
 <?php
 
-namespace App\Todo;
+namespace App\Action;
 
 use Fusio\Engine\ActionAbstract;
 use Fusio\Engine\ContextInterface;

@@ -1,5 +1,5 @@
 
-# Setup monetization
+# Setup Monetization
 
 Fusio helps you to monetize your API. It has a concept of points which each user can buy. A user can then spend those
 points by calling specific routes which cost a specific amount of points. The API developer can simply add a cost to

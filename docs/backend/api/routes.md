@@ -4,12 +4,9 @@ sidebar_position: 2
 
 # Routes
 
-A route redirects the incoming request to an action. 
-
-In
-order to be able to evolve an API it is possible to add multiple versions for the same route. For each version it is
-possible to specify the allowed request methods. Each method describes the request and response schema and the action
-which is executed upon request. If a request method is public it is possible to request the API endpoint without an
+A route redirects the incoming request to an action. Beside the action you can attach various meta information to a
+route like the request and response schemas or a description. Fusio can use these information to generate a fitting
+OpenAPI specification. If a request method is public it is possible to request the API endpoint without an
 access token.
 
 ![routes_update](/img/backend/api/routes_update.png)
@@ -41,8 +38,7 @@ The status affects the behaviour of the API endpoint. The following list describ
   development mode.
 
 * `Production`
-  Used if the API is ready for production use. If the API transitions from development to production all databases
-  settings are copied into the route. That means changing a schema or action will not change the API endpoint.
+  Used if the API is ready for production use.
 
 * `Deprecated`
   Used if you want to deprecate a specific version of the API. Adds a "Warning" header to each response that the API is

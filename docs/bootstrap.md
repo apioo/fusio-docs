@@ -46,20 +46,10 @@ response.
 # Conclusion
 
 This was a first basic example how to create a simple API endpoint with Fusio. Fusio provides then out of the box many
-features to build a great API product, in short we try to provide all features of a modern API solution. 
-Since Fusio can solve many use cases we have structured our documentation into three parts:
+features to build a great API product, in short we try to provide all features of a modern API solution which you also
+find at most developer portals. Since Fusio can solve many use cases we have structured our documentation into three
+parts:
 
-### Use-Cases
-
-Describes concrete use cases and how you can solve them with Fusio, like i.e. import an OpenAPI specification or set up
-the developer portal.
-
-### Concepts
-
-This is a more technical section which describes general concepts of the Fusio system.
-
-### Backend
-
-Contains a complete documentation for the backend app. The pages are structured in the same way as the backend app, so
-you can take a look at every page to understand how a specific panel works. These pages are also embedded into every
-backend app if you click on the help button.
+* [Use-Cases](use_cases)
+* [Concepts](concepts)
+* [Backend](backend)

@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+# Installation
+
 ## Requirements
 
 Fusio is written in PHP and requires at least version 7.4 and a database.
