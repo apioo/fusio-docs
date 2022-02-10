@@ -12,4 +12,5 @@ contain a valid table name. If you click on the changelog button you should see 
 
 ![routes_provider_sql_table_changelog](/img/use_cases/routes_provider_sql_table_changelog.png)
 
-There you see the routes, actions and schemas which the import would create.
+There you see the routes, actions and schemas which the import would create. With a click on the Save Button you can
+start the import. Fusio analyzes the table schema and creates based on this information the fitting schema.

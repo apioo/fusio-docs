@@ -30,7 +30,7 @@ automatically create an OpenAPI specification or generate a client SDK.
 
 ## Creating a route
 
-At least we need to create a route which then invokes our action. A route contains some meta information like a
+At last we need to create a route which then invokes our action. A route contains some meta information like a
 description and the request and response schemas and also which action should be invoked. In our example we simply
 select the action and the schema which we have created.
 
@@ -47,8 +47,8 @@ response.
 
 This was a first basic example how to create a simple API endpoint with Fusio. Fusio provides then out of the box many
 features to build a great API product, in short we try to provide all features of a modern API solution which you also
-find at most developer portals. Since Fusio can solve many use cases we have structured our documentation into three
-parts:
+find at most popular developer portals. Since Fusio can solve many use cases we have structured our documentation into
+three parts:
 
 * [Use-Cases](use_cases)
 * [Concepts](concepts)

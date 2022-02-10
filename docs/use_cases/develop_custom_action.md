@@ -48,7 +48,7 @@ class HelloWorld extends ActionAbstract
 
 ```
 
-This hello world action is the complete functional and can be directly used at your API.
+This hello world action is complete functional and can be directly used at your API.
 
 ## Integration
 
@@ -67,15 +67,15 @@ return [
 
 ```
 
-Then you can also select this action at the backend. If you have created an action which is reusable for other users
+Then you can also select this action at the backend. If you want to create an action which is reusable for other users
 you can also create a [Fusio adapter](../concepts/adapter) which allows other users to reuse your action. Please
 take a look at our [website](https://www.fusio-project.org/adapter) to see all available adapter.
 
 ## API
 
-Inside your action you have already most tools to complete many tasks. To see the complete action API please take a look
-at our [PHP API](https://www.fusio-project.org/documentation/php). In the following an example which shows some
-interesting methods of the internal action API:
+Inside your action you have already most tools avaialble to complete many tasks. To see the complete action API please
+take a look at our [PHP API](https://www.fusio-project.org/documentation/php). In the following an example which shows
+some interesting methods of the internal action API:
 
 ```php
 <?php
