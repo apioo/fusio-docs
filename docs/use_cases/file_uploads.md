@@ -41,7 +41,7 @@ return $response->build(200, [], [
 
 If we add a route for this action and use a rest client to send a `multipart/form-data` request to the endpoint.
 
-![upload_file_request.png](/img/use_cases/upload_file_request.png.png)
+![upload_file_request.png](/img/use_cases/upload_file_request.png)
 
 Then we would get the following response.
 
