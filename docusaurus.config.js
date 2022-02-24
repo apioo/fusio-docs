@@ -121,7 +121,7 @@ const config = {
             items: [
               {
                 label: 'Backend API',
-                href: 'https://demo.fusio-project.org/apps/internal/#!/page/about',
+                href: 'https://demo.fusio-project.org/apps/documentation/',
               },
               {
                 label: 'Worker API',
