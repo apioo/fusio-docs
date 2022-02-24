@@ -5,7 +5,7 @@ sidebar_position: 2
 # Routes
 
 A route redirects the incoming request to an action. Beside the action you can attach various meta information to a
-route like the request and response schemas or a description. Fusio can use these information to generate a fitting
+route like the request and response schema or a description. Fusio can use these information to generate a fitting
 OpenAPI specification. If a request method is public it is possible to request the API endpoint without an
 access token.
 
@@ -29,6 +29,11 @@ The following list describes the syntax.
 * `/file/*path`
   Variable path fragment which matches all values. I.e. `/file/foo/bar` or `/file/12` matches this route
 
+## Scopes
+
+The scopes field defines a set of scopes which are assigned to this route. If the route is protected an enduser needs
+to obtain such a scope in order to access the endpoint.
+
 ## Status
 
 The status affects the behaviour of the API endpoint. The following list describes each status
@@ -50,4 +55,9 @@ The status affects the behaviour of the API endpoint. The following list describ
 ## Action
 
 The action contains the business logic of your API endpoint. It i.e. selects or inserts entries from a database or
-pushes a new entry to a message queue.
+pushes a new entry to a message queue. Through the dropdown you can simply select an action.
+
+## Costs
+
+Contains an amount how much a user needs to pay in order to invoke this route. A user can obtain points by buying a
+specific plan at the developer portal.
