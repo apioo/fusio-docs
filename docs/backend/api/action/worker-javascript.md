@@ -20,3 +20,7 @@ module.exports = function(request, context, connector, response, dispatcher, log
 
 };
 ```
+
+## Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Jh4wt6Lm2Dk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

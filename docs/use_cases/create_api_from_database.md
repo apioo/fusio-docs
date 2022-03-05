@@ -14,3 +14,7 @@ contain a valid table name. If you click on the changelog button you should see 
 
 There you see the routes, actions and schemas which the import would create. With a click on the Save Button you can
 start the import. Fusio analyzes the table schema and creates based on this information the fitting schema.
+
+## Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3jHr_W9yjzM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -56,3 +56,7 @@ status of the transaction and display a fitting message.
 It is also easy to implement a custom payment provider. It is important that the provider supports a redirect based
 flow. It is currently not possible to simply enter the credit card number. To create a new payment provider you need to
 create a class which implements the `Fusio\Engine\Payment\ProviderInterface`
+
+## Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AsyLUdz9oOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

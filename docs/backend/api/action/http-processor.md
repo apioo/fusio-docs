@@ -18,3 +18,8 @@ X-Fusio-Remote-Ip: 127.0.0.1
 ```
 http://foo.bar
 ```
+
+
+## Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jL8KlJkvZzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
