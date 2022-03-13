@@ -56,3 +56,34 @@ Please take a look also at our docs regarding a specific platform:
 * [Nginx](./nginx)
 * [IIS](./iis)
 * [cPanel](./cpanel)
+
+# Updating
+
+Fusio contains two parts which can be updated. The backend system and the backend app. The backend app is the Angular
+application which connects to the backend api and where you configure the system. The backend system contains the actual
+backend code providing the backend API.
+
+## Server
+
+Fusio makes heavy use of composer. Because of that you can easily upgrade a Fusio system with the following composer
+command.
+
+.. code-block:: text
+
+    composer update fusio/impl
+
+This has also the advantage that the version constraints of installed adapters are checked and in case something is
+incompatible composer will throw an error. It is also possible to simply replace the vendor folder with the folder from
+the new release. In either case you have to run the following command after you have updated the vendor folder:
+
+.. code-block:: text
+
+    php bin/fusio install
+
+This gives Fusio the chance to adjust the database schema in case something has changed with a new release.
+
+## Apps
+
+All apps can be updated at the Marketplace panel of the backend app. There you can simply use the update button to
+receive the latest version of the app. In case the Marketplace is disabled you can also download the app directly from
+our website at: https://www.fusio-project.org/marketplace
