@@ -73,7 +73,7 @@ take a look at our [website](https://www.fusio-project.org/adapter) to see all a
 
 ## API
 
-Inside your action you have already most tools avaialble to complete many tasks. To see the complete action API please
+Inside your action you have already most tools available to complete many tasks. To see the complete action API please
 take a look at our [PHP API](https://www.fusio-project.org/documentation/php). In the following an example which shows
 some interesting methods of the internal action API:
 
