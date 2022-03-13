@@ -19,3 +19,18 @@ It is also possible to adjust the content of the developer app via the page pane
 edit and adjust the content to your needs.
 
 ![page](/img/use_cases/page.png)
+
+## Settings
+
+You also might want to take a look at the following settings which you can customize:
+
+| Parameter               | Description                                             |
+|-------------------------|---------------------------------------------------------|
+| `mail_pw_reset_body`    | Body of the password reset mail                         |
+| `mail_pw_reset_subject` | Subject of the password reset mail                      |
+| `mail_register_body`    | Body of the register mail                               |
+| `mail_register_subject` | Subject of the register mail                            |
+| `points_default`        | The amount of points every new registered user receives |
+| `recaptcha_key/secret`  | The Google recaptcha key and secret                     |
+| `provider_*_key/secret` | To activate a social login provide a key and secret     |
+| `role_default`          | The default role which every user receives              |
