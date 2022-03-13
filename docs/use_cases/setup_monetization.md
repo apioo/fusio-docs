@@ -19,7 +19,8 @@ php bin/fusio system:register "Fusio\Adapter\Stripe\Adapter"
 ```
 
 Then you need to create a new connection at the Fusio backend. This connection must be named "stripe" and you need to
-provide your app credentials.
+provide your app credentials. At the connection you need to provide the credentials and now your users can purchase a
+plan.
 
 ## Flow
 
