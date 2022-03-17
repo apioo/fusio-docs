@@ -57,6 +57,11 @@ Please take a look also at our docs regarding a specific platform:
 * [IIS](./iis)
 * [cPanel](./cpanel)
 
+# Cloud
+
+If you dont want to manually install Fusio you can take a look at our [cloud platform](https://fusio.cloud/) which you
+can use to directly run a Fusio instance in the cloud.
+
 # Updating
 
 Fusio contains two parts which can be updated. The backend system and the backend app. The backend app is the Angular
