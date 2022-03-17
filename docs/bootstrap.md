@@ -6,9 +6,17 @@ sidebar_position: 2
 
 To get started you need at first a running installation of Fusio. If you have not already installed Fusio please take a
 look at the [installation](installation) page. Fusio is an open source API management platform which helps to build and
-manage REST APIs. Through Fusio you can quickly build a state of the art API, set up a developer portal and monetize
-your API. This page will explain the first steps with Fusio. We create a route at the backend which executes a specific
-action, a schema which describes the payload and an action which proxies to a remote API.
+manage REST APIs. Through Fusio you can quickly build a state-of-the-art API, set up a developer portal and monetize
+your API.
+
+Fusio supports different ways to setup your API:
+* Use Fusio as API Gateway to proxy calls to a remote API
+* Use Fusio to automatically create an API from different sources i.e. a database
+* Use Fusio to implement custom business logic via an action or worker
+
+Once you have created your API with Fusio you can start to onboard external developers through the developer portal.
+This page will explain the first steps how to proxy a route to an internal API. We create a route at the backend which
+executes a specific action, a schema which describes the payload and an action which proxies to a remote API.
 
 ## Creating an action
 
