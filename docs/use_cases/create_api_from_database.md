@@ -20,7 +20,7 @@ start the import. Fusio analyzes the table schema and creates based on this info
 
 ## Example
 
-The provider will create two routes below your `Base-Path`. If your `Base-Path` is `/v1/product` for a table called
+The provider will create two routes below your `Base-Path`. If your `Base-Path` is i.e. `/v1/product` for a table called
 `app_product` with the following schema:
 
 ### Schema

@@ -14,7 +14,6 @@ Fusio supports different ways to setup your API:
 * Use Fusio to automatically create an API from different sources i.e. a database
 * Use Fusio to implement custom business logic via an action or worker
 
-Once you have created your API with Fusio you can start to onboard external developers through the developer portal.
 This page will explain the first steps how to proxy a route to an internal API. We create a route at the backend which
 executes a specific action, a schema which describes the payload and an action which proxies to a remote API.
 

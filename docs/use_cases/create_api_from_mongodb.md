@@ -17,8 +17,8 @@ recommended that you manually create a schema for your endpoint.
 
 ## Example
 
-The provider will create two routes below your `Base-Path`. If your `Base-Path` is `/v1/product` for a collection called
-`app_product`:
+The provider will create two routes below your `Base-Path`. If your `Base-Path` is i.e. `/v1/product` for a collection
+called `app_product`:
 
 ### /v1/product
 
