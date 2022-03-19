@@ -9,11 +9,3 @@ user receives a 429 HTTP status code. A rate can distinguish between authenticat
 authenticated calls the request count is based on the app for not authenticated calls it is based on the ip address.
 
 ![rate_create](/img/backend/consumer/rate_create.png)
-
-* Name
-* Priority
-* Throughput
-* Route
-* Authenticated
-* Parameters
-

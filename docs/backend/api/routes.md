@@ -5,8 +5,8 @@ sidebar_position: 2
 # Routes
 
 A route redirects the incoming request to an action. Beside the action you can attach various meta information to a
-route like the request and response schema or a description. Fusio can use these information to generate a fitting
-OpenAPI specification. If a request method is public it is possible to request the API endpoint without an
+route like the request and response schema or a description. Fusio can use this information to generate a fitting
+OpenAPI specification or client SDK. If a request method is public it is possible to request the API endpoint without an
 access token.
 
 ![routes_update](/img/backend/api/routes_update.png)
@@ -16,15 +16,15 @@ access token.
 The path can contain variable path fragments. It is possible to access these variable path fragments inside an action.
 The following list describes the syntax.
 
-* `/news`
-  No variable path fragment only the request to `/news` matches this route
+* `/product`
+  No variable path fragment only the request to `/product` matches this route
 
-* `/news/:news_id`
-  Simple variable path fragment. This route matches to any value except a slash. I.e. `/news/foo` or `/news/12` matches
-  this route
+* `/product/:product_id`
+  Simple variable path fragment. This route matches to any value except a slash. I.e. `/product/foo` or `/product/12`
+  matches this route
 
-* `/news/$year<[0-9]+>`
-  Variable path fragment with a regular expression. I.e. only `/news/2015` matches this route
+* `/product/$year<[0-9]+>`
+  Variable path fragment with a regular expression. I.e. only `/product/2015` matches this route
 
 * `/file/*path`
   Variable path fragment which matches all values. I.e. `/file/foo/bar` or `/file/12` matches this route
