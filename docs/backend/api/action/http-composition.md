@@ -1,7 +1,7 @@
 
 # HTTP Composition
 
-TODO
+Combines the response of multiple endpoints into a single response. 
 
 ## Video
 

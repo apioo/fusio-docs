@@ -1,7 +1,7 @@
 
 # HTTP Load Balancer
 
-TODO
+Invokes randomly one of the configured urls for load balancing.
 
 ## Video
 

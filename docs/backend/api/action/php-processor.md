@@ -1,9 +1,8 @@
 
 # PHP Processor
 
-The PHP action processes a PHP file or inline code. There is also a complete API
-[documentation](http://www.fusio-project.org/documentation/php) describing all
-available objects. In the following a simple example implementation:
+The PHP action processes a PHP file or inline code. There is also a complete API [documentation](http://www.fusio-project.org/documentation/php)
+describing all available objects. In the following a simple example implementation:
 
 ## Example
 
@@ -21,7 +20,7 @@ available objects. In the following a simple example implementation:
  */
 
 /** @var \Doctrine\DBAL\Connection $connection */
-$connection = $connector->getConnection('My-DB');
+$connection = $connector->getConnection('App');
 
 $count  = $connection->fetchColumn('SELECT COUNT(*) FROM my_table');
 $result = $connection->fetchAll('SELECT * FROM my_table ORDER BY sort DESC');

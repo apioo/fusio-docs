@@ -1,7 +1,7 @@
 
 # HTTP Processor
 
-Contains a HTTP url. Fusio automatically adds some additional headers to the 
+Invokes a remote HTTP endpoint and returns the response. Fusio automatically adds some additional headers to the 
 request which may be used by the endpoint i.e.:
 
 ```http
@@ -18,7 +18,6 @@ X-Fusio-Remote-Ip: 127.0.0.1
 ```
 http://foo.bar
 ```
-
 
 ## Video
 

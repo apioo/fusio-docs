@@ -1,7 +1,9 @@
 
 # AMQP Publish
 
-Accepts the following payload to push a message into a queue:
+Pushes data into a queue.
+
+## Request
 
 ```json
 {
@@ -9,5 +11,14 @@ Accepts the following payload to push a message into a queue:
   "queue": "my_queue",
   "contentType": "text/plain",
   "body": "foobar"
+}
+```
+
+## Response
+
+```json
+{
+  "success": true,
+  "message": "Message successful published"
 }
 ```

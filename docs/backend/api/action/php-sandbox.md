@@ -1,8 +1,8 @@
 
 # PHP Sandbox
 
-The sandbox action provides a simple way to write PHP code which gets directly executed on the server. This can
-be useful if you want to build fast a first prototype endpoint. Note by default the sandbox action is deactivated, to
+The sandbox action provides a simple way to write PHP code which gets directly executed on the server. This can be
+useful if you want to build fast a first prototype endpoint. Note by default the sandbox action is deactivated, to
 activate the action you need to set the env `FUSIO_PHP_SANDBOX` to `on`. The following shows a simple action which
 returns all data from the request.
 
