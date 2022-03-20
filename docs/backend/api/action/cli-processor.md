@@ -1,7 +1,8 @@
 
 # CLI Processor
 
-TODO
+Executes the provided command on request, it passes the provided data JSON encoded to stdin. The environment variables
+contain uri fragment, query parameters and headers.
 
 ## Video
 
