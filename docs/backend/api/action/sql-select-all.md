@@ -1,7 +1,8 @@
 
 # SQL Select All
 
-Through the SQL select action it is possible to query data from a table by configuring all  
+Through the SQL select action it is possible to query all data from a table by using the action config so that you dont
+need to write any SQL.
 
 ## Video
 

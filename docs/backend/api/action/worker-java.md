@@ -1,9 +1,8 @@
 
 # Worker-Java
 
-The Worker-Java executes the provided Java code at the remote worker. Note the
-class name must be the same as the action name. More information about the
-worker at: https://github.com/apioo/fusio-worker-java
+The Worker-Java executes the provided Java code at the remote worker. Note the class name must be the same as the action
+name. More information about the worker at: https://github.com/apioo/fusio-worker-java
 
 ## Example
 

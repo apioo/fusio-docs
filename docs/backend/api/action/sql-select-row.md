@@ -1,7 +1,8 @@
 
 # SQL Select Row
 
-TODO
+Through the SQL select action it is possible to query the first row from a table by using the action config so that you
+dont need to write any SQL.
 
 ## Video
 
