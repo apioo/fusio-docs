@@ -1,8 +1,8 @@
 
 # SQL Advanced
 
-The connection uses the Doctrine DBAL library to connect to a database. Please visit the official [documentation] for
-detailed information about the URL format.
+Creates a connection to a SQL server using a URL format. Please visit the official [documentation] for detailed
+information about the URL format.
 
 ## URL
 
@@ -16,3 +16,7 @@ In the following some examples from the documentation.
 
 [documentation]: http://doctrine-dbal.readthedocs.org/en/latest/reference/configuration.html
 
+## Implementation
+
+* Library: https://github.com/doctrine/dbal
+* Returns: `Doctrine\DBAL\Connection`
