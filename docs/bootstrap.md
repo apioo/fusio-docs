@@ -28,7 +28,7 @@ we simply create an action which proxies a remote API:
 
 ## Creating a schema
 
-As next step we create a schema to describe the response of our action. This step is optional, but creating a schema is
+Next we create a schema to describe the response of our action. This step is optional, but creating a schema is
 highly recommended, a schema is then the contract to your API consumers how the request and response format is designed.
 Internally Fusio uses [TypeSchema](https://typeschema.org/) to describe the JSON format. Through a schema Fusio can then
 automatically create an OpenAPI specification or generate a client SDK.
