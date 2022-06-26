@@ -37,8 +37,8 @@ automatically create an OpenAPI specification or generate a client SDK.
 
 ## Creating a route
 
-At last we need to create a route which then invokes our action. A route contains some meta information like a
-description and the request and response schemas and also which action should be invoked. In our example we simply
+Lastly, we need to create a route which then invokes our action. A route contains some meta information like a
+description, the request and response schemas, and which action should be invoked. In our example we simply
 select the action and the schema which we have created.
 
 ![create_schema](/img/bootstrap/create_route.png)
