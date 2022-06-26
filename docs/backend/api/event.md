@@ -4,19 +4,19 @@ sidebar_position: 6
 
 # Event
 
-Fusio has an event system which helps to build a pub/sub system. This means consumer of your API can subscribe to
+Fusio has an event system which helps to build a pub/sub system. This means consumers of your API can subscribe to
 specific events. Inside your API endpoint you can then trigger such an event. Fusio will then send the payload to each
 subscriber in the background.
 
 ## Installation
 
-To enable Fusio to send messages at the background you need to activate the Cronjob feature. The event system creates a
+You need to activate the Cronjob feature to enable Fusio to send messages in the background. The event system creates a
 cronjob which distributes the pending events.
 
 ## Subscribe
 
-To subscribe for such an event the user needs to send a HTTP POST request to the `/consumer/subscription` endpoint with
-the following payload:
+The user needs to send a HTTP POST request to the `/consumer/subscription` endpoint with
+the following payload to subscribe to an event :
 
 ```json
 {
@@ -27,7 +27,7 @@ the following payload:
 
 ## Publish
 
-To publish an event you need to use the dispatcher to create an event. I.e. the following action shows how to dispatch
+To publish an event, you need to use the dispatcher to create an event. I.e. the following action shows how to dispatch
 data to the event "my_event" which then sends the provided data JSON encoded to the subscribed endpoints.
 
 ```php
@@ -54,8 +54,8 @@ class Collection extends ActionAbstract
 
 ## Callback
 
-Fusio will send the following HTTP POST request to every subscribed endpoint. In case the endpoint returns a non
-successful status code Fusio will try to resend the message up to 3 times.
+Fusio will send the following HTTP POST request to every subscribed endpoint. If the endpoint returns a non
+successful status code, Fusio will try to resend the message up to 3 times.
 
 ```
 POST /callback HTTP/1.1
