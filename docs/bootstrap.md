@@ -52,9 +52,9 @@ response.
 
 # Conclusion
 
-This was a first basic example how to create a simple API endpoint with Fusio. Fusio provides then out of the box many
-features to build a great API product, in short we try to provide all features of a modern API solution which you also
-find at most popular developer portals. Since Fusio can solve many use cases we have structured our documentation into
+This was a first basic example on how to create a simple API endpoint with Fusio. Fusio provides then out of the box many
+features to build a great API product. We try to provide all features of a modern API solution which you also
+find at most popular developer portals. Since Fusio can solve many use cases, we have structured our documentation into
 three parts:
 
 * [Use-Cases](use_cases)
