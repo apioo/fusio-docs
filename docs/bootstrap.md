@@ -20,7 +20,7 @@ executes a specific action, a schema which describes the payload and an action w
 ## Creating an action
 
 To start we must create an action. An action is a small function (i.e. like a serverless lambda function)
-which receives a HTTP request and produces a response. Fusio contains many prebuild actions which can solve
+which receives a HTTP request and produces a response. Fusio already contains many prebuildt actions which can solve
 many tasks like i.e. proxy an HTTP request to a remote API or build an API based on a database table. In this example
 we simply create an action which proxies a remote API:
 
