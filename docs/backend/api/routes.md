@@ -13,7 +13,7 @@ access token.
 
 ## Path
 
-The path can contain variable path fragments. It is possible to access these fragments inside an action.
+The path can contain variable path fragments. These fragments can be accessed inside an action.
 The following list describes the syntax.
 
 * `/product`
