@@ -39,7 +39,7 @@ to obtain a scope in order to access the endpoint.
 The status affects the behaviour of the API endpoint. The following list describes each status
 
 * `Development`
-  Used as first status to develop a new API endpoint. It adds a "Warning" header to each response that the API is in
+  Used to develop a new API endpoint. It adds a "Warning" header to each response that the API is in
   development mode.
 
 * `Production`
