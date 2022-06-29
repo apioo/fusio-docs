@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Routes
 
-A route redirects the incoming request to an action. Beside the action you can attach various meta information to a
+A route redirects the incoming request to an action. You can attach various meta information to a
 route like the request and response schema or a description. Fusio can use this information to generate a fitting
 OpenAPI specification or client SDK. If a request method is public it is possible to request the API endpoint without an
 access token.
