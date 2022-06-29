@@ -59,5 +59,5 @@ pushes a new entry to a message queue. Through the dropdown you can simply selec
 
 ## Costs
 
-Contains an amount how much a user needs to pay in order to invoke this route. A user can obtain points by buying a
+Contains how much a user needs to pay in order to invoke a route. A user can obtain points by buying a
 specific plan at the developer portal.
