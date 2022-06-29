@@ -54,7 +54,7 @@ The status affects the behaviour of the API endpoint. The following list describ
 
 ## Action
 
-The action contains the business logic of your API endpoint. It i.e. selects or inserts entries from a database or
+The action contains the business logic of your API endpoint. It selects or inserts entries from a database or
 pushes a new entry to a message queue. Through the dropdown you can simply select an action.
 
 ## Costs
