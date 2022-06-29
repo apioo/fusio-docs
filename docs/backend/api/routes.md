@@ -31,7 +31,7 @@ The following list describes the syntax.
 
 ## Scopes
 
-The scopes field defines a set of scopes assigned to this route. If the route is protected an enduser needs
+The scopes field defines a set of scopes assigned to a route. If the route is protected an enduser needs
 to obtain such a scope in order to access the endpoint.
 
 ## Status
