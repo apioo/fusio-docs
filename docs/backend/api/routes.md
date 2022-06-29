@@ -31,8 +31,8 @@ The following list describes the syntax.
 
 ## Scopes
 
-The scopes field defines a set of scopes assigned to a route. If the route is protected an enduser needs
-to obtain such a scope in order to access the endpoint.
+The scopes field defines a set of scopes assigned to a route. If the route is protected, an end user needs
+to obtain a scope in order to access the endpoint.
 
 ## Status
 
