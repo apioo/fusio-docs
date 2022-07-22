@@ -22,7 +22,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials
 ```
 
-As Basic authorization header you need to provide the `[app key] + ":" + [app secret]` as base64 encoded string. It is
+For a Basic authorization header you need to provide the `[app key] + ":" + [app secret]` as base64 encoded string. It is
 also possible to provide your username and password but in general it is recommended to use the app key and secret since
 the app access can always be revoked later on.
 
