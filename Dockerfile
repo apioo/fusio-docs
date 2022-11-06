@@ -1,4 +1,10 @@
-FROM httpd:2.4-alpine
-MAINTAINER Christoph Kappestein <christoph.kappestein@apioo.de>
-LABEL description="Fusio docs"
-COPY ./build /usr/local/apache2/htdocs/
+#stage 1
+FROM node:alpine as node
+ENV NODE_OPTIONS=--openssl-legacy-provider
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build --prod
+#stage 2
+FROM nginx:alpine
+COPY --from=node /app/build /usr/share/nginx/html
