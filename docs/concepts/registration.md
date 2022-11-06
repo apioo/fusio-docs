@@ -49,6 +49,6 @@ endpoint if the user comes back from the provider.
 
 Fusio then calls the provider from the backend and checks whether this is a valid user and gets additional user
 information. If everything went well the method returns a token which can be used in any subsequent API calls. For more
-information how to implement your own provider please take a look at the [social login](social_login) chapter.
+information how to implement your own provider please take a look at the [social login](./social_login.md) chapter.
 
 

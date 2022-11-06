@@ -32,7 +32,7 @@ all available functions.
 
 Note at the sandbox action we use for security reasons also a sandbox which allows you to use only specific whitelisted
 functions and classes. Please take a look at the [Sandbox](https://github.com/apioo/psx-sandbox) component for more
-information. In general if your logic is more complex it is recommended to [develop a custom action](./../../../use_cases/develop_custom_action).
+information. In general if your logic is more complex it is recommended to [develop a custom action](./../../../use_cases/develop_custom_action.md).
 
 ## Video
 

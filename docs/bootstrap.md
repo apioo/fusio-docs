@@ -5,7 +5,7 @@ sidebar_position: 2
 # Getting started
 
 To get started you first need a running installation of Fusio. If you have not already installed Fusio please take a
-look at the [installation](installation) page. Fusio is an open source API management platform which helps to build and
+look at the [installation](./installation/index.md) page. Fusio is an open source API management platform which helps to build and
 manage REST APIs. Through Fusio you can quickly build a state-of-the-art API, set up a developer portal and monetize
 your API.
 
@@ -57,6 +57,6 @@ features to build a great API product. We try to provide all features of a moder
 find at most popular developer portals. Since Fusio can solve many use cases, we have structured our documentation into
 three parts:
 
-* [Use-Cases](use_cases)
-* [Concepts](concepts)
-* [Backend](backend)
+* [Use-Cases](./use_cases/index.md)
+* [Concepts](./concepts/index.md)
+* [Backend](./backend/index.md)

@@ -68,7 +68,7 @@ return [
 ```
 
 Then you can also select this class from the dropdown list of action classes at the backend. If you want to create an
-action which is reusable for other users you can also create a [Fusio adapter](../concepts/adapter) which allows other
+action which is reusable for other users you can also create a [Fusio adapter](../concepts/adapter.md) which allows other
 users to reuse your action. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all
 available adapter.
 
@@ -128,5 +128,5 @@ depends always on the configured connection. The following table provides a firs
 
 In case your action needs other external dependencies you can also simply declare the dependencies at the constructor.
 Fusio tries then to inject the correct service via autowiring. Please take a look at the
-[dependency injection](../concepts/dependency_injection) chapter to get more details how this works.
+[dependency injection](../concepts/dependency_injection.md) chapter to get more details how this works.
 

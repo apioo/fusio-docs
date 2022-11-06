@@ -11,5 +11,5 @@ developer app contains already a possibility to buy those plans.
 ![rate_create](/img/backend/monetization/plan.png)
 
 To enable payments you need to setup a payment provider (i.e. stripe). Through the payment provider the user can
-purchase such plans. For more information please take a look at our [setup monetization](../../use_cases/setup_monetization)
+purchase such plans. For more information please take a look at our [setup monetization](../../use_cases/setup_monetization.md)
 guide.
