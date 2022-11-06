@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Routes
 
-A route redirects the incoming request to an action. Beside the action you can attach various meta information to a
+A route redirects the incoming request to an action. You can attach various meta information to a
 route like the request and response schema or a description. Fusio can use this information to generate a fitting
 OpenAPI specification or client SDK. If a request method is public it is possible to request the API endpoint without an
 access token.
@@ -13,7 +13,7 @@ access token.
 
 ## Path
 
-The path can contain variable path fragments. It is possible to access these variable path fragments inside an action.
+The path can contain variable path fragments. These fragments can be accessed inside an action.
 The following list describes the syntax.
 
 * `/product`
@@ -31,15 +31,15 @@ The following list describes the syntax.
 
 ## Scopes
 
-The scopes field defines a set of scopes which are assigned to this route. If the route is protected an enduser needs
-to obtain such a scope in order to access the endpoint.
+The scopes field defines a set of scopes assigned to a route. If the route is protected, an end user needs
+to obtain a scope in order to access the endpoint.
 
 ## Status
 
 The status affects the behaviour of the API endpoint. The following list describes each status
 
 * `Development`
-  Used as first status to develop a new API endpoint. It adds a "Warning" header to each response that the API is in
+  Used to develop a new API endpoint. It adds a "Warning" header to each response that the API is in
   development mode.
 
 * `Production`
@@ -54,10 +54,10 @@ The status affects the behaviour of the API endpoint. The following list describ
 
 ## Action
 
-The action contains the business logic of your API endpoint. It i.e. selects or inserts entries from a database or
+The action contains the business logic of your API endpoint. It selects or inserts entries from a database or
 pushes a new entry to a message queue. Through the dropdown you can simply select an action.
 
 ## Costs
 
-Contains an amount how much a user needs to pay in order to invoke this route. A user can obtain points by buying a
+Contains how much a user needs to pay in order to invoke a route. A user can obtain points by buying a
 specific plan at the developer portal.

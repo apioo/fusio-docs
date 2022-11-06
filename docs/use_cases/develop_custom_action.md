@@ -67,9 +67,10 @@ return [
 
 ```
 
-Then you can also select this action at the backend. If you want to create an action which is reusable for other users
-you can also create a [Fusio adapter](../concepts/adapter) which allows other users to reuse your action. Please
-take a look at our [website](https://www.fusio-project.org/adapter) to see all available adapter.
+Then you can also select this class from the dropdown list of action classes at the backend. If you want to create an
+action which is reusable for other users you can also create a [Fusio adapter](../concepts/adapter) which allows other
+users to reuse your action. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all
+available adapter.
 
 ## API
 
