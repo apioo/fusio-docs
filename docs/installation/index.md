@@ -6,9 +6,9 @@ sidebar_position: 1
 
 ## Requirements
 
-Fusio is written in PHP and requires at least version 7.4 and a database.
+Fusio is written in PHP and requires at least version 8.0 and a database.
 
-* __PHP >= 7.4__
+* __PHP >= 8.0__
 * __Database (supports: MySQL, PostgreSQL, MSSQL, Oracle)__
 
 ## Download
