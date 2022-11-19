@@ -1,5 +1,5 @@
 
-# Generate
+# Code Generate
 
 Fusio contains several commands to automatically generate specific classes. At this page we explain
 the most important commands.

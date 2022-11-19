@@ -130,16 +130,8 @@ const config = {
             title: 'API',
             items: [
               {
-                label: 'Backend API',
+                label: 'REST API',
                 href: 'https://demo.fusio-project.org/apps/documentation/',
-              },
-              {
-                label: 'Worker API',
-                href: 'https://www.fusio-project.org/documentation/worker',
-              },
-              {
-                label: 'PHP API',
-                href: 'https://www.fusio-project.org/documentation/php',
               },
             ],
           },
