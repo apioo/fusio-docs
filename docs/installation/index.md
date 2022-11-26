@@ -70,9 +70,9 @@ To update the backend we recommend to download the latest release from [GitHub](
 replace the `vendor/` folder and the `composer.json` and `composer.lock` file. After this you only need to run the
 following command:
 
-.. code-block:: text
-
-    php bin/fusio install
+```
+php bin/fusio install
+```
 
 Through this command Fusio executes all new migrations to migrate the database structure to the latest version.
 
@@ -82,6 +82,6 @@ All apps can be updated at the Marketplace panel of the backend app. There you c
 receive the latest version of the app. In case the Marketplace is disabled you can also download the app directly from
 our website at: https://www.fusio-project.org/marketplace or use our CLI command to update an app to the latest version:
 
-.. code-block:: text
-
-    php bin/fusio marketplace:update [name]
+```
+php bin/fusio marketplace:update [name]
+```
