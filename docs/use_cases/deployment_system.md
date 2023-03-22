@@ -50,7 +50,7 @@ methods:
 ## Models
 
 All models are generated through a TypeSchema definition. Please take a look at the [gen/](https://github.com/apioo/fusio-sample-cms/tree/master/gen)
-folder which contains hte script to generate the models based on a TypeSchema definition.
+folder which contains the script to generate the models based on a TypeSchema definition.
 
 ## Action
 
