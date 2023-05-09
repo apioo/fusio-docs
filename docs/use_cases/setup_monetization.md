@@ -21,8 +21,13 @@ php bin/fusio system:register "Fusio\Adapter\Stripe\Adapter"
 ```
 
 Then you need to create a new connection at the Fusio backend. This connection must be named "stripe" and you need to
-provide your app credentials. At the connection you need to provide the credentials and now your users can purchase a
-plan.
+provide your app credentials. At the connection you need to provide the credentials.
+
+## Webhook
+
+Fusio uses the webhook system of Stripe to get information about the payment status. You need to register a webhook
+at the Stripe portal which calls the `/system/payment/stripe/webhook` endpoint of your Fusio instance. Also you need to
+set the `payment_stripe_secret` system setting to the webhook secret key provided by stripe.
 
 ## Video
 
