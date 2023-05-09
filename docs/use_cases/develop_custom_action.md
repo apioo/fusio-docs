@@ -1,13 +1,13 @@
 
 # Develop custom action
 
-In Fusio it is easy possible to develop a custom action in case you want to implement a specific logic. This page
+In Fusio it is easily possible to develop a custom action in case you want to implement a specific logic. This page
 explains how to build a custom action.
 
 ## Autoload
 
-To build a custom action you first need define autoloading in your `composer.json` file so that Fusio is able to load
-your class. Therefor you need to add the following config to the `composer.json` file:
+To build a custom action you first need to define autoloading in your `composer.json` file so that Fusio is able to load
+your class. Therefore you need to add the following config to the `composer.json` file:
 
 ```json
 {
@@ -19,7 +19,7 @@ your class. Therefor you need to add the following config to the `composer.json`
 }
 ```
 
-More information about composer autoloading at:
+More information about composer autoloading can be found at:
 https://getcomposer.org/doc/01-basic-usage.md#autoloading
 
 ## Development
@@ -48,7 +48,7 @@ class HelloWorld extends ActionAbstract
 
 ```
 
-This hello world action is complete functional and can be directly used at your API.
+This hello world action is completely functional and can be directly used in your API.
 
 ## Integration
 
@@ -67,15 +67,15 @@ return [
 
 ```
 
-Then you can also select this class from the dropdown list of action classes at the backend. If you want to create an
-action which is reusable for other users you can also create a [Fusio adapter](../concepts/adapter.md) which allows other
+Then you can also select this class from the dropdown list of action classes in the backend. If you want to create an
+action which is reusable for other users, you can also create a [Fusio adapter](../concepts/adapter.md) which allows other
 users to reuse your action. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all
-available adapter.
+available adapters.
 
 ## API
 
-Inside your action you have already most tools available to complete many tasks. To see the complete action API please
-take a look at our [PHP API](https://www.fusio-project.org/documentation/php). In the following an example which shows
+Inside your action, you already have most tools available to complete many tasks. To see the complete action API please
+take a look at our [PHP API](https://www.fusio-project.org/documentation/php). The following is an example which shows
 some interesting methods of the internal action API:
 
 ```php
@@ -106,7 +106,7 @@ class HelloWorld extends ActionAbstract
 
 ```
 
-Through the connector you can obtain a connection which is configured at Fusio. This means you can get i.e. a database
+Through the connector you can obtain a connection which is configured at Fusio. This means you can get a database
 connection or http client connection to work with a remote service. Which concrete instance the connector returns
 depends always on the configured connection. The following table provides a first overview:
 
@@ -126,7 +126,7 @@ depends always on the configured connection. The following table provides a firs
 
 ## Dependency Injection
 
-In case your action needs other external dependencies you can also simply declare the dependencies at the constructor.
-Fusio tries then to inject the correct service via autowiring. Please take a look at the
+In case your action needs other external dependencies you can also simply declare the dependencies in the constructor.
+Fusio then tries to inject the correct service via autowiring. Please take a look at the
 [dependency injection](../concepts/dependency_injection.md) chapter to get more details how this works.
 

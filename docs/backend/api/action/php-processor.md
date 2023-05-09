@@ -1,7 +1,7 @@
 
 # PHP Processor
 
-The PHP action processes a PHP file or inline code. There is also a complete API [documentation](http://www.fusio-project.org/documentation/php)
+The PHP action processes a PHP file or inline code. There is also a complete API [documentation](https://docs.fusio-project.org/docs/concepts/php_api/)
 describing all available objects. In the following a simple example implementation:
 
 ## Example
