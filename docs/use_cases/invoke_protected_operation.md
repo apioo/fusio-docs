@@ -1,8 +1,8 @@
 
-# Invoke protected route
+# Invoke protected operation
 
-By default every route is private unless you explicit mark it as public. In order to access a private route a user needs
-to provide an access token.
+By default every operation is private unless you explicit mark it as public. In order to access a private operation a
+user needs to provide an access token.
 
 ## Assign scope to user
 

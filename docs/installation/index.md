@@ -6,10 +6,10 @@ sidebar_position: 1
 
 ## Requirements
 
-Fusio is written in PHP and requires at least version 8.0 and a database.
+Fusio is written in PHP and requires at least version 8.1 and a database.
 
-* __PHP >= 8.0__
-* __Database (supports: MySQL, PostgreSQL, MSSQL, Oracle)__
+* __PHP >= 8.1__
+* __Database (supports: MySQL, PostgreSQL)__
 
 ## Download
 
@@ -18,7 +18,7 @@ There are two ways of downloading Fusio:
 * [Download](https://www.fusio-project.org/download) the latest release from Github
 * Use composer and run the command `composer create-project fusio/fusio`
 
-Place the script in the www directory of your web server. After successfully downloading Fusio, please continue with the
+Place the script in the `www/` directory of your web server. After successfully downloading Fusio, please continue with the
 setup process. The setup process will help configure Fusio to work properly on your server.
 
 ## Setup
@@ -26,12 +26,12 @@ setup process. The setup process will help configure Fusio to work properly on y
 ### Manual Setup
 
 * __Adjust the configuration file__  
-  Open the file `.env` in the Fusio directory and change the key `FUSIO_URL` to the domain pointing to the public
-  folder. Also insert the database credentials to the `FUSIO_DB_*` keys.
+  Open the file `.env` in the Fusio directory and change the key `APP_URL` to the domain pointing to the public
+  folder. Also insert the database credentials to the `APP_CONNECTION` keys.
 
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided database. It can be executed with the
-  following command `php bin/fusio install`.
+  following command `php bin/fusio migrate`.
 
 * __Create administrator user__  
   After the installation is complete you have to create a new administrator account. Therefor you can use the following
@@ -57,26 +57,26 @@ Please take a look also at our docs regarding a specific platform:
 * [IIS](./iis)
 * [cPanel](./cpanel)
 
-# Cloud
+## Cloud
 
 If you don`t want to manually install Fusio you can take a look at our [cloud platform](https://fusio.cloud/) which you
 can use to directly run a Fusio instance in the cloud.
 
-# Update
+## Update
 
-## Backend
+### Backend
 
 To update the backend we recommend to download the latest release from [GitHub](https://github.com/apioo/fusio) and
 replace the `vendor/` folder and the `composer.json` and `composer.lock` file. After this you only need to run the
 following command:
 
 ```
-php bin/fusio install
+php bin/fusio migrate
 ```
 
 Through this command Fusio executes all new migrations to migrate the database structure to the latest version.
 
-## Apps
+### Apps
 
 All apps can be updated at the Marketplace panel of the backend app. There you can simply use the update button to
 receive the latest version of the app. In case the Marketplace is disabled you can also download the app directly from

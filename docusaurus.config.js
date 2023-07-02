@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Fusio',
-  tagline: 'Fusio is an open source API management platform which helps to build and manage REST APIs',
+  tagline: 'Fusio is an open source API management platform which helps to create innovative API solutions.',
   url: 'https://docs.fusio-project.org/',
   baseUrl: '/',
   onBrokenLinks: 'throw',

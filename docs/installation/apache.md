@@ -46,7 +46,7 @@ The following contains a sample apache config:
 On a Ubuntu/Debian system you could place the config at `/etc/apache/sites-available/fusio.conf`. Through the command
 `a2ensite fusio` you would activate the site.
 
-You should enable the module `mod_rewrite` so that the .htaccess file in the public folder is used. It is also possible
+You should enable the module `mod_rewrite` so that the `.htaccess` file in the public folder is used. It is also possible
 to include the htaccess commands directly into the virtual host which also increases performance. The htaccess contains
 an important rule which redirects the `Authorization` header to Fusio which is otherwise removed. If the .htaccess file
 does not work please check whether the AllowOverride directive is set correctly i.e. to All.

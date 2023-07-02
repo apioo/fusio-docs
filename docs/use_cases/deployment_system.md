@@ -7,44 +7,35 @@ database. The deploy system internally also only talks to the REST API which is 
 see a complex example you can take a look at our [headless CMS repository](https://github.com/apioo/fusio-sample-cms)
 which uses the deploy system to build a headless CMS.
 
-## Routes
+## Operations
 
-All routes are stored in dedicated [routes](https://github.com/apioo/fusio-sample-cms/blob/master/resources/routes.yaml)
-file which includes for each route a detail yaml file.
+All operations are stored in dedicated [routes](https://github.com/apioo/fusio-sample-cms/blob/master/resources/operations.yaml)
+file which includes for each operation a detail yaml file.
 
 ```yaml
-"/page": !include resources/routes/page/collection.yaml
-"/page/:page_id": !include resources/routes/page/entity.yaml
-"/post": !include resources/routes/post/collection.yaml
-"/post/:post_id": !include resources/routes/post/entity.yaml
-"/comment": !include resources/routes/comment/collection.yaml
-"/comment/:comment_id": !include resources/routes/comment/entity.yaml
+"page.getAll": !include resources/operations/page/collection.yaml
+"page.get": !include resources/operations/page/entity.yaml
+"post.getAll": !include resources/operations/post/collection.yaml
+"post.get": !include resources/operations/post/entity.yaml
+"comment.getAll": !include resources/operations/comment/collection.yaml
+"comment.get": !include resources/operations/comment/entity.yaml
 ```
 
-The routes detail yaml file contains all information about a route which you can also provide at the backend. In this
-example we use as schema model classes which we have generated. Your action then also automatically receives those
-generated model classes.
+The operations detail yaml file contains all information about an operation which you can also provide at the backend.
+In this example we use as schema model classes which we have generated. Your action then also automatically receives
+those generated model classes.
 
 ```yaml
-version: 1
 scopes: ["comment"]
-methods:
-  GET:
-    public: true
-    description: "Returns all available comments"
-    parameters: "App\\Model\\Comment_Query"
-    responses: 
-      200: "App\\Model\\Comment_Collection"
-      500: "App\\Model\\Message"
-    action: "App\\Action\\Comment\\GetAll"
-  POST:
-    public: false
-    description: "Creates a new comment"
-    request: "App\\Model\\Comment"
-    responses: 
-      201: "App\\Model\\Message"
-      500: "App\\Model\\Message"
-    action: "App\\Action\\Comment\\Create"
+public: true
+description: "Returns all available comments"
+httpMethod: GET
+httpPath: "/page"
+httpCode: 200
+outgoing: "App\\Model\\Comment_Collection"
+throws:
+  500: "App\\Model\\Message"
+action: "App\\Action\\Comment\\GetAll"
 ```
 
 ## Models

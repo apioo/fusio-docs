@@ -1,7 +1,7 @@
 
 # Setup Developer-Portal
 
-The developer app provides an easy way to set up an API programm where external developers can register to consume
+The developer app provides an easy way to set up an API program where external developers can register to consume
 your API. It provides a documentation page and login/registration system where new developers can register. 
 
 ![consumer](/img/use_cases/consumer.png)

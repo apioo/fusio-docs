@@ -5,21 +5,35 @@ sidebar_position: 2
 # Getting started
 
 To get started you first need a running installation of Fusio. If you have not already installed Fusio please take a
-look at the [installation](./installation/index.md) page. Fusio is an open source API management platform which helps to build and
-manage REST APIs. Through Fusio you can quickly build a state-of-the-art API, set up a developer portal and monetize
-your API.
+look at the [installation](./installation/index.md) page. Fusio is an open source API management platform which helps to
+create innovative API solutions. Through Fusio you can quickly build a state-of-the-art API, set up a developer portal
+and monetize your API.
 
-Fusio supports different ways to setup your API:
-* Use Fusio as API Gateway to proxy calls to a remote API
-* Use Fusio to automatically create an API from different sources i.e. a database
-* Use Fusio to implement custom business logic via an action or worker
+Fusio can help you with the following use cases:
 
-This page will explain the first steps on how to proxy a route to an internal API. We create a route at the backend which
-executes a specific action, a schema which describes the payload and an action which proxies to a remote API.
+* __API-Product__  
+Fusio helps you to create a great API product, besides building an API it provides a developer portal where developers
+can register and a way to monetize your API
+* __API-Gateway__  
+Fusio can be used as gateway to your internal API and microservices. It handles all common features like Authorization, 
+Rate-Limiting and Schema-Validation
+* __SPA-Backend__  
+Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue. It
+provides a powerful code generator which can automatically generate an SDK for your API
+* __Low-Code-Platform__  
+Fusio allows you to build API endpoints without coding knowledge. I.e. it provides an Entity generator which you can use
+to easily create complete CRUD APIs.
+* __API-Framework__  
+For more complex use cases you can use Fusio also as framework to build complete APIs from scratch. This means you build
+custom actions where you can use the wide PHP ecosystem to solve your task.
+
+This page will explain the first steps on how to proxy an operation to an internal API. We create an operation at the
+backend which executes a specific action, a schema which describes the payload and an action which proxies to a remote
+API.
 
 ## Creating an action
 
-To start we must create an action. An action is a small function (i.e. like a serverless lambda function)
+To start we create an action. An action is a small function (i.e. like a serverless lambda function)
 which receives a HTTP request and produces a response. Fusio already contains many prebuilt actions which can solve
 many tasks, such as, proxy an HTTP request to a remote API or build an API based on a database table. In this example
 we simply create an action which proxies a remote API:
@@ -35,13 +49,13 @@ automatically create an OpenAPI specification or generate a client SDK.
 
 ![create_schema](/img/bootstrap/create_schema.png)
 
-## Creating a route
+## Creating an operation
 
-Lastly, we need to create a route which then invokes our action. A route contains some meta information like a
+Lastly, we need to create an operation which then invokes our action. An operation contains meta information like a
 description, the request and response schemas, and which action should be invoked. In our example we simply
 select the action and the schema which we have created.
 
-![create_schema](/img/bootstrap/create_route.png)
+![create_schema](/img/bootstrap/create_operation.png)
 
 ## API Response
 
@@ -68,12 +82,12 @@ Fusio:
 
 ![architecture](/img/bootstrap/architecture.png)
 
-### 1. Route
+### 1. Operation
 
-The route entity specifies a path at your API i.e. if you create a route `/hello/world` then you can invoke this route
-at your API. The route invokes a specific action which executes the business logic of your API. Besides this the route
-describes through a schema how the request and response data of your endpoint is designed. Fusio then also uses those
-schemas to validate request data and to automatically generate an SDK.
+An operation provides a way to invoke an action which executes the business logic of your API, it is assigned to a
+specific HTTP method and path i.e. `GET /hello/world`. Besides this the operation describes through a schema how the
+parameters, incoming and outgoing data of your endpoint is designed. Fusio then also uses those schemas to validate
+request data and to automatically generate an OpenAPI specification or client SDK.
 
 ### 2. Action
 

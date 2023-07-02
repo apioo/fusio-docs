@@ -52,30 +52,17 @@ This hello world action is completely functional and can be directly used in you
 
 ## Integration
 
-You can also add this class to the `provider.php` file under the `action` key:
+To be able to use the action you need to add the action to the DI container. Please take a look at the
+[depedency injection](./dependency_injection) chapter to see how you can use the DI container.
 
-```php
-<?php
-
-return [
-    'action' => [
-        // ...
-        \App\Action\HelloWorld::class,
-    ],
-    // ...
-];
-
-```
-
-Then you can also select this class from the dropdown list of action classes in the backend. If you want to create an
-action which is reusable for other users, you can also create a [Fusio adapter](../concepts/adapter.md) which allows other
-users to reuse your action. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all
-available adapters.
+If you want to create an action which is reusable for other users, you can also create a
+[Fusio adapter](../concepts/adapter.md) as separate composer package. Then other users can easily include and use those 
+actions. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all available adapters.
 
 ## API
 
 Inside your action, you already have most tools available to complete many tasks. To see the complete action API please
-take a look at our [PHP API](https://www.fusio-project.org/documentation/php). The following is an example which shows
+take a look at our [PHP API](https://docs.fusio-project.org/docs/concepts/php_api). The following is an example which shows
 some interesting methods of the internal action API:
 
 ```php
