@@ -7,16 +7,14 @@ https://github.com/apioo/fusio-worker-javascript
 ## Example
 
 ```javascript
-module.exports = function(request, context, connector, response, dispatcher, logger) {
+module.exports = async function(request, context, connector, response, dispatcher, logger) {
+    const connection = await connector.getConnection('my_db');
+    const result = await connection.query('SELECT * FROM app_todo');
 
-  const connection = connector.getConnection('my_db');
-
-  connection.query('SELECT * FROM app_todo', (err, result) => {
     response.build(200, {}, {
-      foo: 'bar',
-      result: result
+        foo: 'bar',
+        result: result
     });
-  });
 
 };
 ```
