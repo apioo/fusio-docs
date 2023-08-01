@@ -29,12 +29,17 @@ Represents an incoming request. This object can be used to access all values fro
 | `getContext(): RequestContextInterface` | Returns the request context                          |
 
 Most times your actions gets invoked by an HTTP request, in this case the `get` method reads the
-value from the path or query parameter. We recommend to use in your action only the `get`, `getArguments`
-and `getPayload` method on the request object so that you action is independent of an HTTP request since
-your action can be used also in a different context, i.e. it can be invoked through RPC or another context.
-If needed you can get all details of the HTTP request through the `getContext` method. In case the action
-was invoked through an HTTP request the context contains a `Fusio\Engine\Request\HttpRequestContext` instance.
-The following example shows how you can access all details of the HTTP request object.
+value from the path or query parameter. The `getPayload` method returns the parsed body, this is either
+a general `PSX\Record\RecordInterface` object or a custom DTO object. If your schema is set to Passthru then
+it contains a `Fusio\Engine\Record\PassthruRecord` where you can get the raw request value through
+the `getPayload` method.
+
+We recommend to use in your action only the `get`, `getArguments` and `getPayload` method on the request
+object so that you action is independent of an HTTP request since your action can be used also in a different
+context, i.e. it can be invoked through RPC or another context. If needed you can get all details of the HTTP
+request through the `getContext` method. In case the action was invoked through an HTTP request the context
+contains a `Fusio\Engine\Request\HttpRequestContext` instance. The following example shows how you can access
+all details of the HTTP request object.
 
 #### Example
 
