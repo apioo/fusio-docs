@@ -7,7 +7,7 @@ available variables and can be used as a reference to develop new actions.
 
 | Name          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$request`    | Represents an incoming HTTP request. This object can be used to access all values from an incoming request                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `$request`    | Represents an incoming request. This object can be used to access all values from an incoming request                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `$parameters` | The parameters represent a general set of key values which is used in various places. As argument to the action method it contains the configuration parameters of the action. At the request object it contains the query and uri fragment parameters                                                                                                                                                                                                                                                                                                             |
 | `$context`    | The context contains all information about the incoming request which is not HTTP related i.e. it contains the authenticated user and app or also the route id which was used                                                                                                                                                                                                                                                                                                                                                                                      |
 | `$connector`  | Through the connector it is possible to access configured connection objects. A connection is i.e. a MYSQL connection which can be configured at the admin panel. Inside an action it is possible to access this connection through this class. Which objects is returned depends on the connection type i.e. the MYSQL connection returns a Doctrine DBAL Connection instance and the HTTP connection returns a Guzzle instance. There are already many adapters available which allow many different kind of services i.e. ElasticSearch, MongoDB, AMQP, etc.    |
@@ -19,19 +19,40 @@ available variables and can be used as a reference to develop new actions.
 
 ### $request
 
-Represents an incoming HTTP request. This object can be used to access all values from an incoming request.
+Represents an incoming request. This object can be used to access all values from an incoming request.
 
-| Name	                                   | Description                                                                                                                                                                                    |
-|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `getMethod(): string`	               | Returns the HTTP request method i.e. GET, POST                                                                                                                                                |
-| `getHeader(string $name): ?string`	   | Returns a specific header or return null in case the header is not available                                                                                                                   |
-| `getHeaders(): array`	               | Returns all available headers                                                                                                                                                                  |
-| `getUriFragment(string $name): ?string` | Returns a specific fragment from the uri. To specify a fragment your route must contain a variable fragment i.e. /foo/:bar, then it is possible to access the bar fragment through this method |
-| `getUriFragments(): array`              | Returns all available uri fragments                                                                                                                                                            |
-| `getParameter(string $name): ?string`   | Returns a query parameter from the uri. Those are parsed by the parse_str function so the value is either a string or an array in case the parameter uses a "[]" notation                      |
-| `getParameters()`                       | Returns all available query parameters                                                                                                                                                         |
-| `getBody(): RecordInterface`	           | Returns the parsed body. If the body arrives at the action it is already valid against the defined JSON schema (if provided)                                                                   |
-| `withBody(RecordInterface $body): self` | Returns a copy of the request object with the provided body                                                                                                                                    |
+| Name	                                   | Description                                          |
+|-----------------------------------------|------------------------------------------------------|
+| `get(string $name): mixed`	           | Returns an argument by name                          |
+| `getArguments(): array`	               | Returns all available arguments as associative array |
+| `getPayload(): mixed`	               | Returns the request payload                          |
+| `getContext(): RequestContextInterface` | Returns the request context                          |
+
+Most times your actions gets invoked by an HTTP request, in this case the `get` method reads the
+value from the path or query parameter. We recommend to use in your action only the `get`, `getArguments`
+and `getPayload` method on the request object so that you action is independent of an HTTP request since
+your action can be used also in a different context, i.e. it can be invoked through RPC or another context.
+If needed you can get all details of the HTTP request through the `getContext` method. In case the action
+was invoked through an HTTP request the context contains a `Fusio\Engine\Request\HttpRequestContext` instance.
+The following example shows how you can access all details of the HTTP request object.
+
+#### Example
+
+```php
+$request->get('id'); // returns a path or query parameter
+$request->getPayload(); // returns the request payload
+$request->getArguments(); // returns all available arguments as array
+
+$context = $request->getContext();
+if ($context instanceof \Fusio\Engine\Request\HttpRequestContext) {
+    $context->getParameter('id'); // returns a path parameter
+    $context->getRequest()->getUri()->getParameter('count'); // returns a query parameter
+    $context->getRequest()->getMethod(); // returns the request method i.e. GET or POST
+    $context->getRequest()->getHeader('my-header'); // returns a request header
+    $context->getRequest()->getBody(); // returns the raw request body
+}
+
+```
 
 ### $parameters
 
