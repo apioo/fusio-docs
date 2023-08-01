@@ -96,9 +96,9 @@ class. Which objects is returned depends on the connection type i.e. the MYSQL c
 Connection instance and the HTTP connection returns a Guzzle instance. There are already many adapters available for
 different kind of services i.e. ElasticSearch, MongoDB, AMQP, etc.
 
-| Name	                                          | Description                                                                                                                                                     |
-|------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `getConnection(string&#124;int $connectionId)` | Returns an arbitrary connection to a remote service. It is recommended to use the connection name but you can also use the actual database id of the connection |
+| Name	                                     | Description                                                                                                                                                     |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `getConnection(string/int $connectionId)` | Returns an arbitrary connection to a remote service. It is recommended to use the connection name but you can also use the actual database id of the connection |
 
 ### $response
 
@@ -114,9 +114,9 @@ response object. Please always use this factory since this gives us the freedom 
 The processor can be used to invoke another action. Normally an action should only contain simple logic but in some
 cases you may want to invoke an existing action.
 
-| Name	                                                                                      | Description                                                                                                                                                                         |
-|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `execute(string&#124;int $actionId, RequestInterface $request, ContextInterface $context)` | Executes a specific action using the request and context and returns a response. It is recommended to use the action name but you can also use the actual database id of the action |
+| Name	                                                                                 | Description                                                                                                                                                                         |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `execute(string/int $actionId, RequestInterface $request, ContextInterface $context)` | Executes a specific action using the request and context and returns a response. It is recommended to use the action name but you can also use the actual database id of the action |
 
 ### $dispatcher
 
