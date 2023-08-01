@@ -9,20 +9,18 @@ returns all data from the request.
 ```php
 <?php
 
-$method = $request->getMethod();
-$headers = $request->getHeaders();
-$uriFragments = $request->getUriFragments();
-$body = $request->getBody();
+$id = $request->get('id'); // returns a path or query parameter
+$payload = $request->getPayload(); // returns the request payload
+$arguments = $request->getArguments(); // returns all available arguments as array
 
 // returns a configured connection, in case of a SQL connection this returns a doctrine DBAL instance which you could
 // now use to query the database
 //$connection = $connector->getConnection('mysql');
 
 return $response->build(200, [], [
-    'method' => $method,
-    'headers' => $headers,
-    'uriFragments' => $uriFragments,
-    'body' => get_class($body),
+    'id' => $id,
+    'uriFragments' => $arguments,
+    'payload' => $payload,
 ]);
 
 ```
