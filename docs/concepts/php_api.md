@@ -31,8 +31,7 @@ Represents an incoming request. This object can be used to access all values fro
 Most times your actions gets invoked by an HTTP request, in this case the `get` method reads the
 value from the path or query parameter. The `getPayload` method returns the parsed body, this is either
 a general `PSX\Record\RecordInterface` object or a custom DTO object. If your schema is set to Passthru then
-it contains a `Fusio\Engine\Record\PassthruRecord` where you can get the raw request value through
-the `getPayload` method.
+it contains a `Fusio\Engine\Record\PassthruRecord` object.
 
 We recommend to use in your action only the `get`, `getArguments` and `getPayload` method on the request
 object so that you action is independent of an HTTP request since your action can be used also in a different
