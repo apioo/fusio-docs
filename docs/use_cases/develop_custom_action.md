@@ -53,7 +53,12 @@ This hello world action is completely functional and can be directly used in you
 ## Integration
 
 To be able to use the action you need to add the action to the DI container. Please take a look at the
-[depedency injection](./dependency_injection) chapter to see how you can use the DI container.
+[depedency injection](./dependency_injection) chapter to see how you can use the DI container. The important part is
+to add the following line to your `resources/container.php` file so that the actions are autoloaded through the DI:
+
+```php
+$services->load('App\\Action\\', __DIR__ . '/../src/Action');
+```
 
 If you want to create an action which is reusable for other users, you can also create a
 [Fusio adapter](../concepts/adapter.md) as separate composer package. Then other users can easily include and use those 
