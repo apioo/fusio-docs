@@ -19,8 +19,3 @@ As alternative to the manual command you can also include the [TypeSchema GitHub
 which automatically generates and commits the models to your repo if you commit changes to the TypeSchema file.
 As example
 https://github.com/apioo/fusio-model/blob/main/.github/workflows/ci.yml
-
-
-
-
-[ty](https://github.com/apioo/fusio-sample-cms/tree/master/resources/typeschema.json)
