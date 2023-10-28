@@ -16,8 +16,12 @@ provides a first overview:
     }
   },
   "entries": {
-    "$collection": "SELECT id, authorId, title, createDate FROM psx_sql_provider_news ORDER BY id ASC LIMIT :startIndex, 8",
+    "$collection": "SELECT id, authorId, title, createDate FROM psx_sql_provider_news WHERE status = :status ORDER BY id ASC LIMIT :startIndex, 8",
     "$params": {
+      "status": {
+        "$context": "status",
+        "$default": 1
+      },
       "startIndex": 0
     },
     "$definition": {
