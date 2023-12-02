@@ -41,7 +41,7 @@ to see an example how to build a custom action.
 
 Interface: `Fusio\Engine\Identity\ProviderInterface`
 
-Describes a remote identity provider which can be used to authorize an user through a remote system so that the
+Describes a remote identity provider which can be used to authorize a user through a remote system so that the
 developer dont need to create an account. Usually this is done through OAuth2, which has the following flow:
 
 * The App redirects the user to the authorization endpoint of the remote provider (i.e. Google)

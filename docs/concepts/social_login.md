@@ -48,95 +48,33 @@ please take a look at our Google provider:
 ```php
 <?php
 
-namespace Fusio\Impl\Provider\User;
+namespace Fusio\Impl\Provider\Identity;
 
-use Fusio\Engine\User\ProviderInterface;
-use Fusio\Engine\User\UserDetails;
-use Fusio\Impl\Base;
-use Fusio\Impl\Service\Config;
-use PSX\Http\Client\ClientInterface;
-use PSX\Http\Client\GetRequest;
-use PSX\Http\Client\PostRequest;
-use PSX\Json\Parser;
-use PSX\Uri\Url;
+use Fusio\Engine\Form\BuilderInterface;
+use Fusio\Engine\Form\ElementFactoryInterface;
+use Fusio\Engine\Identity\ProviderAbstract;
 
-class Google implements ProviderInterface
+class Google extends ProviderAbstract
 {
-    private ClientInterface $httpClient;
-    private string $secret;
-
-    public function __construct(ClientInterface $httpClient, Config $config)
+    public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory): void
     {
-        $this->httpClient = $httpClient;
-        $this->secret     = $config->getValue('provider_google_secret');
+        $builder->add($elementFactory->newInput('client_id', 'Client-ID', 'text', 'Client-ID'));
+        $builder->add($elementFactory->newInput('client_secret', 'Client-Secret', 'text', 'Client-Secret'));
     }
 
-    public function getId(): int
+    public function getAuthorizationUri(): ?string
     {
-        return self::PROVIDER_GOOGLE;
+        return 'https://accounts.google.com/o/oauth2/v2/auth';
     }
 
-    public function requestUser(string $code, string $clientId, string $redirectUri): ?UserDetails
+    public function getTokenUri(): ?string
     {
-        $accessToken = $this->getAccessToken($code, $clientId, $this->secret, $redirectUri);
-        if (empty($accessToken)) {
-            return null;
-        }
-
-        $url = new Url('https://www.googleapis.com/userinfo/v2/me');
-
-        $headers = [
-            'Authorization' => 'Bearer ' . $accessToken,
-            'User-Agent'    => Base::getUserAgent()
-        ];
-
-        $response = $this->httpClient->request(new GetRequest($url, $headers));
-        if ($response->getStatusCode() !== 200) {
-            return null;
-        }
-
-        $data  = Parser::decode((string) $response->getBody());
-        $id    = $data->id ?? null;
-        $name  = $data->name ?? null;
-        $email = $data->email ?? null;
-
-        if (!empty($id) && !empty($name)) {
-            return new UserDetails($id, $name, $email);
-        } else {
-            return null;
-        }
+        return 'https://oauth2.googleapis.com/token';
     }
 
-    protected function getAccessToken(string $code, string $clientId, string $clientSecret, string $redirectUri): ?string
+    public function getUserInfoUri(): ?string
     {
-        $url = new Url('https://oauth2.googleapis.com/token');
-
-        $params = [
-            'code'          => $code,
-            'client_id'     => $clientId,
-            'client_secret' => $clientSecret,
-            'redirect_uri'  => $redirectUri,
-            'grant_type'    => 'authorization_code'
-        ];
-
-        $headers = [
-            'Accept'     => 'application/json',
-            'User-Agent' => Base::getUserAgent()
-        ];
-
-        $response = $this->httpClient->request(new PostRequest($url, $headers, $params));
-
-        if ($response->getStatusCode() !== 200) {
-            return null;
-        }
-
-        $data = Parser::decode((string) $response->getBody());
-        if (isset($data->access_token)) {
-            return $data->access_token;
-        } else {
-            return null;
-        }
+        return 'https://openidconnect.googleapis.com/v1/userinfo';
     }
 }
 ```
-

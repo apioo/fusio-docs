@@ -12,7 +12,7 @@ multiple ways to run your business logic:
 
 ## HTTP
 
-Your app provides an internal API which gets called by Fusio. In this case your action uses a HTTP connection to call
+Your app provides an internal API which gets called by Fusio. In this case your action uses an HTTP connection to call
 the internal API of your app. The internal API also does not need to have a great design since the user only faces the
 Fusio endpoints. I.e. you could create a simple `api.php` script which bootstraps your app and invokes a specific
 method.
@@ -20,7 +20,7 @@ method.
 ## RPC
 
 Your app provides an RPC service (i.e. Apache Thrift or GRPC) which can be called by Fusio. This has also the advantage
-that the performance is much better then an internal HTTP API because modern RPC services mostly serialize the data into
+that the performance is much better than an internal HTTP API because modern RPC services mostly serialize the data into
 an optimized binary format instead of JSON or XML.
 
 ## Message-Queue

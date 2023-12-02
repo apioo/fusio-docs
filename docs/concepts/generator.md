@@ -1,7 +1,7 @@
 
 # Generator
 
-Fusio contains a generator system which helps to generate routes, schemas and actions from different
+Fusio contains a generator system which helps to generate operations, schemas and actions from different
 sources i.e. it can help to create an API from a database or import an OpenAPI specification. The following screenshot
 shows the generator form:
 
@@ -39,14 +39,17 @@ which simply outputs a static message.
 
 namespace App;
 
-use Fusio\Adapter\Sql\Action\SqlUpdate;
 use Fusio\Adapter\Util\Action\UtilStaticResponse;
-use Fusio\Engine\Factory\Resolver\PhpClass;
 use Fusio\Engine\Form\BuilderInterface;
 use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\Generator\ProviderInterface;
 use Fusio\Engine\Generator\SetupInterface;
 use Fusio\Engine\ParametersInterface;
+use Fusio\Model\Backend\ActionConfig;
+use Fusio\Model\Backend\ActionCreate;
+use Fusio\Model\Backend\OperationCreate;
+use Fusio\Model\Backend\SchemaCreate;
+use Fusio\Model\Backend\SchemaSource;
 
 class MyGenerator implements ProviderInterface
 {
@@ -55,28 +58,33 @@ class MyGenerator implements ProviderInterface
         return 'My-Generator';
     }
 
-    public function setup(SetupInterface $setup, string $basePath, ParametersInterface $configuration): void
+    public function setup(SetupInterface $setup, ParametersInterface $configuration): void
     {
-        $messageSchema = $setup->addSchema('My_Schema', $this->getMySchema());
+        $operationId = 'My_Message';
+        $responseSchema = 'My_Schema';
 
-        $messageAction = $setup->addAction('My_Message', UtilStaticResponse::class, PhpClass::class, [
+        $schema = new SchemaCreate();
+        $schema->setName($responseSchema);
+        $schema->setSource(SchemaSource::from($this->getMySchema()));
+        $setup->addSchema($schema);
+
+        $action = new ActionCreate();
+        $action->setName($operationId);
+        $action->setClass(UtilStaticResponse::class);
+        $action->setConfig(ActionConfig::from([
             'response' => json_encode(['hello' => $configuration->get('message')]),
-        ]);
+        ]));
+        $setup->addAction($action);
 
-        $setup->addRoute(1, '/', 'Fusio\Impl\Controller\SchemaApiController', [], [
-            [
-                'version' => 1,
-                'methods' => [
-                    'GET' => [
-                        'description' => 'Returns a hello message',
-                        'responses' => [
-                            200 => $messageSchema,
-                        ],
-                        'action' => $messageAction,
-                    ],
-                ],
-            ]
-        ]);
+        $operation = new OperationCreate();
+        $operation->setName('My_Operation');
+        $operation->setDescription('Returns a hello message');
+        $operation->setHttpMethod('GET');
+        $operation->setHttpPath('/my/endpoint');
+        $operation->setHttpCode(200);
+        $operation->setOutgoing($responseSchema);
+        $operation->setAction($operationId);
+        $setup->addOperation($operation);
     }
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory): void
@@ -104,16 +112,20 @@ class MyGenerator implements ProviderInterface
 
 ```
 
-To use this generator place this class at the file `src/MyGenerator.php`. Then you need to register the
-class at the `provider.php` file so that it is available at the dropdown s.
+To use this generator place this class at the file `src/MyGenerator.php` and register the class at the
+`resources/container.php` DI container s.
 
-![generator_provider.png](/img/concepts/generator_provider.png)
+```php
+
+$services->set(App\MyGenerator::class);
+
+```
 
 After this you can select the provider at the backend s.
 
 ![generator_custom](/img/concepts/generator_custom.png)
 
-If you execute this provider you will get a simple route which outputs the following JSON payload.
+If you execute this provider you will get a simple operation which outputs the following JSON payload.
 
 ```json
 {

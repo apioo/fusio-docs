@@ -12,11 +12,11 @@ service. Inside an action you can then reuse this external service.
 Fusio is designed to help you write framework independent code. That means that all services which you develop are
 complete free of Fusio specific code so you can simply reuse those components in another context.
 
-## Library
+## PHP Class
 
 The simplest solution is to move business logic into a separate PHP class. This class can be autoloaded through
-composer. You can place this class either directly into the `src/` folder or develop a custom PHP package and require
-this package through composer.
+composer. You can place this class either directly into the `src/Service` folder or develop a custom PHP package and
+require this package through composer.
 
 In general a library should work with a specific connection. The following example shows a simple custom logger
 implementation which you could use in different actions.

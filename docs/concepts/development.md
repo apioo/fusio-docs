@@ -56,21 +56,22 @@ which shows how to design and structure a more complex app.
 * `resources/connections.yaml`  
   Contains all available connections which can be used at an action. The `System` connection to the Fusio database is
   always available
-* `resources/routes.yaml`  
-  Contains all routes of your API. Each route points to a dedicated `yaml` file which contains all information about the
-  endpoint
+* `resources/operations.yaml`  
+  Contains all operations of your API. Each route points to a dedicated `yaml` file which contains all information about
+  the endpoint
 * `src/Action`  
   Contains all actions
 * `src/Migrations`  
   Contains migrations which can be executed on a specific connection. To execute those migrations on the `System`
   connection you can run the following command: `php bin/fusio migration:migrate --connection=System`
+  s. also the [migration](./migration.md) page.
 * `src/Model`  
-  Contains all models which are used at your actions. You can also automatically generate those models, please take a
-  look at the `gen/` folder
+  Contains all models which are used at your actions. You can automatically generate those models with the
+  following command: `php bin/fusio generate:model` s. also the [code generate](./code_generate.md) page.
 
 ## Deployment
 
-To tell Fusio about all the routes, actions and connections which you define at the `yaml` files you need to run the
+To tell Fusio about all the operations, actions and connections which you define at the `yaml` files you need to run the
 deploy command:
 
 ```
