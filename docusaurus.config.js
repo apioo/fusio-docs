@@ -129,12 +129,19 @@ const config = {
             title: 'API',
             items: [
               {
-                label: 'REST API',
-                href: 'https://demo.fusio-project.org/apps/documentation/',
+                label: 'Backend',
+                href: 'https://www.fusio-project.org/api/backend',
+              },
+              {
+                label: 'Consumer',
+                href: 'https://www.fusio-project.org/api/consumer',
+              },
+              {
+                label: 'System',
+                href: 'https://www.fusio-project.org/api/system',
               },
             ],
           },
-
           {
             title: 'Community',
             items: [
@@ -160,12 +167,12 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Cloud',
-                href: 'https://fusio.cloud/',
+                label: 'TypeHub',
+                href: 'https://typehub.cloud/',
               },
               {
-                label: 'ApiGen',
-                href: 'https://apigen.app/',
+                label: 'TypeAPI',
+                href: 'https://typeapi.org/',
               },
               {
                 label: 'TypeSchema',
