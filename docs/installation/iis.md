@@ -167,11 +167,11 @@ Click “Import”
 
 Two items need to be adjusted.
 
-Click on the “<!—This directive….” And the error will be highlighted in the top panel
+Click on the “This directive….” And the error will be highlighted in the top panel
 
 ![url_rewrite_import_error](/img/setup/iis/url_rewrite_import_error.png)
 
-Delete the Entry “RewriteBase /” from the top panel. Click “<!—rule cannot…” in the bottom panel:
+Delete the Entry “RewriteBase /” from the top panel. Click “rule cannot…” in the bottom panel:
 
 ![url_rewrite_import_fix](/img/setup/iis/url_rewrite_import_fix.png)
 
