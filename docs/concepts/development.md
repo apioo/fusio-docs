@@ -78,14 +78,14 @@ deploy command:
 php bin/fusio deploy
 ```
 
-This deploys the .yaml files at the `resource/` folder. It inserts the defined routes (i.e. `/todo`) and creates the
+This deploys the .yaml files at the `resources/` folder. It inserts the defined routes (i.e. `/todo`) and creates the
 fitting schemas.
 
 The todo API uses a simple table `app_todo` to store all entries. To create this table you also need to run the
 migration files defined in `src/Migrations`.
 
 ```
-php bin/fusio migration:migrate --connection=System
+php bin/fusio migration:migrate
 ```
 
 Now you should be able to visit the `/todo` endpoint.
@@ -203,32 +203,17 @@ to build fast an sample API with dummy responses.
 ## Migrations
 
 Fusio integrates the [Doctrine Migrations](https://www.doctrine-project.org/projects/migrations.html) system to easily
-make database schema changes on different connections. Fusio determines the connection based on the `--connection`
-option. If you use the `System` connection (which is created by default) it will work on the same database where Fusio
-is installed but it will ignore all `fusio_` tables.
+make database schema changes. To create a new migration class you can simply run the `generate` command:
 
 ```
-php bin/fusio migration:migrate --connection=System
+php bin/fusio migration:generate
 ```
 
-The migration classes are placed inside `src/Migrations` folder. The folder below must be the name of your connection.
-Through this way you can easily define multiple migrations for different connections.
-
-To create a new migration class you can simply run the `generate` command:
+Then you can modify in your migrate the database schema how you like. Through the `migrate` command you can then execute
+all migrations.
 
 ```
-php bin/fusio migration:generate --connection=System
+php bin/fusio migration:migrate
 ```
 
 For more information please take a look at the website of [Doctrine Migrations](https://www.doctrine-project.org/projects/migrations.html).
-The following commands are available:
-
-```
-migration:execute     Execute a single migration version up or down manually.
-migration:generate    Generate a blank migration class.
-migration:latest      Outputs the latest version number
-migration:migrate     [install] Execute a migration to a specified version or the latest available version.
-migration:status      View the status of a set of migrations.
-migration:up-to-date  Tells you if your schema is up-to-date.
-migration:version     Manually add and delete migration versions from the version table.
-```
