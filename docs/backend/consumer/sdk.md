@@ -100,7 +100,7 @@ the following trigger for each supported language.
 The last step is to create an SDK repository for the language which you like to support
 and add a fitting `sdkgen.yml` workflow. For a javascript SDK the workflow would look like:
 
-```
+```yaml
 name: SDKgen
 on:
   workflow_dispatch:
