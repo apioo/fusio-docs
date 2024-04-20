@@ -2,13 +2,13 @@
 # SPA Backend
 
 Using Fusio as SPA Backend means, that you have an existing Single-Page-Application
-like Angular or REACT and you need a backend for this frontend app.
+like Angular or React and you need a backend for this frontend app.
 Fusio can act as backend for those apps by providing the fitting endpoints
 i.e. to CRUD entities or also to execute more complex business logic. The great
 advantage of Fusio in this use case is that it has the ability to generate complete
-type safe SDKs which makes building those apps more robust since you directly
-know at the build-step in case a property of a response has changed.
-It also helps to handle topics like authorization and authentication.
+type safe SDKs which makes building those apps more robust since all method and
+property calls are validated in the build-step. It also helps to handle topics like
+authorization and authentication.
 
 ## Development
 
@@ -24,11 +24,25 @@ in case your use case can not be solved by the existing actions.
 ## Integration
 
 If you have developed the fitting endpoints you can start to integrate the API
-into your app. Most likely your operations are protected, in this case you need
-to obtain an access token in order to [invoke the protected operation](./invoke_protected_operation).
+into your app. To integrate your API into your app we recommend to [generate](../api_gateway/generate_sdk)
+a client SDK for your app. Our SDK generator produces great TypeScript code which
+can be easily integrated into your project.
 
-To integrate your API into your app we recommend to automatically [generate](../api_gateway/generate_sdk)
-a client SDK for your app
+Beside the SDK you can of course als work manually with the REST API, in this case
+you need to provide an access token to each call, since you most likely invoke protected
+endpoints. Take a look at our [invoke the protected operation](./invoke_protected_operation)
+document which describes how to invoke a protected method.
 
-## Authorization
+### Angular
+
+Fusio has a dedicated [Angular SDK](https://github.com/apioo/fusio-sdk-javascript-angular) which
+you can use in case you work on an Angular app. All our internal apps like the backend and developer
+app are also based on Angular, which also use this SDK.
+
+## Authentication
+
+Your SPA most likely needs a way to authenticate your users. Fusio already provides
+all tools to handle authentication and registration / social logins of new users.
+Take a look at our [authentication](./authentication) document where we describe how you
+can integrate this into your app.
 

@@ -51,7 +51,7 @@ social login like GitHub or Google. It is also possible to configure a general
 OpenID Connect provider so that you users don`t need to register a separate
 account s.
 
-![consumer](/img/use_cases/api_product/identity.png)
+![identity](/img/use_cases/api_product/identity.png)
 
 ## Developer portal
 
@@ -59,7 +59,7 @@ The last step is to configure the developer portal where all external developers
 can login to consume your API. Fusio provides out of the box a developer portal
 similar to other developer portals which you find at large companies s.
 
-![consumer](/img/use_cases/api_product/developer_portal.png)
+![developer_portal](/img/use_cases/api_product/developer_portal.png)
 
 At this developer portal a user can manage all settings to access and work
 with your API. We also provide the [account](https://github.com/apioo/fusio-apps-account)
