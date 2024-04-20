@@ -1,7 +1,7 @@
 
-# Integration Angular
+# Angular Integration
 
-Fusio provides a [Angular SDK](https://github.com/apioo/fusio-sdk-javascript-angular) to easily integrate Fusio
+Fusio provides an [Angular SDK](https://github.com/apioo/fusio-sdk-javascript-angular) to easily integrate Fusio
 into your existing Angular application.
 
 ## Setup
