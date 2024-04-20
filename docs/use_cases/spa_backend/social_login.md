@@ -13,8 +13,8 @@ But it is also easy possible to add other providers. The provider must support O
 
 ## Flow
 
-The app starts the authentication process by redirecting the user to the [/consumer/identity/{identity}/redirect](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.redirect)
-endpoint. If the user returns, your app needs to send a POST request to the [/consumer/identity/{identity}/exchange](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.exchange) endpoint providing the following payload:
+The app starts the authentication process by redirecting the user to the [/consumer/identity/:identity/redirect](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.redirect)
+endpoint. If the user returns, your app needs to send a POST request to the [/consumer/identity/:identity/exchange](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.exchange) endpoint providing the following payload:
 
 ```json
 {

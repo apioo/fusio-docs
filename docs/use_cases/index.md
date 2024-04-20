@@ -11,5 +11,4 @@ maybe like to use features of a low code platform.
 * [API Gateway](./api_gateway/index.md)
 * [SPA Backend](./spa_backend/index.md)
 * [API Builder](./api_builder/index.md)
-* [Low-Code Platform](./low_code_platform/index.md)
 * [API Framework](./api_framework/index.md)
