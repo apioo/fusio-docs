@@ -1,26 +1,25 @@
 
 # Social Login
 
-Fusio provides a developer portal where consumers of your API can register and create their apps. Besides the
-traditional sign-up via email and password Fusio provides a system to allow 3rd party providers. By default Fusio
-supports:
+Fusio supports social logins which are used at the developer portal and can be also used at your SPA. Fusio
+supports out-of-the-box the following identity provider:
 
 * Facebook
 * Google
 * Github
+* OpenID-Connect
 
 But it is also easy possible to add other providers. The provider must support OAuth2 in order to work with Fusio.
 
 ## Flow
 
-The javascript app starts the authentication process by redirecting the user to the provider. I.e. the developer app
-uses the AngularJS satellizer module to start this process. If the user returns, your app needs to send a POST request
-to the endpoint `/consumer/provider/google` providing the following payload:
+The app starts the authentication process by redirecting the user to the [/consumer/identity/{identity}/redirect](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.redirect)
+endpoint. If the user returns, your app needs to send a POST request to the [/consumer/identity/{identity}/exchange](https://www.fusio-project.org/api/consumer#tag/identity/operation/consumer.identity.exchange) endpoint providing the following payload:
 
 ```json
 {
   "code": "",
-  "clientId": ""
+  "clientId": "",
   "redirectUri": ""
 }
 ```
@@ -42,8 +41,7 @@ an JWT which can be used in any subsequent API calls:
 ## Implementation
 
 If you want to add a new provider you need to create a class which implements the `Fusio\Engine\User\ProviderInterface`.
-Then you need to register this class in your provider.php file. To give you an example how such a provider might look
-please take a look at our Google provider:
+To give you an example how such a provider might look please take a look at our GitHub provider:
 
 ```php
 <?php
@@ -54,7 +52,7 @@ use Fusio\Engine\Form\BuilderInterface;
 use Fusio\Engine\Form\ElementFactoryInterface;
 use Fusio\Engine\Identity\ProviderAbstract;
 
-class Google extends ProviderAbstract
+class Github extends ProviderAbstract
 {
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory): void
     {
@@ -64,17 +62,22 @@ class Google extends ProviderAbstract
 
     public function getAuthorizationUri(): ?string
     {
-        return 'https://accounts.google.com/o/oauth2/v2/auth';
+        return 'https://github.com/login/oauth/authorize';
     }
 
     public function getTokenUri(): ?string
     {
-        return 'https://oauth2.googleapis.com/token';
+        return 'https://github.com/login/oauth/access_token';
     }
 
     public function getUserInfoUri(): ?string
     {
-        return 'https://openidconnect.googleapis.com/v1/userinfo';
+        return 'https://api.github.com/user';
+    }
+
+    public function getNameProperty(): string
+    {
+        return 'login';
     }
 }
 ```
