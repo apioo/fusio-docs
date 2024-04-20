@@ -6,43 +6,7 @@ sidebar_position: 3
 
 This instruction based on a on standard Nginx installation on Ubuntu 20.04.1 LTS and has been double checked on Debian 10.
 
-## PHP installation
-
-Standard setup of nginx doesn’t contain php installation. Here is a sample how to install php in a dedicated version
-(e.g. 7.4) with required modules (tested on Ubuntu 20.04.1):
-
-```
-apt update
-apt -y install software-properties-common
-add-apt-repository -y ppa:ondrej/php
-
-systemctl disable --now apache2
-apt -y install php7.4-fpm
-apt -y install php7.4-mysql
-apt -y install php7.4-mbstring
-apt -y install php7.4-soap
-apt -y install php7.4-xml
-apt -y install php7.4-curl
-apt -y install php7.4-zip
-
-apt -y upgrade
-```
-
-On Debian 10 the current version (8.0) of php has been installed with at least required modules like this:
-
-```
-systemctl disable --now apache2
-
-apt -y install software-properties-common
-wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
-echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
-apt update
-
-apt -y install php php-fpm php-mysql php-mbstring php-soap php-xml php-curl php-zip
-apt -y upgrade
-```
-
-## Fusio site creation
+## Site creation
 
 It is recommended to create a own server block (site) for Fusio. Create a new folder path `/var/www/fusio/html`,
 download the desired version of Fusio from https://github.com/apioo/fusio/releases and unzip it to the new created path.
