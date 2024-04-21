@@ -10,7 +10,7 @@ every route and request method.
 At first you need to create a plan at the Fusio backend. A plan has a name, a specific amount of points and a price
 assigned.
 
-![plan](/img/use_cases/plan.png)
+![plan](/img/use_cases/api_product/plan.png)
 
 Then you need to configure a payment provider. For this you need to include i.e. the stripe or paypal adapter which
 configures a payment provider.

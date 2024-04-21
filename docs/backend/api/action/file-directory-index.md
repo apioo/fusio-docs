@@ -1,8 +1,20 @@
 
 # File Directory Index
 
-Returns all files of a configured directory. You should bind this action to a route i.e. `GET /files`. The
-endpoint supports the following query parameters:
+Returns all files of a configured directory. You should bind this action to an operation i.e. `GET /files`.
+
+## Configuration
+
+![file_directory_get_all](/img/backend/api/action/file_directory_get_all.png)
+
+### Directory
+
+The base directory.
+
+## Execute
+
+This action reads the configured directory and returns all files as collection response.
+The action handles the following query parameters:
 
 | Parameter   | Description                                                              |
 |-------------|--------------------------------------------------------------------------|

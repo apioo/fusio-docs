@@ -1,12 +1,12 @@
 
-# HTTP Processor
+# HTTP Raw
 
-The HTTP Processor provides HTTP proxy capabilities to redirect an incoming request
-from Fusio to another API.
+The HTTP Raw action allows you to craft a complete custom HTTP request to invoke
+any kind of url and return the response.
 
 ## Configuration
 
-![http_processor](/img/backend/api/action/http_processor.png)
+![http_raw](/img/backend/api/action/http_raw.png)
 
 ### Url
 
@@ -15,6 +15,10 @@ The url can contain also variable path fragments i.e. if your configured Fusio u
 you could use as url `https://api.internal.com/domain/product/:id` and Fusio will replace
 the variable path fragment `:id` with the provided value. Otherwise all query parameters,
 headers and body values are proxied to the url.
+
+### Headers
+
+Contains a map of configured HTTP headers which are added to the request.
 
 ### Content-Type
 
@@ -40,10 +44,34 @@ Optional static query parameters which are always added to the url i.e. in the f
 Optional to enable HTTP caching, this means that Fusio will interpret all HTTP caching headers
 and cache the response if possible.
 
+### Body
+
+Contains a custom HTTP payload which is send to the url. You can access all values
+from the incoming HTTP request and place it in the request body i.e.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<payload>
+  {% if arguments.id %}<id>{{ arguments.id }}</id>{% endif %}
+  <name>{{ payload.name }}</name>
+</payload>
+```
+
+Internally this action uses the [Twig](https://twig.symfony.com/) template engine to
+produce the fitting payload. The following keys are available:
+
+### arguments
+
+Contains all arguments i.e. variable path fragments or query parameters.
+
+### payload
+
+Contains the HTTP payload i.e. if a JSON payload `{"name": "test"}` is send to the
+endpoint you can access the name value with `{{ payload.name }}`
+
 ## Execution
 
-Invokes the configured url and passes all provided query parameters, headers and request body to the
-endpoint. Then it parses the response according to the configured Content-Type and returns the response.
+Invokes the configured url with the configured HTTP method, headers and payload and returns the response.
 Fusio automatically adds some additional headers to the request which may be used by the endpoint i.e.:
 
 ```http
@@ -55,7 +83,3 @@ X-Fusio-App-Id: 3
 X-Fusio-App-Key: 1ba7b2e5-fa1a-4153-8668-8a855902edda
 X-Fusio-Remote-Ip: 127.0.0.1
 ```
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jL8KlJkvZzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

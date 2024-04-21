@@ -9,4 +9,4 @@ OpenAPI specification. You can install the app either through the marketplace ba
 php bin/fusio marketplace:install redoc
 ```
 
-![redoc](/img/use_cases/redoc.png)
+![redoc](/img/use_cases/api_product/redoc.png)

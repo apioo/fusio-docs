@@ -9,7 +9,7 @@ user needs to provide an access token.
 Before obtaining an access token it is important that scopes are assigned to the user. The scopes which are assigned to
 the user depended on the role of the user. If you create a new role you can select the scopes s.
 
-![role_create](/img/use_cases/role_create.png)
+![role_create](/img/use_cases/spa_backend/role_create.png)
 
 At the system setting you can also configure a default role, this role gets then assigned to every new user which
 registers at the developer portal, by default this is the `Consumer` role.

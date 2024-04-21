@@ -1,14 +1,22 @@
 
 # File Processor
 
-Path to a simple static json file. Fusio will simply forward the content to the client. This is helpful if you want to
-build fast a sample API with dummy responses.
+The file processor simply reads a specific static file and returns the content of
+the file. This can be useful if you want to expose specific files or you want to
+create a dummy api.
 
-## Example
+## Configuration
 
-```
-/tmp/static.json
-```
+![file_processor](/img/backend/api/action/file_processor.png)
+
+### File
+
+Path to a file.
+
+## Execution
+
+Simples reads the content of the configured file and returns the response. The action
+also sets the fitting `Last-Modified` and `ETag` headers.
 
 ## Video
 

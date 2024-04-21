@@ -1,10 +1,20 @@
 
 # PHP Processor
 
-The PHP action processes a PHP file or inline code. There is also a complete API [documentation](https://docs.fusio-project.org/docs/concepts/php_api/)
-describing all available objects. In the following a simple example implementation:
+The PHP processor executes a PHP file. There is also a complete API [documentation](../../../concepts/php_api/)
+describing all available objects.
+
+## Configuration
+
+![php_processor](/img/backend/api/action/php_processor.png)
+
+### File
+
+Path to a PHP file.
 
 ## Example
+
+In the following a simple example implementation:
 
 ```php
 <?php

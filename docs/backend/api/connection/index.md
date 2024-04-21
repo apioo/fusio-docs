@@ -10,8 +10,11 @@ It is also easy possible to develop your own custom connection.
 ## Development
 
 To develop a custom connection you need to create a class which implements the interface
-`Fusio\Engine\ConnectionInterface`. Then you can add this class to the `provider.php` file. Through this it is possible
-to select this connection at the backend.
+`Fusio\Engine\ConnectionInterface`.
+
+In general a connection should return a fully configured object which can be used at an action.
+I.e. the database connection returns a configured doctrine DBAL instance so that a user does not need
+to provide any credentials at an action.
 
 In the following an example connection:
 

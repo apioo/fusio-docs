@@ -16,10 +16,10 @@ take a look at the [create schema](./create_schema) page.
 The next step is to create the fitting actions to proxy the requests from Fusio
 to your internal APIs. In this use case the following actions are mostly used:
 
-* [Create HTTP Proxy action](./create_http_proxy_action)
-* [Create HTTP Raw action](./create_http_raw_action)
-* [Create AMQP action](./create_amqp_action)
-* [Transform request/response action](./transeform_request_response_action.md)
+* [Create HTTP Proxy action](../../backend/api/action/http-processor)
+* [Create HTTP Raw action](../../backend/api/action/http-raw)
+* [Create AMQP action](../../backend/api/action/amqp-publish)
+* [Transform request/response action](../../backend/api/action/util-json-patch)
 
 Besides this you can of course always build a [custom action](../api_framework/develop_custom_action.md)
 to solve specific technical requirements.

@@ -5,7 +5,7 @@ This chapter explains how to handle file uploads at an action. To handle file up
 schema "Passthru" selected, this means that Fusio does not try to validate your request via a schema and simply passes
 the data to your action.
 
-![routes_file_upload](/img/use_cases/routes_file_upload.png)
+![routes_file_upload](/img/use_cases/api_framework/routes_file_upload.png)
 
 If you upload a file PHP always moves the upload to a temp file, then you need to move this temp file to your target
 directory. In the following a simple example which shows how to handle a file upload.
@@ -41,7 +41,7 @@ return $response->build(200, [], [
 
 If we add a route for this action and use a rest client to send a `multipart/form-data` request to the endpoint.
 
-![upload_file_request.png](/img/use_cases/upload_file_request.png)
+![upload_file_request.png](/img/use_cases/api_framework/upload_file_request.png)
 
 Then we would get the following response.
 

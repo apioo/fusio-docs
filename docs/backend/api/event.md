@@ -4,19 +4,13 @@ sidebar_position: 6
 
 # Event
 
-Fusio has an event system which helps to build a pub/sub system. This means consumers of your API can subscribe to
-specific events. Inside your API endpoint you can then trigger such an event. Fusio will then send the payload to each
-subscriber in the background.
-
-## Installation
-
-You need to activate the Cronjob feature to enable Fusio to send messages in the background. The event system creates a
-cronjob which distributes the pending events.
+Fusio has an event system which helps to build a webhook system. This means consumers of your API can register a webhook
+and the url is called by Fusio in case the event is dispatched.
 
 ## Subscribe
 
-The user needs to send a HTTP POST request to the `/consumer/subscription` endpoint with
-the following payload to subscribe to an event :
+The user needs to send a HTTP POST request to the `/consumer/webhook` endpoint with the following payload to subscribe
+to an event:
 
 ```json
 {

@@ -9,14 +9,13 @@ for common tasks i.e. to execute database operations or push data to a message q
 ## Async
 
 It is possible to execute an action in async mode which means that the action directly returns a 202 accepted response
-and the request gets executed later on in the background. To enable the async feature you need to setup a cronjob,
-please take a look at the [cronjob](../cronjob) section for installation instructions.
+and the request gets executed later on in the background.
 
 ## Development
 
-To develop a custom action you need to create a class which implements the interface `Fusio\Engine\ActionInterface`.
-Then you can add this class to the `provider.php` file. Through this it is possible to select this action at the
-backend. Beside selecting an action you can also click on the edit button to manually enter a class name.
+To develop a custom action you need to create a class which implements the class `Fusio\Engine\ActionAbstract`.
+Through this it is possible to select this action at the backend. Beside selecting an action you can also click on the
+edit button to manually enter a class name.
 
 In the following an example action:
 
@@ -43,3 +42,5 @@ class HelloWorld extends ActionAbstract
 ```
 
 If you add a constructor to your action Fusio will try to resolve the dependencies based on the DI container.
+More information about developing an custom action at our [develop custom action](../../../use_cases/api_framework/develop_custom_action)
+page.
