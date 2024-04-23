@@ -7,9 +7,19 @@ sidebar_position: 4
 The schema defines the format of the request and response data. It uses the [TypeSchema] specification. The following
 example shows a simple object.
 
-![routes_update](/img/backend/api/schema_update.png)
+## Configuration
 
-## Example
+![schema_update](/img/backend/api/schema_update.png)
+
+## Name
+
+The name of the schema.
+
+## Schema
+
+A [TypeSchema](https://typeschema.org/) which describes the JSON structure.
+
+### Example
 
 ```json
 {

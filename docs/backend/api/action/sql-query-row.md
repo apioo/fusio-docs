@@ -5,7 +5,17 @@ Through the SQL query row action it is possible to write an arbitrary SQL query 
 possible to pass path and query parameters into the query by using curly brackets i.e. `title`. These fields are
 internally replaced by a prepared statement so you dont need to worry about SQL injections.
 
-## Example
+## Configuration
+
+![sql_query_row](/img/backend/api/action/sql_query_row.png)
+
+### Connection
+
+The database connection.
+
+### SQL
+
+The SQL to execute for example:
 
 ```sql
     SELECT * 

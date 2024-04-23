@@ -7,7 +7,21 @@ sidebar_position: 7
 Fusio provides a cronjob system which allows you to execute an action at a specific interval. To execute those cronjobs
 Fusio uses the standard linux `cron` util.
 
+## Configuration
+
 ![cronjob_create](/img/backend/api/cronjob_create.png)
+
+### Name
+
+The name of the cronjob.
+
+### Cron
+
+The cron expression at which intervals the cron is executed.
+
+### Action
+
+The action which is executed.
 
 ## Installation
 

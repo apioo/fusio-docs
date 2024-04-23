@@ -7,6 +7,22 @@ sidebar_position: 6
 Fusio has an event system which helps to build a webhook system. This means consumers of your API can register a webhook
 and the url is called by Fusio in case the event is dispatched.
 
+## Configuration
+
+![event_create](/img/backend/api/event_create.png)
+
+### Name
+
+Name of the event.
+
+### Description
+
+A short description of the event.
+
+### Schema
+
+A schema which describes the payload which is submitted by this event.
+
 ## Subscribe
 
 The user needs to send a HTTP POST request to the `/consumer/webhook` endpoint with the following payload to subscribe
@@ -45,6 +61,9 @@ class Collection extends ActionAbstract
     }
 }
 ```
+
+As alternativ you can also use the existing `Util-Dispatch-Event` action which dispatches the provided payload
+to a configured event.
 
 ## Callback
 

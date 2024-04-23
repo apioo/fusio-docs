@@ -10,6 +10,31 @@ enables a user to manage their apps. The consumer can use any OAuth2 client to r
 by default the `client_credentials` grant type. Please take a look at the [OAuth2] RFC for more information about the
 flow.
 
+## Configuration
+
+![app_create](/img/backend/consumer/app_create.png)
+
+### Status
+
+The status of the app.
+
+### User
+
+The user which is assigned to the app. If the app key/secret is used to obtain an access token the app can
+act on behalf this selected user.
+
+### Name
+
+The name of the app.
+
+### Url
+
+The url of the app.
+
+### Scopes
+
+The scopes which are assigned to this app.
+
 ## Client credentials
 
 ### Request

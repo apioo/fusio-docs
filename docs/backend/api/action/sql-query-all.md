@@ -5,7 +5,17 @@ Through the SQL query all action it is possible to write an arbitrary SQL query 
 possible to pass path and query parameters into the query by using curly brackets i.e. `title`. These fields are
 internally replaced by a prepared statement so you dont need to worry about SQL injections.
 
-## Example
+## Configuration
+
+![sql_query_all](/img/backend/api/action/sql_query_all.png)
+
+### Connection
+
+The database connection.
+
+### SQL
+
+The SQL to execute for example:
 
 ```sql
     SELECT * 
@@ -15,6 +25,10 @@ INNER JOIN product
      WHERE product.status = {status}
        AND product.title LIKE {%title}
 ```
+
+### Limit
+
+The max amount of rows which are returned by this query.
 
 ## Response
 

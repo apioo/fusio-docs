@@ -4,12 +4,26 @@
 An action contains the business logic to handle a request and produce a response. Fusio contains already many actions
 for common tasks i.e. to execute database operations or push data to a message queue.
 
+## Configuration
+
 ![action_create](/img/backend/api/action_create.png)
 
-## Async
+### Name
+
+The name of the action.
+
+### Class
+
+The action class. Besides selecting an action you can also enter a custom action class by using the edit button.
+
+### Async
 
 It is possible to execute an action in async mode which means that the action directly returns a 202 accepted response
 and the request gets executed later on in the background.
+
+### Config
+
+All other input fields are action specific.
 
 ## Development
 

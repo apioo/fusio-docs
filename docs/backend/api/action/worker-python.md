@@ -1,8 +1,8 @@
 
 # Worker-Python
 
-The Worker-Python executes the provided Python code at the remote worker. More information about the worker at:
-https://github.com/apioo/fusio-worker-python
+The Worker-Python executes the provided Python code at the remote worker.
+More information about the worker at: https://github.com/apioo/fusio-worker-python
 
 ## Example
 

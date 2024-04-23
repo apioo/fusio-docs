@@ -5,6 +5,14 @@ The sandbox action provides a simple way to write PHP code which gets directly e
 useful if you want to build fast a first prototype endpoint. The following shows a simple action which
 returns all data from the request.
 
+## Configuration
+
+![php_sandbox](/img/backend/api/action/php_sandbox.png)
+
+### Code
+
+The PHP code which gets executed.
+
 ```php
 <?php
 

@@ -1,8 +1,8 @@
 
 # Worker-PHP
 
-The Worker-PHP executes the provided PHP code at the remote worker. More information about the worker at:
-https://github.com/apioo/fusio-worker-php
+The Worker-PHP executes the provided PHP code at the remote worker.
+More information about the worker at: https://github.com/apioo/fusio-worker-php
 
 ## Example
 

@@ -5,7 +5,21 @@ A connection enables Fusio to connect to other remote services. This can be i.e.
 Please take a look at the [adapter](https://www.fusio-project.org/adapter) to see a list of all available connections.
 It is also easy possible to develop your own custom connection.
 
+## Configuration
+
 ![connection_create](/img/backend/api/connection_create.png)
+
+### Name
+
+The name of the connection.
+
+### Class
+
+The connection class. Besides selecting an connection you can also enter a custom connection class by using the edit button.
+
+### Config
+
+All other input fields are action specific.
 
 ## Development
 

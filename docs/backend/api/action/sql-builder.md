@@ -4,7 +4,18 @@
 Through the SQL builder action you can create complex nested queries using a JSON notation. The following example
 provides a first overview:
 
-## Example
+## Configuration
+
+![sql_builder](/img/backend/api/action/sql_builder.png)
+
+### Connection
+
+The database connection where the JQL should be executed.
+
+### JQL
+
+JQL is a JSON format to produce complex nested JSON structures from relation tables.
+The following shows an example:
 
 ```json
 {
@@ -51,7 +62,7 @@ provides a first overview:
 }
 ```
 
-It generates the following output:
+This JQL generates the following output:
 
 ```json
 {
