@@ -13,3 +13,19 @@ assigned scopes for existing users you need to modify the user directly.
 Besides the scopes every role has also an assigned category. A user sees and
 creates only resources under this specific category. By default you can simply
 use the "default" category.
+
+## Configuration
+
+![role_create](/img/backend/system/role_create.png)
+
+### Name
+
+The name of the role.
+
+### Category
+
+The assigned category to this role.
+
+### Scopes
+
+All scopes which are assigned to this category.
