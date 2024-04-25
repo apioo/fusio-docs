@@ -12,7 +12,7 @@ assigned.
 
 ![plan](/img/use_cases/api_product/plan.png)
 
-Then you need to configure a payment provider. For this you need to include i.e. the stripe or paypal adapter which
+Then you need to configure a payment provider. For this you need to include i.e. the stripe adapter which
 configures a payment provider.
 
 ```
