@@ -93,7 +93,7 @@ request data and to automatically generate an OpenAPI specification or client SD
 
 The action contains the actual business logic of your API i.e. to proxy a request to a remote API or directly selects
 data from a database table. You can use either one of our [existing actions](/docs/backend/api/action/) to solve your problem or you can also easily
-[build your own](/docs/use_cases/develop_custom_action/) action.
+[build your own](/docs/use_cases/api_framework/develop_custom_action) action.
 
 ### 3. Schema
 

@@ -26,7 +26,7 @@ to solve specific technical requirements.
 
 ## SDK
 
-The last step is optional, but you could now automatically [generate an SDK](../generate_sdk)
+The last step is optional, but you could now automatically [generate an SDK](./generate_sdk)
 for your API. An SDK makes it easier for clients to consume your API since all generated
 SDKs are complete type safe.
 

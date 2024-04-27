@@ -61,7 +61,7 @@ $services->load('App\\Action\\', __DIR__ . '/../src/Action');
 ```
 
 If you want to create an action which is reusable for other users, you can also create a
-[Fusio adapter](../concepts/adapter.md) as separate composer package. Then other users can easily include and use those 
+[Fusio adapter](../../concepts/adapter.md) as separate composer package. Then other users can easily include and use those 
 actions. Please take a look at our [website](https://www.fusio-project.org/adapter) to see all available adapters.
 
 ## API
@@ -120,5 +120,5 @@ depends always on the configured connection. The following table provides a firs
 
 In case your action needs other external dependencies you can also simply declare the dependencies in the constructor.
 Fusio then tries to inject the correct service via autowiring. Please take a look at the
-[dependency injection](../concepts/dependency_injection.md) chapter to get more details how this works.
+[dependency injection](../../concepts/dependency_injection.md) chapter to get more details how this works.
 
