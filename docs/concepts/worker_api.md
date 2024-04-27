@@ -1,35 +1,13 @@
 
 # Worker API
 
-Fusio provides support to implement actions in multiple different programming languages. To support these
-different languages Fusio uses a worker system. This means that the action code is not directly executed but instead
-the request gets forwarded to a worker which then executes the action and returns a response. The worker is then
-implemented in the target programming language which we want to support i.e. Javascript, Python or Java. Through
-this your action code can use all features of the language. You can find a list of worker implementations at our
+Fusio provides support to implement actions in multiple programming languages. To support these
+different languages Fusio uses a worker system. This means that the action code is not directly executed at Fusio
+but instead the request gets forwarded to a worker which then executes the action and returns a response. The worker
+is then implemented in the target programming language which we want to support i.e. Javascript, Python or Java.
+Through this your action code can use all features of the language. You can find a list of worker implementations at our
 [overview page](https://www.fusio-project.org/worker). To support a specific language you only need to implement
-a worker which provides a simple RPC interface.
-
-## Configuration
-
-To use a worker at your Fusio instance, you need to add the fitting worker urls at the configuration.php file. After 
-this Fusio will automatically invoke the fitting methods in case an connection or action is created or changed. Then it
-is also possible to use one of the worker actions.
-
-```php
-'fusio_worker'            => [
-    'java'                => 'my_java_worker:9090',
-    'javascript'          => 'my_javascript_worker:9091',
-    'php'                 => 'my_php_worker:9092',
-    'python'              => 'my_python_worker:9093',
-],
-```
-
-## Methods
-
-The RPC system is based on [Thrift](https://thrift.apache.org/). The following documentation shows the rendered thrift
-file. If you want to implement a worker in a specific language you can check out our [thrift file](https://github.com/apioo/fusio-impl/blob/master/src/Worker/worker.thrift).
-
-<iframe src="https://www.fusio-project.org/static/worker/worker.html" width="100%" height="600"></iframe>
+a worker which provides a simple [REST API](https://app.typehub.cloud/d/fusio/worker).
 
 ## Types
 
