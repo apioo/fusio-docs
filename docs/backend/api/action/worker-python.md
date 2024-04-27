@@ -8,27 +8,25 @@ More information about the worker at: https://github.com/apioo/fusio-worker-pyth
 
 ```python
 def handle(request, context, connector, response, dispatcher, logger):
-
-    connection = connector.getConnection('my_db')
+    connection = connector.get_connection('app')
 
     cursor = connection.cursor()
-    cursor.execute("""SELECT * FROM app_todo""")
+    cursor.execute("""SELECT name, description FROM app_product_0""")
     result = cursor.fetchall()
     cursor.close()
 
-    data = []
+    entries = []
     for row in result:
-        data.append({
-            'id': row[0],
-            'status': row[1],
-            'title': row[2],
-            'insert_date': str(row[3])
+        entries.append({
+            'name': row[0],
+            'description': row[1],
         })
 
     return response.build(200, None, {
         'foo': 'bar',
-        'result': data
+        'entries': entries
     })
+
 ```
 
 ## Video
