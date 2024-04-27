@@ -8,15 +8,15 @@ More information about the worker at: https://github.com/apioo/fusio-worker-java
 
 ```javascript
 module.exports = async function(request, context, connector, response, dispatcher, logger) {
-    const connection = await connector.getConnection('my_db');
-    const result = await connection.query('SELECT * FROM app_todo');
+    const connection = await connector.getConnection('app');
+    const [entries, fields] = await connection.query('SELECT name, description FROM app_product_0');
 
     response.build(200, {}, {
         foo: 'bar',
-        result: result
+        entries: entries
     });
-
 };
+
 ```
 
 ## Video
