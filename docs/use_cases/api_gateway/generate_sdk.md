@@ -7,6 +7,11 @@ the backend and generate the fitting SDK s.
 
 ![sdk_overview](/img/use_cases/api_gateway/sdk_overview.png)
 
+## Usage
+
+Please take a look at our [consumer SDK](../../backend/consumer/sdk) page where we provide
+a complete introduction how to use and integrate our SDK code generator.
+
 ## Examples
 
 Fusio internally also uses the same SDK generator to build the Fusio SDK.
@@ -29,12 +34,3 @@ You can take a look at each SDK to see how the generated code looks.
 * Python
     * [Example](https://github.com/apioo/fusio-sample-python-cli)
     * [Fusio-SDK](https://github.com/apioo/fusio-sdk-python)
-
-## SDKgen
-
-Fusio has integrated support for [SDKgen](https://sdkgen.app/) which provides
-additional SDK generators to support different SDK programming languages like
-Java or C#. To add support for those additional languages you can easily register
-at SDKgen and enter your app credentials to the `SDKGEN_CLIENT_ID` and
-`SDKGEN_CLIENT_SECRET` at the `.env` file, then you automatically see those
-additional generator options at the backend.
