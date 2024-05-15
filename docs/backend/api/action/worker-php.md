@@ -9,12 +9,12 @@ More information about the worker at: https://github.com/apioo/fusio-worker-php
 ```php
 <?php
 
-use Fusio\Worker\Connector;
-use Fusio\Worker\Dispatcher;
 use Fusio\Worker\ExecuteContext;
 use Fusio\Worker\ExecuteRequest;
-use Fusio\Worker\Logger;
-use Fusio\Worker\ResponseBuilder;
+use Fusio\Worker\Runtime\Connector;
+use Fusio\Worker\Runtime\Dispatcher;
+use Fusio\Worker\Runtime\Logger;
+use Fusio\Worker\Runtime\ResponseBuilder;
 
 return function(ExecuteRequest $request, ExecuteContext $context, Connector $connector, ResponseBuilder $response, Dispatcher $dispatcher, Logger $logger) {
     $connection = $connector->getConnection('app');
