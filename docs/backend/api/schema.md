@@ -11,15 +11,15 @@ example shows a simple object.
 
 ![schema_update](/img/backend/api/schema_update.png)
 
-## Name
+### Name
 
 The name of the schema.
 
-## Schema
+### Schema
 
 A [TypeSchema](https://typeschema.org/) which describes the JSON structure.
 
-### Example
+## Example
 
 ```json
 {
