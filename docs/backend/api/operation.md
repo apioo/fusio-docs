@@ -16,7 +16,7 @@ endpoint without an access token.
 ### Name
 
 The name of the operation. It is recommended to use a namespace to separate your operations with dots into logical units
-i.e. `my.namespace.getAll` or `my.namespace.update`. The generated client SDK will also reflect this namespace i.e
+i.e. `my.namespace.getAll` or `my.namespace.update`. The generated client SDK will also reflect this namespace i.e.
 `client.my().namespace().getAll()` or `client.my().namespace().update()`.
 
 ### Scopes
