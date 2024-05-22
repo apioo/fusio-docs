@@ -13,10 +13,41 @@ endpoint without an access token.
 
 ![operation_update](/img/backend/api/operation_update.png)
 
+### Name
+
+The name of the operation. It is recommended to use a namespace to separate your operations with dots into logical units
+i.e. `my.namespace.getAll` or `my.namespace.update`
+
+### Scopes
+
+The scopes field defines a set of scopes assigned to an operation. If the operation is protected, an end user needs to
+obtain a scope in order to access the endpoint.
+
+### Active
+
+Whether the operation is active or not. If the operation is not active it is not possible to invoke this operation.
+
+### Public
+
+Whether the operation is public or private. If an operation is private (by default) the user needs to private an access
+token to invoke the operation. The user also needs to have the fitting scope to invoke this operation.
+
+### Stability
+
+Indicates the stability of this operation. If the operation is stable it is not possible to change any values.
+
+### Description
+
+A short description of this operation.
+
+### HTTP Method
+
+The target HTTP method.
+
 ### HTTP Path
 
-The path can contain variable path fragments. These fragments can be accessed inside an action. The following list
-describes the syntax.
+The target HTTP path can contain variable path fragments. These fragments can be accessed inside an action. The
+following list describes the syntax.
 
 * `/product`
   No variable path fragment only the request to `/product` matches this route
@@ -31,10 +62,41 @@ describes the syntax.
 * `/file/*path`
   Variable path fragment which matches all values. I.e. `/file/foo/bar` or `/file/12` matches this route
 
-### Scopes
+### HTTP Code
 
-The scopes field defines a set of scopes assigned to an operation. If the operation is protected, an end user needs to
-obtain a scope in order to access the endpoint.
+The HTTP success code, this is mostly OK `200` or Created `201`
+
+### Parameters
+
+Defines all query parameters for this operation.
+
+### Outgoing
+
+A schema which describes the success response payload. You can select one of the following schema sources:
+
+* __Schema__  
+  Selects a preconfigured schema which was previously created at the schema panel.
+* __Class__  
+  Reference a PHP class which is available at your source code i.e. `App\Model\MySchema`. You can also automatically
+  generate those [model classes](./../../use_cases/api_framework/generate_model)
+* __HTTP/HTTPS__  
+  Invokes an HTTP url and resolves the schema
+* __File__  
+  Loads a file resolves the schema
+
+### Throws
+
+Schemas to describe the error response payloads. You can select one of the following schema sources:
+
+* __Schema__  
+  Selects a preconfigured schema which was previously created at the schema panel.
+* __Class__  
+  Reference a PHP class which is available at your source code i.e. `App\Model\MySchema`. You can also automatically
+  generate those [model classes](./../../use_cases/api_framework/generate_model)
+* __HTTP/HTTPS__  
+  Invokes an HTTP url and resolves the schema
+* __File__  
+  Loads a file resolves the schema
 
 ### Action
 
@@ -48,7 +110,7 @@ type:
   Reference a PHP class which is available at your source code i.e. `App\Action\MyAction` the action class must implement
   the `Fusio\Engine\ActionInterface`.
 * __HTTP/HTTPS__  
-  Invokes a HTTP url, it proxies the request to the endpoint and also adds Fusio specific information
+  Invokes an HTTP url, it proxies the request to the endpoint and also adds Fusio specific information
 
 ### Costs
 
