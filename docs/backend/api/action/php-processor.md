@@ -19,12 +19,12 @@ In the following a simple example implementation:
 ```php
 <?php
 /**
- * @var \Fusio\Engine\ConnectorInterface $connector
- * @var \Fusio\Engine\ContextInterface $context
  * @var \Fusio\Engine\RequestInterface $request
+ * @var \Fusio\Engine\ContextInterface $context
+ * @var \Fusio\Engine\ConnectorInterface $connector
  * @var \Fusio\Engine\Response\FactoryInterface $response
  * @var \Fusio\Engine\ProcessorInterface $processor
- * @var \Fusio\Engine\ProcessorInterface $dispatcher
+ * @var \Fusio\Engine\DispatcherInterface $dispatcher
  * @var \Psr\Log\LoggerInterface $logger
  * @var \Psr\SimpleCache\CacheInterface $cache
  */

@@ -15,6 +15,16 @@ The PHP code which gets executed.
 
 ```php
 <?php
+/**
+ * @var \Fusio\Engine\RequestInterface $request
+ * @var \Fusio\Engine\ContextInterface $context
+ * @var \Fusio\Engine\ConnectorInterface $connector
+ * @var \Fusio\Engine\Response\FactoryInterface $response
+ * @var \Fusio\Engine\ProcessorInterface $processor
+ * @var \Fusio\Engine\DispatcherInterface $dispatcher
+ * @var \Psr\Log\LoggerInterface $logger
+ * @var \Psr\SimpleCache\CacheInterface $cache
+ */
 
 $id = $request->get('id'); // returns a path or query parameter
 $payload = $request->getPayload(); // returns the request payload
