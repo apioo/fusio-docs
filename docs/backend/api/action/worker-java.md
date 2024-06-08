@@ -1,5 +1,5 @@
 
-# Worker-Java
+# Worker Java
 
 The Worker-Java executes the provided Groovy/Java code at the remote worker.
 More information about the worker at: https://github.com/apioo/fusio-worker-java
