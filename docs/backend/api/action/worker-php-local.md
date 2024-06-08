@@ -1,8 +1,11 @@
 
-# Worker PHP
+# Worker PHP Local
 
-The Worker-PHP executes the provided PHP code at the remote worker.
-More information about the worker at: https://github.com/apioo/fusio-worker-php
+The Worker-PHP-Local executes the provided PHP code on the Fusio instance.
+It has the exact same behaviour as the remote Worker PHP but executes the PHP code on the server where Fusio runs.
+This simplifies using the worker since you don`t need to set up a dedicated worker instance but be aware that this
+allows to execute arbitrary PHP code on your server. If you dont like this behaviour you can always exclude this
+action through the config. More information about the worker at: https://github.com/apioo/fusio-worker-php
 
 ## Example
 
