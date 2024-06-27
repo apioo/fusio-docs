@@ -4,15 +4,8 @@ sidebar_position: 2
 
 # Apache
 
-It is recommended to setup a virtual host in your sites-available folder which points to the public folder of Fusio.
-After this you also have to change the configuration of the url i.e.:
-
-```
-'psx_url'      => 'http://api.acme.com',
-'psx_dispatch' => '', // since we use clean urls
-```
-
-The following contains a sample apache config:
+If you use Apache as web server we recommend to setup a virtual host at your sites-available folder which points to the
+public folder of Fusio. The following contains a sample apache config:
 
 ```
 <VirtualHost *:80>
@@ -50,3 +43,10 @@ You should enable the module `mod_rewrite` so that the `.htaccess` file in the p
 to include the htaccess commands directly into the virtual host which also increases performance. The htaccess contains
 an important rule which redirects the `Authorization` header to Fusio which is otherwise removed. If the .htaccess file
 does not work please check whether the AllowOverride directive is set correctly i.e. to All.
+
+At Fusio you then also need to configure the correct url i.e.:
+
+```env
+APP_URL="http://api.acme.com"
+APP_APPS_URL="http://api.acme.com/apps"
+```
