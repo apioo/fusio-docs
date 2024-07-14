@@ -54,34 +54,19 @@ automatically publish the specification of your Fusio instance to TypeHub s.
 ```yaml
 name: TypeHub
 on:
-  push:
-    branches:
-      - master
+  - pull_request
+  - push
 jobs:
-  typehub:
-    name: TypeHub
+  push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
+      - name: Push
+        uses: apioo/typehub-fusio-action@v0.1.4
         with:
-          php-version: 8.2
-          coverage: none
-      - name: Setup MySQL
-        run: |
-          sudo /etc/init.d/mysql start
-          mysql -e "CREATE DATABASE fusio;" -uroot -proot
-          mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test1234';" -uroot -proot
-      - name: Composer install
-        run: composer install --no-interaction --no-ansi --no-progress
-      - name: Setup Fusio
-        env:
-          APP_CONNECTION: 'pdo-mysql://root:test1234@localhost/fusio'
-        run: |
-          php bin/fusio migrate --no-interaction
-          php bin/fusio api:push sdk --client_id="${{ secrets.TYPEHUB_CLIENT_ID }}" --client_secret="${{ secrets.TYPEHUB_CLIENT_SECRET }}" --filter=app
+          document: marketplace
+          client-id: ${{ secrets.TYPEHUB_CLIENT_ID }}
+          client-secret: ${{ secrets.TYPEHUB_CLIENT_SECRET }}
+          filter: app
 ```
 
 You can also take a look at our [GitHub workflow](https://github.com/apioo/fusio-impl/blob/master/.github/workflows/typehub.yml)
