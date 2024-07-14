@@ -9,7 +9,7 @@ the backend and generate the fitting SDK s.
 
 ## Usage
 
-Please take a look at our [consumer SDK](../../backend/consumer/sdk) page where we provide
+Please take a look at our [consumer SDK](../../backend/development/sdk) page where we provide
 a complete introduction how to use and integrate our SDK code generator.
 
 ## Examples
