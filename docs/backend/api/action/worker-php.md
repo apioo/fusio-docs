@@ -9,6 +9,7 @@ More information about the worker at: https://github.com/apioo/fusio-worker-php
 ```php
 <?php
 
+use Doctrine\DBAL\Connection;
 use Fusio\Worker\ExecuteContext;
 use Fusio\Worker\ExecuteRequest;
 use Fusio\Engine\ConnectorInterface;
@@ -17,13 +18,28 @@ use Fusio\Engine\DispatcherInterface;
 use Psr\Log\LoggerInterface;
 
 return function(ExecuteRequest $request, ExecuteContext $context, ConnectorInterface $connector, FactoryInterface $response, DispatcherInterface $dispatcher, LoggerInterface $logger) {
-    $connection = $connector->getConnection('app');
+    $connection = $connector->getConnection('App');
+    $filter = $request->getArguments()->get('filter');
 
-    $query = 'SELECT name, description FROM app_product_0';
-    $entries = $connection->fetchAllAssociative($query);
+    $params = [];
+    $query = 'SELECT id, title, content, insert_date FROM my_blog';
+    if (!empty($filter)) {
+        $query .= ' WHERE title LIKE ?';
+        $params[] = $filter;
+    }
+
+    $entries = [];
+    $result = $connection->fetchAllAssociative($query, $params);
+    foreach ($result as $row) {
+        $entries[] = [
+            'id' => (int) $row['id'],
+            'name' => $row['title'],
+            'description' => $row['content'],
+            'insertDate' => $row['insert_date'],
+        ];
+    }
 
     return $response->build(200, [], [
-        'foo' => 'bar',
         'entries' => $entries,
     ]);
 };

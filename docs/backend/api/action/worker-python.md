@@ -8,22 +8,30 @@ More information about the worker at: https://github.com/apioo/fusio-worker-pyth
 
 ```python
 def handle(request, context, connector, response, dispatcher, logger):
-    connection = connector.get_connection('app')
+    connection = connector.get_connection('App')
+    filter = request.arguments.get('filter')
 
-    cursor = connection.cursor()
-    cursor.execute("""SELECT name, description FROM app_product_0""")
+    values = []
+    query = "SELECT id, title, content, insert_date FROM my_blog"
+    if filter:
+        query += " WHERE title LIKE ?"
+        values.append(filter)
+
+    cursor = connection.cursor(prepared=True)
+    cursor.execute(query, values)
     result = cursor.fetchall()
     cursor.close()
 
     entries = []
     for row in result:
         entries.append({
-            'name': row[0],
-            'description': row[1],
+            'id': row[0],
+            'title': row[1],
+            'content': row[2],
+            'insert_date': row[3],
         })
 
     return response.build(200, None, {
-        'foo': 'bar',
         'entries': entries
     })
 
@@ -38,7 +46,7 @@ and which implementation is used:
 | ---- | -------------- |
 | `Fusio.Adapter.Sql.Connection.Sql` | `PyMySQL / pymongo`
 | `Fusio.Adapter.Sql.Connection.SqlAdvanced` | `PyMySQL / pymongo`
-| `Fusio.Adapter.Http.Connection.Http` | `http.client`
+| `Fusio.Adapter.Http.Connection.Http` | `httpx.Client`
 | `Fusio.Adapter.Mongodb.Connection.MongoDB` | `pymongo`
 | `Fusio.Adapter.Elasticsearch.Connection.Elasticsearch` | `elasticsearch`
 

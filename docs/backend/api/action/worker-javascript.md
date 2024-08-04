@@ -8,11 +8,28 @@ More information about the worker at: https://github.com/apioo/fusio-worker-java
 
 ```javascript
 module.exports = async function(request, context, connector, response, dispatcher, logger) {
-    const connection = await connector.getConnection('app');
-    const [entries, fields] = await connection.query('SELECT name, description FROM app_product_0');
+    const connection = await connector.getConnection('App');
+    const filter = request.arguments['filter'];
 
-    response.build(200, {}, {
-        foo: 'bar',
+    const values = [];
+    let query = 'SELECT id, title, content, insert_date FROM my_blog';
+    if (filter) {
+        query += ' WHERE title LIKE ?'
+        values.push('%' + filter + '%');
+    }
+
+    const entries = [];
+    const [result] = await connection.execute(query, values);
+    result.forEach((row) => {
+        entries.push({
+            id: row.id,
+            name: row.title,
+            description: row.content,
+            insertDate: row.insert_date,
+        });
+    });
+
+    return response.build(200, {}, {
         entries: entries
     });
 };

@@ -7,24 +7,43 @@ More information about the worker at: https://github.com/apioo/fusio-worker-java
 ## Example
 
 ```groovy
-def connection = connector.getConnection("app");
+import org.fusioproject.worker.runtime.generated.ExecuteRequest;
+import org.fusioproject.worker.runtime.generated.ExecuteContext;
+import org.fusioproject.worker.runtime.Connector;
+import org.fusioproject.worker.runtime.ResponseBuilder;
+import org.fusioproject.worker.runtime.Dispatcher;
+import org.fusioproject.worker.runtime.Logger;
 
-def entries = [];
-def query = "SELECT name, description FROM app_product_0";
-try (def stmt = connection.createStatement()) {
-    def rs = stmt.executeQuery(query);
-    while (rs.next()) {
-        entries.add([
-            name: rs.getString("name"),
-            description: rs.getString("description")
-        ]);
+def handle(ExecuteRequest request, ExecuteContext context, Connector connector, ResponseBuilder response, Dispatcher dispatcher, Logger logger) {
+    def connection = connector.getConnection("App");
+    def filter = request.getArguments().get("filter");
+
+    def query = "SELECT id, title, content, insert_date FROM my_blog";
+    if (filter) {
+        query += " WHERE title LIKE ?"
     }
-}
 
-response.build(200, [:], [
-    foo: "bar",
-    entries: entries
-]);
+    def entries = [];
+    try (def ps = connection.prepareStatement(query)) {
+        if (filter) {
+            ps.setString(1, "%" + filter + "%");
+        }
+
+        def rs = ps.executeQuery();
+        while (rs.next()) {
+            entries.add([
+                id: rs.getInt("id"),
+                name: rs.getString("title"),
+                description: rs.getString("content"),
+                insertDate: rs.getString("insert_date")
+            ]);
+        }
+    }
+
+    return response.build(200, [:], [
+        entries: entries
+    ]);
+}
 
 ```
 
@@ -37,7 +56,7 @@ and which implementation is used:
 | ---- | --------------
 | `Fusio.Adapter.Sql.Connection.Sql` | `java.sql.Connection`
 | `Fusio.Adapter.Sql.Connection.SqlAdvanced` | `java.sql.Connection`
-| `Fusio.Adapter.Http.Connection.Http` | `org.apache.http.client.HttpClient`
+| `Fusio.Adapter.Http.Connection.Http` | `org.apache.hc.client5.http.impl.classic.HttpClient`
 | `Fusio.Adapter.Mongodb.Connection.MongoDB` | `com.mongodb.client.MongoDatabase`
 | `Fusio.Adapter.Elasticsearch.Connection.Elasticsearch` | `org.elasticsearch.client.RestHighLevelClient`
 
