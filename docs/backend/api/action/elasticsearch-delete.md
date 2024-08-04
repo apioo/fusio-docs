@@ -4,6 +4,18 @@
 Deletes a document by id. You should bind this action to a route i.e. `DELETE /document/:id` where the `id` uri fragment
 is available. The action deletes the document with the provided id.
 
+## Configuration
+
+![elasticsearch_delete](/img/backend/api/action/elasticsearch_delete.png)
+
+### Connection
+
+The ElasticSearch connection
+
+### Index
+
+The index
+
 ## Response
 
 ```json

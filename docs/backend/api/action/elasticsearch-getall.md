@@ -1,8 +1,28 @@
 
-# Elasticsearch Search
+# Elasticsearch GetAll
 
 Searches all documents at the configured index. You should bind this action to a route i.e. `GET /document`. The
 endpoint supports the following query parameters:
+
+## Configuration
+
+![elasticsearch_get_all](/img/backend/api/action/elasticsearch_get_all.png)
+
+### Connection
+
+The ElasticSearch connection
+
+### Index
+
+The index
+
+### Size
+
+The result size
+
+## Execution
+
+The endpoint accepts the following query parameters s.
 
 | Parameter   | Description                               |
 |-------------|-------------------------------------------|

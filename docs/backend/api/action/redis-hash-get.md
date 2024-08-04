@@ -4,6 +4,18 @@
 Returns a value for a specific field. You should bind this action to a route i.e. `GET /values/:field` where the `field`
 uri fragment is available. The action returns a value by this field.
 
+## Configuration
+
+![redis_hash_get](/img/backend/api/action/redis_hash_get.png)
+
+### Connection
+
+The Redis connection
+
+### Key
+
+The Key
+
 ## Response
 
 ```json

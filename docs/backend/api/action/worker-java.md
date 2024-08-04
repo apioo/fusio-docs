@@ -6,7 +6,7 @@ More information about the worker at: https://github.com/apioo/fusio-worker-java
 
 ## Example
 
-```groovy
+```java
 import org.fusioproject.worker.runtime.generated.ExecuteRequest;
 import org.fusioproject.worker.runtime.generated.ExecuteContext;
 import org.fusioproject.worker.runtime.Connector;

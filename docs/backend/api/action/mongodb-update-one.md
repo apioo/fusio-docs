@@ -1,7 +1,19 @@
 
-# Mongo Update One
+# MongoDB Update One
 
 Updates a document by the provided id. You should bind this action to a route i.e. `PUT /document/:id`.
+
+## Configuration
+
+![mongodb_update_one](/img/backend/api/action/mongodb_update_one.png)
+
+### Connection
+
+The MongoDB connection
+
+### Collection
+
+The collection
 
 ## Request
 

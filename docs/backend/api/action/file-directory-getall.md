@@ -1,5 +1,5 @@
 
-# File Directory Index
+# File Directory GetAll
 
 Returns all files of a configured directory. You should bind this action to an operation i.e. `GET /files`.
 

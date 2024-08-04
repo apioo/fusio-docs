@@ -1,8 +1,20 @@
 
-# Mongo Delete One
+# MongoDB Delete One
 
 Deletes a document by id. You should bind this action to a route i.e. `DELETE /document/:id` where the `id` uri fragment
 is available. The action deletes the document with the provided id.
+
+## Configuration
+
+![mongodb_delete_one](/img/backend/api/action/mongodb_delete_one.png)
+
+### Connection
+
+The MongoDB connection
+
+### Collection
+
+The collection
 
 ## Response
 

@@ -1,8 +1,22 @@
 
-# Mongo Find All
+# MongoDB Find All
 
 Returns all documents of the configured collection. You should bind this action to a route i.e. `GET /document`. The
 endpoint supports the following query parameters:
+
+## Configuration
+
+![mongodb_find_all](/img/backend/api/action/mongodb_find_all.png)
+
+### Connection
+
+The MongoDB connection
+
+### Collection
+
+The collection
+
+## Execution
 
 | Parameter   | Description                                   |
 |-------------|-----------------------------------------------|

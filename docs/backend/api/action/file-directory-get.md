@@ -1,5 +1,5 @@
 
-# File Directory Detail
+# File Directory Get
 
 Returns details of a single file. You should bind this action to an operation i.e. `GET /files/:id` where the `id` uri
 fragment is available. The action returns a file by this id.

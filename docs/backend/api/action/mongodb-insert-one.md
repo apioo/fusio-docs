@@ -1,7 +1,19 @@
 
-# Mongo Insert One
+# MongoDB Insert One
 
 Adds a new document to the configured collection. You should bind this action to a route i.e. `POST /document`.
+
+## Configuration
+
+![mongodb_insert_one](/img/backend/api/action/mongodb_insert_one.png)
+
+### Connection
+
+The MongoDB connection
+
+### Collection
+
+The collection
 
 ## Request
 
