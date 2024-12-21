@@ -12,3 +12,8 @@ and you want to persist an identifier at the Fusio object. The following shows a
   }
 }
 ```
+
+For a concrete example take a look at our backend [API documentation](https://www.fusio-project.org/api) for example
+the [backend.user.create](https://www.fusio-project.org/api/backend#tag/user/operation/backend.user.create) or
+[backend.app.update](https://www.fusio-project.org/api/backend#tag/app/operation/backend.app.update) endpoint where
+you can set the `metadata` property.
