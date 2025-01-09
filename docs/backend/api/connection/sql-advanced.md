@@ -14,7 +14,7 @@ In the following some examples from the documentation.
  * `sqlite:///somedb.sqlite`
  * `sqlite:///:memory:`
 
-[documentation]: http://doctrine-dbal.readthedocs.org/en/latest/reference/configuration.html
+[documentation]: https://www.doctrine-project.org/projects/doctrine-dbal/en/3.9/reference/configuration.html#connecting-using-a-url
 
 ## Implementation
 
