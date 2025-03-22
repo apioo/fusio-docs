@@ -8,8 +8,6 @@ a new action and you dont want to test that action on all users.
 
 ## Configuration
 
-![util_ab_test](/img/backend/api/action/util_ab_test.png)
-
 ### Action A
 
 The Action A to execute.
@@ -22,7 +20,3 @@ The Action B to execute.
 
 An integer describing the chance whether to call action A or B. A value of 50 means, that there is an equal chance to
 call action A or B.
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8ETZv2YeL_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

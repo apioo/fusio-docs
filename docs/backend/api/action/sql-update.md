@@ -5,8 +5,6 @@ Updates a specific entry on the configured table. You should bind this action to
 
 ## Configuration
 
-![sql_update](/img/backend/api/action/sql_update.png)
-
 ### Connection
 
 The database connection.

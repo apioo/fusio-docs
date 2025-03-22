@@ -6,8 +6,6 @@ Deletes a field from a specific key. You should bind this action to a route i.e.
 
 ## Configuration
 
-![redis_hash_delete](/img/backend/api/action/redis_hash_delete.png)
-
 ### Connection
 
 The Redis connection

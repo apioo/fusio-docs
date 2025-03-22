@@ -5,8 +5,6 @@ Pushes data into a AMQP compatible message queue like RabbitMQ.
 
 ## Configuration
 
-![amqp_publish](/img/backend/api/action/amqp_publish.png)
-
 ### Connection
 
 The AMQP connection which should be used to publish the message.

@@ -7,8 +7,6 @@ internally replaced by a prepared statement so you dont need to worry about SQL 
 
 ## Configuration
 
-![sql_query_all](/img/backend/api/action/sql_query_all.png)
-
 ### Connection
 
 The database connection.
@@ -47,7 +45,3 @@ The max amount of rows which are returned by this query.
   ]
 }
 ```
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4ZJPnMW_USk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

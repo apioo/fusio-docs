@@ -9,11 +9,9 @@ which is then called by Fusio.
 
 ## Configuration
 
-![cli_invoke](/img/backend/api/action/cli_invoke.png)
-
 ### Command
 
-The command which gets executed by Fusio. The complete payload is passed as stdin to the command.
+The command which gets executed. The complete payload is passed as stdin to the command.
 Note also all uri fragments and query parameters are passed as environment variable to the command,
 you can then use those env variables in your script but be aware that those values contain untrusted
 user input.
@@ -71,7 +69,3 @@ input provided by the user.
   "output": "foobar"
 }
 ```
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eTYz5DKPuHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

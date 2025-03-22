@@ -6,8 +6,6 @@ is available. The action deletes the document with the provided id.
 
 ## Configuration
 
-![elasticsearch_delete](/img/backend/api/action/elasticsearch_delete.png)
-
 ### Connection
 
 The ElasticSearch connection

@@ -6,8 +6,6 @@ uri fragment is available.
 
 ## Configuration
 
-![redis_hash_set](/img/backend/api/action/redis_hash_set.png)
-
 ### Connection
 
 The Redis connection

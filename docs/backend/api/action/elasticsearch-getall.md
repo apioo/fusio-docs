@@ -6,8 +6,6 @@ endpoint supports the following query parameters:
 
 ## Configuration
 
-![elasticsearch_get_all](/img/backend/api/action/elasticsearch_get_all.png)
-
 ### Connection
 
 The ElasticSearch connection

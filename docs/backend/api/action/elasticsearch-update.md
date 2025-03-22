@@ -6,8 +6,6 @@ uri fragment is available.
 
 ## Configuration
 
-![elasticsearch_update](/img/backend/api/action/elasticsearch_update.png)
-
 ### Connection
 
 The ElasticSearch connection

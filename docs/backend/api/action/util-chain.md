@@ -5,8 +5,6 @@ This action allows to execute multiple actions and only return the response of t
 
 ## Configuration
 
-![util_chain](/img/backend/api/action/util_chain.png)
-
 ### Action A
 
 The Action A

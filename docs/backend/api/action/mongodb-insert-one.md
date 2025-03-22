@@ -5,8 +5,6 @@ Adds a new document to the configured collection. You should bind this action to
 
 ## Configuration
 
-![mongodb_insert_one](/img/backend/api/action/mongodb_insert_one.png)
-
 ### Connection
 
 The MongoDB connection

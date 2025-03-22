@@ -6,8 +6,6 @@ is available. The action deletes the document with the provided id.
 
 ## Configuration
 
-![mongodb_delete_one](/img/backend/api/action/mongodb_delete_one.png)
-
 ### Connection
 
 The MongoDB connection

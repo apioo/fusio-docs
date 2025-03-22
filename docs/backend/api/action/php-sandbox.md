@@ -7,8 +7,6 @@ returns all data from the request.
 
 ## Configuration
 
-![php_sandbox](/img/backend/api/action/php_sandbox.png)
-
 ### Code
 
 The PHP code which gets executed.
@@ -48,7 +46,3 @@ all available functions.
 Note at the sandbox action we use for security reasons also a sandbox which allows you to use only specific whitelisted
 functions and classes. Please take a look at the [Sandbox](https://github.com/apioo/psx-sandbox) component for more
 information. In general if your logic is more complex it is recommended to [develop a custom action](../../../use_cases/api_framework/develop_custom_action).
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Bho2cpIn3_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

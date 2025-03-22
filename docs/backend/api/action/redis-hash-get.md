@@ -6,8 +6,6 @@ uri fragment is available. The action returns a value by this field.
 
 ## Configuration
 
-![redis_hash_get](/img/backend/api/action/redis_hash_get.png)
-
 ### Connection
 
 The Redis connection

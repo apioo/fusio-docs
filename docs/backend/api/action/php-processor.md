@@ -6,8 +6,6 @@ describing all available objects.
 
 ## Configuration
 
-![php_processor](/img/backend/api/action/php_processor.png)
-
 ### File
 
 Path to a PHP file.

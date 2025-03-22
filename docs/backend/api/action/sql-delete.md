@@ -6,8 +6,6 @@ is available. The action deletes the document with the provided id.
 
 ## Configuration
 
-![sql_delete](/img/backend/api/action/sql_delete.png)
-
 ### Connection
 
 The database connection.

@@ -7,8 +7,6 @@ needs to request a single endpoint.
 
 ## Configuration
 
-![http_composite](/img/backend/api/action/http_composite.png)
-
 ### URL
 
 A list of urls which should be requested
@@ -41,7 +39,3 @@ and cache the response if possible.
 
 Requests each configured url and puts the response in an object where the key is the
 url and the value is the response of the url.
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qA_NEQaHZek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

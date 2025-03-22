@@ -6,8 +6,6 @@ action and only get the cached response. This can be useful for i.e. actions whi
 
 ## Configuration
 
-![util_cache](/img/backend/api/action/util_cache.png)
-
 ### Action
 
 The Action to execute and which response should be cached. The action gets only invoked

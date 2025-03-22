@@ -13,8 +13,6 @@ a specific response.
 
 ## Configuration
 
-![graphql_processor](/img/backend/api/action/graphql_processor.png)
-
 ### URL
 
 The target GraphQL server

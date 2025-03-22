@@ -5,8 +5,6 @@ This action allows to evaluate a condition and execute another action depending 
 
 ## Configuration
 
-![util_condition](/img/backend/api/action/util_condition.png)
-
 ### Condition
 
 The condition to evaluate. Inside the expression you can access all values of the request and context.

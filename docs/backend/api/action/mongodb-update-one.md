@@ -5,8 +5,6 @@ Updates a document by the provided id. You should bind this action to a route i.
 
 ## Configuration
 
-![mongodb_update_one](/img/backend/api/action/mongodb_update_one.png)
-
 ### Connection
 
 The MongoDB connection

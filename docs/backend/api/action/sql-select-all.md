@@ -6,8 +6,6 @@ need to write any SQL.
 
 ## Configuration
 
-![sql_select_all](/img/backend/api/action/sql_select_all.png)
-
 ### Connection
 
 The database connection.
@@ -31,7 +29,3 @@ The order by column.
 ### Limit
 
 The limit of returned rows.
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BJPsUWBnG7s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

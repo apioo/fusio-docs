@@ -48,7 +48,3 @@ and which implementation is used:
 | `Fusio.Adapter.Http.Connection.Http` | `axios`
 | `Fusio.Adapter.Mongodb.Connection.MongoDB` | `mongoose`
 | `Fusio.Adapter.Elasticsearch.Connection.Elasticsearch` | `@elastic/elasticsearch`
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zBD6haSGHz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

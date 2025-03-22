@@ -6,8 +6,6 @@ or response i.e. in combination with the HTTP-Processor action you can change th
 
 ## Configuration
 
-![util_json_patch](/img/backend/api/action/util_json_patch.png)
-
 ### Action
 
 The action to execute

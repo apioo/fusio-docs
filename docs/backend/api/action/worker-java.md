@@ -59,7 +59,3 @@ and which implementation is used:
 | `Fusio.Adapter.Http.Connection.Http` | `org.apache.hc.client5.http.impl.classic.HttpClient`
 | `Fusio.Adapter.Mongodb.Connection.MongoDB` | `com.mongodb.client.MongoDatabase`
 | `Fusio.Adapter.Elasticsearch.Connection.Elasticsearch` | `org.elasticsearch.client.RestHighLevelClient`
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Qra9SwFz7W4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

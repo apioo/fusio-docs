@@ -5,8 +5,6 @@ Sends a mail to the provided address. Note you should only use this action inter
 
 ## Configuration
 
-![smtp_send](/img/backend/api/action/smtp_send.png)
-
 ### Connection
 
 The SMTP connection to send this mail.

@@ -6,8 +6,6 @@ from Fusio to another API.
 
 ## Configuration
 
-![http_processor](/img/backend/api/action/http_processor.png)
-
 ### Url
 
 Contains the target URL of your internal API where the request should be redirected.
@@ -55,7 +53,3 @@ X-Fusio-App-Id: 3
 X-Fusio-App-Key: 1ba7b2e5-fa1a-4153-8668-8a855902edda
 X-Fusio-Remote-Ip: 127.0.0.1
 ```
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jL8KlJkvZzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

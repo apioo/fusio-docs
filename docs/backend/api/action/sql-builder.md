@@ -6,8 +6,6 @@ provides a first overview:
 
 ## Configuration
 
-![sql_builder](/img/backend/api/action/sql_builder.png)
-
 ### Connection
 
 The database connection where the JQL should be executed.

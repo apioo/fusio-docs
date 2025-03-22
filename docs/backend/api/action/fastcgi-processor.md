@@ -5,8 +5,6 @@ Invokes the configured script of a FastCGI server.
 
 ## Configuration
 
-![fastcgi_processor](/img/backend/api/action/fastcgi_processor.png)
-
 ### Host
 
 The FastCGI host.

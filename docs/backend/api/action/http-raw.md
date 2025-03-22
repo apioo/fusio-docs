@@ -6,7 +6,9 @@ any kind of url and return the response.
 
 ## Configuration
 
-![http_raw](/img/backend/api/action/http_raw.png)
+### Method
+
+The target HTTP method i.e. GET or POST
 
 ### Url
 
@@ -20,19 +22,9 @@ headers and body values are proxied to the url.
 
 Contains a map of configured HTTP headers which are added to the request.
 
-### Content-Type
-
-Describes the Content-Type of the internal API response. Fusio then parses the response and
-returns the fitting format.
-
 ### HTTP-Version
 
 Optional to explicit specify the used HTTP version.
-
-### Authorization
-
-Optional an `Authorization` header value for internal authorization. You need to provide the
-complete authorization value i.e. `Basic [credentials]` or `Bearer [my_token]`.
 
 ### Query
 
@@ -46,7 +38,7 @@ and cache the response if possible.
 
 ### Body
 
-Contains a custom HTTP payload which is send to the url. You can access all values
+Contains a custom HTTP payload which is sent to the url. You can access all values
 from the incoming HTTP request and place it in the request body i.e.
 
 ```xml
@@ -60,11 +52,11 @@ from the incoming HTTP request and place it in the request body i.e.
 Internally this action uses the [Twig](https://twig.symfony.com/) template engine to
 produce the fitting payload. The following keys are available:
 
-### arguments
+#### arguments
 
 Contains all arguments i.e. variable path fragments or query parameters.
 
-### payload
+#### payload
 
 Contains the HTTP payload i.e. if a JSON payload `{"name": "test"}` is send to the
 endpoint you can access the name value with `{{ payload.name }}`

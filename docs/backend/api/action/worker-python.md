@@ -49,7 +49,3 @@ and which implementation is used:
 | `Fusio.Adapter.Http.Connection.Http` | `httpx.Client`
 | `Fusio.Adapter.Mongodb.Connection.MongoDB` | `pymongo`
 | `Fusio.Adapter.Elasticsearch.Connection.Elasticsearch` | `elasticsearch`
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/L3jHzZmFdWc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

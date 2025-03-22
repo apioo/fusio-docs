@@ -6,8 +6,6 @@ available. The action returns a document by this id.
 
 ## Configuration
 
-![elasticsearch_get](/img/backend/api/action/elasticsearch_get.png)
-
 ### Connection
 
 The ElasticSearch connection

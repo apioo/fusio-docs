@@ -6,8 +6,6 @@ endpoint supports the following query parameters:
 
 ## Configuration
 
-![mongodb_find_all](/img/backend/api/action/mongodb_find_all.png)
-
 ### Connection
 
 The MongoDB connection

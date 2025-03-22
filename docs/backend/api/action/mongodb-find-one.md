@@ -6,8 +6,6 @@ available. The action returns a document by this id.
 
 ## Configuration
 
-![mongodb_find_one](/img/backend/api/action/mongodb_find_one.png)
-
 ### Connection
 
 The MongoDB connection

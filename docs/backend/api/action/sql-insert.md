@@ -5,8 +5,6 @@ Adds a new entry to the configured table. You should bind this action to a route
 
 ## Configuration
 
-![sql_insert](/img/backend/api/action/sql_insert.png)
-
 ### Connection
 
 The database connection.

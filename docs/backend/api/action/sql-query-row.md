@@ -7,8 +7,6 @@ internally replaced by a prepared statement so you dont need to worry about SQL 
 
 ## Configuration
 
-![sql_query_row](/img/backend/api/action/sql_query_row.png)
-
 ### Connection
 
 The database connection.
@@ -24,7 +22,3 @@ INNER JOIN product
         ON contract.product_id = product.id
      WHERE product.id = {id}
 ```
-
-## Video
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kC-Wy-36aWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

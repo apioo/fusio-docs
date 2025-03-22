@@ -5,8 +5,6 @@ Returns all files of a configured directory. You should bind this action to an o
 
 ## Configuration
 
-![file_directory_get_all](/img/backend/api/action/file_directory_get_all.png)
-
 ### Directory
 
 The base directory.
