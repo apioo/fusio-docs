@@ -31,6 +31,8 @@ If the marketplace is off you only see all installed apps s.
 
 ![marketplace_off](/img/concepts/marketplace_off.png)
 
+If you want to delete the app, you can simply delete the folder from the filesystem under public/apps since there is also no Database entry.
+
 ## CLI
 
 Besides the backend it is also possible to install an app through a CLI command. Through
@@ -40,11 +42,10 @@ the `list` command you can list all available apps at the marketplace s.
 php bin/fusio marketplace:list
 ```
 
-Then you can use the following commands to install, update or remove an app.
+Then you can use the following commands to install or update an app.
 
 ```
 php bin/fusio marketplace:install [app_name]
 php bin/fusio marketplace:update [app_name]
-php bin/fusio marketplace:remove [app_name]
 ```
 
