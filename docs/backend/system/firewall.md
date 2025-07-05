@@ -33,11 +33,13 @@ too many client error responses. In case a user tries a brute force attack on th
 we automatically ban the IP for 5 minutes in case the user has produced more than 32 error responses.
 You can adjust this behavior at the `configuration.php` file s.
 
-    'fusio_firewall_ignoreip'  => [],
-    'fusio_firewall_bantime'   => 'PT5M',
-    'fusio_firewall_findtime'  => 'PT2M',
-    'fusio_firewall_maxretry'  => 32,
-    'fusio_firewall_codes'     => [],
+```php
+'fusio_firewall_ignoreip'  => [],
+'fusio_firewall_bantime'   => 'PT5M',
+'fusio_firewall_findtime'  => 'PT2M',
+'fusio_firewall_maxretry'  => 32,
+'fusio_firewall_codes'     => [],
+```
 
 ### `fusio_firewall_ignoreip`
 
