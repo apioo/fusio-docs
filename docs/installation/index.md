@@ -57,11 +57,6 @@ Please take a look also at our docs regarding a specific platform:
 * [IIS](./iis)
 * [cPanel](./cpanel)
 
-## Cloud
-
-If you don`t want to manually install Fusio you can take a look at our [cloud platform](https://fusio.cloud/) which you
-can use to directly run a Fusio instance in the cloud.
-
 ## Update
 
 ### Backend
