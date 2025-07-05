@@ -93,15 +93,15 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'ecosystem/index',
-            position: 'left',
-            label: 'Ecosystem',
-          },
-          {
-            type: 'doc',
             docId: 'concepts/index',
             position: 'left',
             label: 'Concepts',
+          },
+          {
+            type: 'doc',
+            docId: 'ecosystem/index',
+            position: 'left',
+            label: 'Ecosystem',
           },
           {
             href: 'https://github.com/apioo/fusio',
@@ -135,6 +135,10 @@ const config = {
               {
                 label: 'Concepts',
                 to: '/docs/concepts',
+              },
+              {
+                label: 'Ecosystem',
+                to: '/docs/ecosystem',
               },
             ],
           },
