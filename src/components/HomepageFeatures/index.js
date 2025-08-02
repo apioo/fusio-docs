@@ -1,15 +1,7 @@
-import React from 'react';
 import clsx from 'clsx';
-import styles from './HomepageFeatures.module.css';
-import {
-    MdArticle,
-    MdAssessment,
-    MdBuild,
-    MdMonetizationOn,
-    MdMonitorHeart,
-    MdOutlineChatBubble, MdPeople,
-    MdSettingsSuggest
-} from "react-icons/md";
+import Heading from '@theme/Heading';
+import styles from './styles.module.css';
+import {MdArticle, MdBuild, MdMonetizationOn, MdMonitorHeart, MdPeople, MdSettingsSuggest} from "react-icons/md";
 
 const FeatureList = [
     {
@@ -73,10 +65,10 @@ function Feature({Svg, title, description}) {
     return (
         <div className={clsx('col col--4')}>
             <div className="text--center">
-                <Svg className={styles.featureSvg} alt={title}/>
+                <Svg className={styles.featureSvg} role="img"/>
             </div>
             <div className="text--center padding-horiz--md">
-                <h3>{title}</h3>
+                <Heading as="h3">{title}</Heading>
                 <p>{description}</p>
             </div>
         </div>

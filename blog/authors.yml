@@ -3,3 +3,7 @@ chriskapp:
   title: Maintainer of Fusio
   url: https://github.com/chriskapp
   image_url: https://github.com/chriskapp.png
+  page: true
+  socials:
+    x: FusioAPI
+    github: chriskapp

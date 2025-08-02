@@ -6,11 +6,18 @@
 
 import {themes as prismThemes} from 'prism-react-renderer';
 
+// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Fusio',
-  tagline: 'Fusio is an open source API management platform which helps to create innovative API solutions.',
+  tagline: 'Self-Hosted API Management for Builders.',
   favicon: 'img/fusio_32px.png',
+
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
 
   // Set the production url of your site here
   url: 'https://docs.fusio-project.org/',
@@ -40,16 +47,27 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/apioo/fusio-docs/edit/main/',
         },
         blog: {
           showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/apioo/fusio-docs/edit/main/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       }),
     ],
@@ -167,16 +185,16 @@ const config = {
                 href: 'https://github.com/apioo/fusio',
               },
               {
-                label: 'Forum',
-                href: 'https://groups.google.com/forum/#!forum/fusio',
+                label: 'Twitter',
+                href: 'https://twitter.com/FusioAPI',
               },
               {
                 label: 'YouTube',
                 href: 'https://www.youtube.com/c/FusioAPI',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/FusioAPI',
+                label: 'Discord',
+                href: 'https://discord.gg/eMrMgwsc6e',
               },
             ],
           },
