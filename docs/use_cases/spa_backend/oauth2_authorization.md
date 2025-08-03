@@ -19,7 +19,9 @@ have the same Base url. After creation, you get a Client-ID/Secret for this app.
 Now we can start implementing the actual authorization in your app. If the current
 user is not authenticated, you need to redirect the user to the following url:
 
+```
 https://my_fusio_url.com/authorization/authorize?client_id=&redirect_uri=&scope=&state=
+```
 
 With the following query parameters s.
 
