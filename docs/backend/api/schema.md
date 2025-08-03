@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Schema
 
-The schema defines the format of the request and response data. It uses the [TypeSchema] specification. The following
+A schema defines the format of the request and response data. It uses the [TypeSchema] specification. The following
 example shows a simple object.
 
 ## Configuration
@@ -39,7 +39,7 @@ A [TypeSchema](https://typeschema.org/) which describes the JSON structure.
       }
     }
   },
-  "$ref": "Student"
+  "root": "Student"
 }
 ```
 
