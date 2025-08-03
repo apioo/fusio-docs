@@ -83,7 +83,9 @@ A schema which describes the success response payload. You can select one of the
 * __HTTP/HTTPS__  
   Invokes an HTTP url and resolves the schema
 * __File__  
-  Loads a file resolves the schema
+  Loads a file and resolves the schema
+* __Content-Type__  
+  In case the response is not JSON you can select a content type
 
 ### Throws
 
@@ -97,7 +99,9 @@ Schemas to describe the error response payloads. You can select one of the follo
 * __HTTP/HTTPS__  
   Invokes an HTTP url and resolves the schema
 * __File__  
-  Loads a file resolves the schema
+  Loads a file and resolves the schema
+* __Content-Type__  
+  In case the response is not JSON you can select a content type
 
 ### Action
 
@@ -112,8 +116,10 @@ type:
   the `Fusio\Engine\ActionInterface`.
 * __HTTP/HTTPS__  
   Invokes an HTTP url, it proxies the request to the endpoint and also adds Fusio specific information
+* __File__  
+  Executes the provided action file
 
 ### Costs
 
-Contains how much a user needs to pay in order to invoke a route. A user can obtain points by buying a
+Contains how much a user needs to pay to invoke a route. A user can obtain points by buying a
 specific plan at the developer portal.
