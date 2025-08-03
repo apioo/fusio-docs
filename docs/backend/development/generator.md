@@ -6,7 +6,7 @@ sidebar_position: 3
 
 The generator panel provides a way to automatically generate operations, actions and schemas based on a specific input.
 
-![development](/img/backend/development/database.png)
+![generator](/img/backend/development/generator.png)
 
 ## File-Directory
 
