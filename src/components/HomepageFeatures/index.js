@@ -1,73 +1,98 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
-import {MdArticle, MdBuild, MdMonetizationOn, MdMonitorHeart, MdPeople, MdSettingsSuggest} from "react-icons/md";
 
 const FeatureList = [
     {
-        title: 'Building',
-        Svg: MdBuild,
+        title: 'Database API Gateway',
+        emoji: '🔄',
         description: (
             <>
-                Fusio provides many ways to build new API endpoints
+                Great for unlocking legacy data systems or enabling mobile app access.
             </>
         ),
     },
     {
-        title: 'Documentation',
-        Svg: MdArticle,
+        title: 'API Business Logic',
+        emoji: '🧠',
         description: (
             <>
-                Fusio contains a schema store to describe the request and response payloads.
+                Perfect for enterprise use cases requiring tailored backend logic.
             </>
         ),
     },
     {
-        title: 'Monetization',
-        Svg: MdMonetizationOn,
+        title: 'Gateway for Microservices',
+        emoji: '🕸️',
         description: (
             <>
-                Fusio provides a simple way to monetize your existing API.
+                Useful for modern service-oriented architectures or hybrid systems.
             </>
         ),
     },
     {
-        title: 'Onboarding',
-        Svg: MdPeople,
+        title: 'API Developer Portal',
+        emoji: '🌐',
         description: (
             <>
-                Fusio provides a ready to use developer portal where external developers can register.
-                API.
+                Ideal for SaaS providers offering APIs to external developers.
             </>
         ),
     },
     {
-        title: 'Integration',
-        Svg: MdSettingsSuggest,
+        title: 'API Monetization',
+        emoji: '💸',
         description: (
             <>
-                Fusio contains a powerful SDK generator.
+                Enable freemium or tiered access models with minimal effort.
             </>
         ),
     },
     {
-        title: 'Monitoring',
-        Svg: MdMonitorHeart,
+        title: 'MCP Integration',
+        emoji: '⚡',
         description: (
             <>
-                Fusio provides an intuitive backend where you can monitor important aspects of your API.
+                Leverage the Model Context Protocol to enable AI-driven access and control of API endpoints.
+            </>
+        ),
+    },
+    {
+        title: 'API Usage Analytics',
+        emoji: '📊',
+        description: (
+            <>
+                Essential for maintaining quality of service and detecting issues early.
+            </>
+        ),
+    },
+    {
+        title: 'Headless CMS Backend',
+        emoji: '📰',
+        description: (
+            <>
+                Great for CMS-like applications where content is managed through APIs.
+            </>
+        ),
+    },
+    {
+        title: 'SDK Automation',
+        emoji: '📡',
+        description: (
+            <>
+                Automatically generate SDKs (e.g., PHP, TypeScript, Python) based on your defined API schema.
             </>
         ),
     },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({emoji, title, description}) {
     return (
         <div className={clsx('col col--4')}>
             <div className="text--center">
-                <Svg className={styles.featureSvg} role="img"/>
+                <div className={styles.featureEmoji}>{emoji}</div>
             </div>
-            <div className="text--center padding-horiz--md">
+            <div className={styles.featureHeading}>
                 <Heading as="h3">{title}</Heading>
                 <p>{description}</p>
             </div>

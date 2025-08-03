@@ -9,24 +9,6 @@ look at the [installation](./installation/index.md) page. Fusio is an open sourc
 create innovative API solutions. Through Fusio you can quickly build a state-of-the-art API, set up a developer portal
 and monetize your API.
 
-Fusio can help you with the following use cases:
-
-* __API Product__  
-Fusio helps you to create a great API product, besides building an API it provides a developer portal where developers
-can register and a way to monetize your API
-* __API Gateway__  
-Fusio can be used as gateway to your internal API and microservices. It handles all common features like Authorization, 
-Rate-Limiting and Schema-Validation
-* __SPA Backend__  
-Fusio can be used as backend to build SPAs using popular Javascript-Frameworks like i.e. Angular, React or Vue. It
-provides a powerful code generator which can automatically generate an SDK for your API
-* __API Builder__  
-Fusio helps to automatically generate APIs based on different data sources i.e. it is possible to generate a complete
-REST API based on a database or also the file system.
-* __API Framework__  
-For more complex use cases you can use Fusio also as framework to build complete APIs from scratch. This means you build
-custom actions where you can use the wide PHP ecosystem to solve your task.
-
 This page will explain the first steps on how to proxy an operation to an internal API. We create an operation at the
 backend which executes a specific action, a schema which describes the payload and an action which proxies to a remote
 API.
