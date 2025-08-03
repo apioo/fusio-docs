@@ -43,4 +43,13 @@ A [TypeSchema](https://typeschema.org/) which describes the JSON structure.
 }
 ```
 
+## Designer
+
+Through the schema designer it is possible to use a visual editor to design a
+schema. This helps in case you are new to [TypeSchema](https://typeschema.org/)
+and don't know the exact format.
+
+![designer](/img/backend/api/schema/designer.png)
+
+
 [TypeSchema]: https://typeschema.org/

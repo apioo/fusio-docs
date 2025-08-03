@@ -25,6 +25,14 @@ and the request gets executed later on in the background.
 
 All other input fields are action specific.
 
+## Designer
+
+Through the action designer it is possible to adjust and execute an action,
+this helps to quickly develop and test an action. You can find the action designer
+through the terminal icon right after the edit button at the action list.
+
+![designer](/img/backend/api/action/designer.png)
+
 ## Development
 
 To develop a custom action you need to create a class which implements the class `Fusio\Engine\ActionAbstract`.

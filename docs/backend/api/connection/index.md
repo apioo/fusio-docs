@@ -21,6 +21,18 @@ The connection class. Besides selecting an connection you can also enter a custo
 
 All other input fields are action specific.
 
+## Designer
+
+Most connections provide a designer panel, which you can see through the terminal icon
+right after the edit button. The designer panel helps to interact with the connection.
+I.e. for a database it is possible to manage the table schema and for a filesystem
+panel it is possible to upload and list files. The following designer panels are available:
+
+* [Database](./designer/database)
+* [Filesystem](./designer/filesystem)
+* [HTTP](./designer/http)
+* [SDK](./designer/sdk)
+
 ## Development
 
 To develop a custom connection you need to create a class which implements the interface
