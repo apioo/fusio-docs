@@ -7,7 +7,7 @@ It is also easy possible to develop your own custom connection.
 
 ## Configuration
 
-![connection_create](/img/backend/api/connection_create.png)
+![connection_update](/img/backend/api/connection_update.png)
 
 ### Name
 

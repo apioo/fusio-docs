@@ -6,3 +6,5 @@ sidebar_position: 4
 
 Lists all issued access tokens.
 
+![token_list](/img/backend/analytics/token_list.png)
+

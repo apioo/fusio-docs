@@ -11,7 +11,7 @@ endpoint without an access token.
 
 ## Configuration
 
-![operation_update](/img/backend/api/operation_update.png)
+![operation_create](/img/backend/api/operation_create.png)
 
 ### Name
 

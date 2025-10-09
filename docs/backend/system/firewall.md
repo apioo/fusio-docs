@@ -10,6 +10,8 @@ responses.
 
 ## Configuration
 
+![firewall_create](/img/backend/system/firewall_create.png)
+
 ### Name
 
 The name of your firewall rule.

@@ -11,6 +11,8 @@ depending on your frontend for example [JSON Forms](https://jsonforms.io/).
 
 ## Configuration
 
+![form_create](/img/backend/consumer/form_create.png)
+
 ### Name
 
 The name of the form
