@@ -27,9 +27,9 @@ setup process. The setup process will help configure Fusio to work properly on y
 
 * __Adjust the configuration file__  
   Open the file `.env` in the Fusio directory and insert the fitting database credentials to the `APP_CONNECTION` key.
-  It is also recommended to provide the `APP_URL` which contains the domain pointing to the public
-  folder, this is required if you host Fusio inside a sub-folder otherwise Fusio tries to detect the domain via
-  the host header.
+  It is also recommended to provide the `APP_URL` which contains the domain pointing to the public folder i.e.
+  `https://api.my_domain.com` or `https://my_domain.com/fusio`, this is required if you host Fusio inside
+  a sub-folder otherwise Fusio tries to detect the domain via the host header.
 
 * __Execute the installation command__  
   The installation script inserts the Fusio database schema into the provided database. It can be executed with the
