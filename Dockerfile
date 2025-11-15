@@ -1,4 +1,4 @@
-FROM node:alpine as node
+FROM node:alpine AS node
 ENV NODE_OPTIONS=--openssl-legacy-provider
 WORKDIR /app
 COPY . .
