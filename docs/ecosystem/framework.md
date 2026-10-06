@@ -179,6 +179,6 @@ vendor/bin/phpstan                           # static analysis
 
 ## Docker
 
-This repository contains a [Dockerfile](./Dockerfile) and a [GitHub action](./.github/workflows/docker.yml) that build
+This repository contains a [Dockerfile](https://github.com/apioo/fusio-plant/blob/main/Dockerfile) and a [GitHub action](https://github.com/apioo/fusio-plant/blob/main/.github/workflows/docker.yml) that build
 a Docker image on every push. You can run this image on any Docker platform, or take a look at
 [Plant](https://github.com/apioo/fusio-plant), which helps you run Fusio images on a server.
