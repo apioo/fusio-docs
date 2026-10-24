@@ -4,51 +4,145 @@ sidebar_position: 3
 
 # Architecture
 
-In this chapter we provide a first overview about the architecture, the following diagram shows the basic entities of
-Fusio:
+This page gives you a high-level overview of how Fusio works. Fusio is built around **seven core entities**.
+Once you understand them and how they work together, you understand how every API in Fusio is built.
 
 ![architecture](/img/bootstrap/architecture_small.png)
 
+## Overview
+
+At the center of Fusio is the **action**, it contains the business logic. All other entities either invoke an
+action, describe its data or provide it access to external services:
+
+| Entity                    | Role               | In one sentence                                                                       |
+|---------------------------|--------------------|---------------------------------------------------------------------------------------|
+| [Operation](#operation)   | Invokes an action  | An endpoint of your API, i.e. `GET /contracts`, which invokes an action when called   |
+| [Cronjob](#cronjob)       | Invokes an action  | Invokes an action at a fixed interval, i.e. every night at 2am                        |
+| [Trigger](#trigger)       | Invokes an action  | Invokes an action every time a specific event is dispatched                           |
+| [Action](#action)         | Business logic     | Contains the logic which is executed, comparable to a serverless function             |
+| [Connection](#connection) | Access to services | Provides an action access to external services like a database or a remote API      |
+| [Schema](#schema)         | Describes data     | Describes the structure of JSON data, i.e. the request and response of an operation   |
+| [Event](#event)           | Notifies others    | Something that happened at your API, i.e. `contract_created`, which others can react to |
+
+As you can see at the diagram, an action can be invoked in three ways: by a client calling an **operation**,
+by time through a **cronjob** or by an **event** through a **trigger**. This means you can reuse the same
+action for an API endpoint, a scheduled job and an event handler.
+
 ## Operation
 
-An operation provides a way to invoke an action which executes the business logic of your API, it is assigned to a
-specific HTTP method and path i.e. `GET /hello/world`. Besides this the operation describes through a schema how the
-parameters, incoming and outgoing data of your endpoint is designed. Fusio then also uses those schemas to validate
-request data and to automatically generate an OpenAPI specification or client SDK.
+An operation is the public interface of your API. It is bound to an HTTP method and path, i.e. `GET /contracts/:id`,
+and defines which action is invoked when a client calls this endpoint. Besides the HTTP route, an operation also
+contains everything a client needs to know about the endpoint:
+
+* The **schemas** of the query parameters, the request body and the response
+* Whether the operation is **public** or requires an access token with a specific **scope**
+* A **description** and **stability** which are shown at the documentation
+
+Through this information Fusio validates incoming requests and generates the OpenAPI specification and client SDKs
+of your API automatically. Besides HTTP, operations can also be invoked through [MCP](/docs/protocol/mcp),
+[JSON-RPC](/docs/protocol/jsonrpc) or [GraphQL](/docs/protocol/graphql).
+
+Learn more at the [Operation](/docs/operation) page.
 
 ## Action
 
-The action contains the actual business logic of your API i.e. to proxy a request to a remote API or directly selects
-data from a database table. You can use either one of our [existing actions](/docs/backend/api/action/) to solve your
-problem or you can also easily [build your own](/docs/development/custom_action) action.
+An action contains the actual business logic of your API. It receives a request and produces a response, similar to
+a serverless function. Since the action is decoupled from the HTTP layer, it does not matter whether it was invoked by
+an operation, a cronjob or a trigger.
 
-## Schema
+You have two options to create an action:
 
-The schema simply describes a JSON payload. We use a schema to describe i.e. request/response data of an operation
-or also event payloads which are dispatched by the system. Every schema is based on [TypeSchema](https://typeschema.org/)
-which we also use to generate a client SDK or other specifications like OpenAPI.
-
-## Event
-
-An event gets dispatched by an action in your API, it can be used to create an async workflow where external parties are
-notified in case a specific event occurred at your API. I.e. you could create an event "contract_created" and dispatch
-this event everytime a contract was created at your API, then external users can register a webhook and Fusio will
-invoke this webhook once a contract was created. You can describe the payload of your event also by a schema.
-
-## Cronjob
-
-A cronjob provides a way to invoke an action at a periodical interval.
-
-## Trigger
-
-A trigger gets invoked if an event was dispatched. Each trigger has an assigned
-action which then gets executed.
+* **Use a prebuilt action**: Fusio contains many [ready-to-use actions](/docs/backend/api/action/), i.e. to proxy
+  a request to a remote API, to execute a SQL query or to send a mail. They are configured at the backend, without
+  writing any code
+* **Build your own action**: Write custom logic in [PHP](/docs/action) or through a [worker](/docs/action/worker)
+  also in JavaScript, Python or Java
 
 ## Connection
 
-A connection provides access to a remote service. I.e. we have a SQL connection which works with a SQL database or a
-HTTP connection which works with a remote HTTP server. One key concept is that a connection always uses an external
-library to connect to the remote service i.e for the SQL connection we use the `doctrine/dbal` library and for the HTTP
-connection we use `guzzlehttp/guzzle`. A connection returns always a fully configured client which you can use in your
-action. A remote service can be also an external API i.e. we provide connections to Stripe or also AWS which works with
-the official SDK. In your action you can then use those connections to implement your business logic.
+A connection provides an action access to an external service, i.e. a database, a message queue or a remote API.
+You configure the credentials of a connection once at the backend and every action can use it by name. This means
+credentials are never part of your business logic and you can i.e. switch from a test to a production database
+without changing any action.
+
+A connection always returns a fully configured client of a well-known library, i.e. the SQL connection returns a
+[Doctrine DBAL](https://www.doctrine-project.org/projects/dbal.html) connection and the HTTP connection a
+[Guzzle](https://docs.guzzlephp.org/) client. For services like Stripe or AWS the connection returns the official SDK.
+Inside your action you can then use the API of the library which you already know:
+
+```php
+$connection = $connector->getConnection('My-Database');
+$rows = $connection->fetchAllAssociative('SELECT * FROM app_contract');
+```
+
+Learn more at the [Connection](/docs/backend/api/connection) page.
+
+## Schema
+
+A schema describes the structure of JSON data. Fusio uses schemas to describe the request and response of an
+operation and the payload of an event. Schemas are based on [TypeSchema](https://typeschema.org/).
+
+Schemas are optional, but they are the contract between you and the consumers of your API. Based on your schemas
+Fusio can:
+
+* Validate incoming request data
+* Generate an OpenAPI specification and documentation
+* Generate type-safe client SDKs for your API
+
+Learn more at the [Schema](/docs/backend/api/schema) page.
+
+## Event
+
+An event represents something that happened at your API, i.e. `contract_created`. Your action dispatches the event
+together with a payload, which can be described by a schema:
+
+```php
+$dispatcher->dispatch('contract_created', $contract);
+```
+
+Events decouple your API from the parts which react to it. There are two ways to react to an event:
+
+* **External**: Consumers of your API can register a [webhook](/docs/backend/consumer/webhook) for an event, Fusio then
+  sends an HTTP POST request with the payload to their URL
+* **Internal**: You can create a [trigger](#trigger) which invokes an action at your Fusio instance
+
+The delivery happens in the background, so dispatching an event does not slow down your API.
+
+Learn more at the [Event](/docs/backend/api/event) page.
+
+## Trigger
+
+A trigger connects an event with an action. Every time the event is dispatched, Fusio invokes the action of the
+trigger with the event payload. Through this you can build internal workflows, i.e. send a welcome mail every time
+a `user_registered` event was dispatched, without adding this logic to the action which registers the user.
+
+Learn more at the [Trigger](/docs/backend/api/trigger) page.
+
+## Cronjob
+
+A cronjob invokes an action at a periodical interval, which is defined by a standard
+[cron expression](https://en.wikipedia.org/wiki/Cron), i.e. `0 2 * * *` for every night at 2am. Typical use cases are
+cleanup tasks, sending reports or synchronizing data with external systems.
+
+Learn more at the [Cronjob](/docs/backend/api/cronjob) page.
+
+## Putting it all together
+
+The following example shows how the entities work together in a contract management API:
+
+1. A client sends a `POST /contracts` request to the **operation** `contract.create`
+2. Fusio validates the request body against the `Contract` **schema** and checks the access token of the client
+3. The operation invokes the `Contract-Create` **action**, which uses the `My-Database` **connection** to insert the
+   contract into the database
+4. The action dispatches the `contract_created` **event**
+5. Fusio sends the event to all registered webhooks of your consumers, and a **trigger** invokes the
+   `Send-Confirmation-Mail` action
+6. Every night a **cronjob** invokes the `Contract-Cleanup` action, which removes expired contracts
+
+Every step is configured at the backend, and the business logic stays small and focused within the actions.
+
+## Next steps
+
+* [Getting started](/docs/bootstrap) - Build your first API endpoint
+* [Operation](/docs/operation) - Learn how to design operations
+* [Action](/docs/action) - Learn how to write your own business logic
