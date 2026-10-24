@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 
 # Registration
 
@@ -8,10 +11,7 @@ endpoint.
 
 ## Register
 
-At the registration process the user needs to provide a name, email and password to create a new user account. In case
-you have configured a `RECAPTCHA_SECRET` at your `.env` file Fusio checks also the captcha value. The captcha secret
-must be a google recaptcha secret.
-
+At the registration process the user needs to provide a name, email and password to create a new user account.
 If the user has provided the values at your UI you need to call the `/consumer/register` endpoint. If everything is
 valid Fusio creates a new user account (which is deactivated) and sends a confirmation mail to the provided email
 address.
@@ -19,8 +19,6 @@ address.
 The content of the activation mail can be customized at the settings panel of the Fusio backend. There is a setting
 `mail_register_body` which can be changed. If you are using the deploy mechanism you can also modify the
 `resources/config.yaml` file.
-
-We host also a sample developer app which contains a signup form.
 
 ## Activate
 

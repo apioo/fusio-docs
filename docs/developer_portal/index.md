@@ -1,38 +1,82 @@
+---
+sidebar_position: 1
+---
 
 # Developer Portal
 
-The developer app provides an easy way to set up an API program where external developers can register to consume
-your API. It provides a documentation page and login/registration system where new developers can register.
+If you build an API, you also need a place where third-party developers can learn about your API,
+sign up and get their credentials. Building such a portal from scratch takes a lot of time, which is
+why Fusio provides a ready-to-use **Developer Portal** which you can install with a single click.
 
 ![consumer](/img/use_cases/api_product/developer_portal.png)
 
-## Installation
+## Why a developer portal?
 
-To install the developer app you need to go to the marketplace at the backend app. There you can install the developer
-app.
+A developer portal is the front door of your API. It answers the questions every developer has
+when they discover your API:
 
-![marketplace](/img/use_cases/api_product/marketplace.png)
+* What does this API do and how do I get started?
+* How do I get access and authenticate?
+* Which endpoints are available and what do they return?
+* Is there an SDK for my programming language?
+* Where can I get help?
 
-## Customizing
+With the Fusio developer portal you can answer all these questions without writing any frontend
+code. You only need to install the app and adjust the content to your API.
 
-It is also possible to adjust the content of the developer app via the page panel. It provides basic functionality to
-edit and adjust the content to your needs.
+## Features
 
-![page](/img/use_cases/api_product/page.png)
+The developer portal contains everything which a developer needs to start using your API:
 
-## Settings
+| Feature                 | Description                                                                                       |
+|-------------------------|---------------------------------------------------------------------------------------------------|
+| Documentation           | Pages like "Getting started", "Authorization" or "Support" which you can edit at the backend      |
+| Registration            | Developers can sign up with name, email and password, optionally protected by a captcha           |
+| Login                   | Login with username and password or through an external identity provider like GitHub or Google   |
+| Password reset          | Developers can reset a forgotten password through an email link                                   |
+| Apps                    | Developers can create apps to obtain an app key and secret for the OAuth2 flow                    |
+| Personal access tokens  | Developers can create tokens to call your API directly, i.e. for testing                          |
+| Webhooks                | Developers can subscribe to events of your API                                                    |
+| Subscriptions           | Developers can buy a plan if you [monetize](/docs/monetization) your API                          |
+| Logs                    | Developers can inspect the requests which they have made against your API                         |
+| Specification           | Developers can browse the specification of your API                                               |
 
-You also might want to take a look at the following settings which you can customize:
+## How it works
 
-| Parameter               | Description                                             |
-|-------------------------|---------------------------------------------------------|
-| `mail_pw_reset_body`    | Body of the password reset mail                         |
-| `mail_pw_reset_subject` | Subject of the password reset mail                      |
-| `mail_register_body`    | Body of the register mail                               |
-| `mail_register_subject` | Subject of the register mail                            |
-| `points_default`        | The amount of points every new registered user receives |
-| `recaptcha_key/secret`  | The Google recaptcha key and secret                     |
-| `provider_*_key/secret` | To activate a social login provide a key and secret     |
-| `role_default`          | The default role which every user receives              |
+The developer portal is a standalone JavaScript app which runs in the browser and talks to your Fusio
+instance through the [Consumer API](https://www.fusio-project.org/api/consumer). This means all data like
+users, apps and tokens are stored at your Fusio instance and you can manage them at the backend app.
 
+A typical journey of a third-party developer looks like this:
 
+1. The developer visits your portal and reads the documentation
+2. The developer registers an account and activates it through the confirmation mail
+3. After login the developer creates an app or a personal access token
+4. The developer uses the credentials to call your API
+
+As API provider you control at the backend which [scopes](/docs/backend/consumer/scope) a developer can access
+through the assigned role, and you can [rate limit](/docs/backend/consumer/rate) or deactivate developers at any time.
+
+## Getting started
+
+Setting up a developer portal takes only a few steps:
+
+1. [Install](./installation) the developer app through the marketplace
+2. [Customize the content](./content) so that it describes your API
+3. Optionally configure [registration](./registration) settings like captcha or social login
+4. Share the portal URL with your developers
+
+## Pages
+
+* [Installation](./installation) - How to install and configure the developer portal
+* [Content](./content) - How to adjust the documentation pages of the portal
+* [Registration](./registration) - How the registration and login process works
+* [Account](./account) - Which features a developer can use after login
+* [ReDoc](./redoc) - An additional app to render your OpenAPI specification
+
+## Integrate into your own app
+
+The developer portal is a starting point in case you don't have an existing portal. If you already have
+a website or app, you can also integrate all features of the developer portal directly into your app, since
+every feature is available through the Consumer API. Take a look at the [Frontend](/docs/frontend) section
+to see how this works.
