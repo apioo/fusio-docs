@@ -67,7 +67,7 @@ actions. Please take a look at our [website](https://www.fusio-project.org/adapt
 ## API
 
 Inside your action, you already have most tools available to complete many tasks. To see the complete action API please
-take a look at our [PHP API](/docs/action/php_api). The following is an example which shows
+take a look at our [PHP API](/docs/development/php_api). The following is an example which shows
 some interesting methods of the internal action API:
 
 ```php

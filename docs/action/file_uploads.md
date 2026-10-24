@@ -1,56 +1,76 @@
+---
+sidebar_position: 7
+---
 
-# File Uploads
+# File uploads
 
-This chapter explains how to handle file uploads at an action. To handle file uploads your route must have as request
-schema "Passthru" selected, this means that Fusio does not try to validate your request via a schema and simply passes
-the data to your action.
+This page explains how to build an endpoint which accepts file uploads, i.e. to upload an image or a document.
 
-![routes_file_upload](/img/use_cases/api_framework/routes_file_upload.png)
+## Step 1: Configure the operation
 
-If you upload a file PHP always moves the upload to a temp file, then you need to move this temp file to your target
-directory. In the following a simple example which shows how to handle a file upload.
+By default, Fusio expects a JSON request body and validates it against the incoming schema of the operation. For a
+file upload, the client sends a `multipart/form-data` request instead. At the [operation](/docs/operation/configuration#incoming)
+select as incoming the source **Content-Type** with the value `multipart/form-data`.
+
+Fusio then does not validate the body against a schema, but passes the uploaded files and form fields to your action.
+
+## Step 2: Handle the upload at the action
+
+The uploaded file is stored by PHP in a temporary file, your action needs to move this file to the target location.
+The following example uses the [PHP-Sandbox](/docs/backend/api/action/php-sandbox) action, the same code also works in
+a [custom action](/docs/development/custom_action) class:
 
 ```php
 <?php
 
-$body = $request->getBody();
-
-if (!$body instanceof \Fusio\Engine\Record\PassthruRecord) {
-    // this means we have not set the body to Passthru
-    throw new \PSX\Http\Exception\BadRequestException('Provided an invalid body');
-}
-
-$payload = $body->getPayload();
+$payload = $request->getPayload();
 if (!$payload instanceof \PSX\Data\Multipart\Body) {
-    // this means our request is not a multipart request
-    throw new \PSX\Http\Exception\BadRequestException('Provided no multipart body');
+    return $response->badRequest('Provided no multipart body');
 }
 
-// we can now move the file to our target location, in this case we use simply the Fusio cache folder
-$payload->getFile('my_file')->moveTo(PSX_PATH_CACHE . '/my_file.tmp');
+if (!$payload->isFile('my_file')) {
+    return $response->badRequest('Provided no file');
+}
 
-// we can also access other values from the request
-$bar = $payload->getPart('foo');
+$file = $payload->getFile('my_file');
 
-return $response->build(200, [], [
+// move the uploaded file to the target location
+$file->moveTo('/var/www/uploads/' . basename($file->getName()));
+
+// other form fields are also available
+$description = $payload->getPart('description');
+
+return $response->created([
     'success' => true,
-    'foo' => $bar,
+    'name' => $file->getName(),
+    'size' => $file->getSize(),
+    'description' => $description,
 ]);
-
 ```
 
-If we add a route for this action and use a rest client to send a `multipart/form-data` request to the endpoint.
+The uploaded file provides the following methods:
+
+| Method           | Description                                      |
+|------------------|--------------------------------------------------|
+| `getName()`      | The original file name of the client             |
+| `getType()`      | The content type which the client has provided   |
+| `getSize()`      | The size of the file in bytes                    |
+| `moveTo($path)`  | Moves the uploaded file to the target location   |
+
+:::warning
+Never trust the file name and content type of the client. Validate the file, i.e. the size and type, and generate
+your own file name before you store a file on your server.
+:::
+
+## Step 3: Upload a file
+
+Now a client can upload a file through a `multipart/form-data` request, i.e. through `curl`:
+
+```
+curl -X POST https://api.acme.com/upload \
+  -H "Authorization: Bearer [token]" \
+  -F "my_file=@./document.pdf" \
+  -F "description=My document"
+```
 
 ![upload_file_request.png](/img/use_cases/api_framework/upload_file_request.png)
-
-Then we would get the following response.
-
-```json
-{
-  "success": true,
-  "foo": "bar"
-}
-```
-
-Now we should see the file `my_file.tmp` at the `cache/` directory of Fusio with the content which you have send to
-the endpoint.

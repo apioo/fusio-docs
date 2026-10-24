@@ -4,191 +4,294 @@ sidebar_position: 3
 
 # PHP API
 
-Fusio provides a specific PHP-API in every action which can be used to produce a response. This API describes all
-available variables and can be used as a reference to develop new actions.
+This page is a complete reference of the PHP API which is available inside a PHP [worker](./worker) action, i.e. the
+[Worker-PHP-Local](/docs/backend/api/action/worker-php-local) or [Worker-PHP](/docs/backend/api/action/worker-php)
+action. If you build a custom action as PHP class, please take a look at the
+[PHP API for custom actions](/docs/development/php_api) instead.
 
-## Objects
+## Structure
 
-| Name          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `$request`    | Represents an incoming request. This object can be used to access all values from an incoming request                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `$parameters` | The parameters represent a general set of key values which is used in various places. As argument to the action method it contains the configuration parameters of the action. At the request object it contains the query and uri fragment parameters                                                                                                                                                                                                                                                                                                             |
-| `$context`    | The context contains all information about the incoming request which is not HTTP related i.e. it contains the authenticated user and app or also the route id which was used                                                                                                                                                                                                                                                                                                                                                                                      |
-| `$connector`  | Through the connector it is possible to access configured connection objects. A connection is i.e. a MYSQL connection which can be configured at the admin panel. Inside an action it is possible to access this connection through this class. Which objects is returned depends on the connection type i.e. the MYSQL connection returns a Doctrine DBAL Connection instance and the HTTP connection returns a Guzzle instance. There are already many adapters available which allow many different kind of services i.e. ElasticSearch, MongoDB, AMQP, etc.    |
-| `$response`   | The response factory MUST be used to create a response for an action. It is a factory method which returns a specific response object. Please always use this factory since this gives us the freedom to change the response implementation                                                                                                                                                                                                                                                                                                                        |
-| `$processor`  | The processor can be used to invoke another action. Normally an action should only contain simple logic but in some cases you may want to invoke an existing action                                                                                                                                                                                                                                                                                                                                                                                                |
-| `$dispatcher` | The dispatcher can be used to trigger specific events. A consumer can subscribe to such events and they will receive a HTTP POST call to the defined endpoint in case you dispatch an event. The call happens in the background through a cronjob so the dispatch operation is not expensive                                                                                                                                                                                                                                                                       |
-| `$logger`     | See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md for the full interface specification |
-| `$cache`      | See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-16-simple-cache.md for the full interface specification |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-
-### $request
-
-Represents an incoming request. This object can be used to access all values from an incoming request.
-
-| Name	                                   | Description                                          |
-|-----------------------------------------|------------------------------------------------------|
-| `get(string $name): mixed`	           | Returns an argument by name                          |
-| `getArguments(): array`	               | Returns all available arguments as associative array |
-| `getPayload(): mixed`	               | Returns the request payload                          |
-| `getContext(): RequestContextInterface` | Returns the request context                          |
-
-Most times your actions gets invoked by an HTTP request, in this case the `get` method reads the
-value from the path or query parameter. The `getPayload` method returns the parsed body, this is either
-a general `PSX\Record\RecordInterface` object or a custom DTO object. If your schema is set to Passthru then
-it contains a `Fusio\Engine\Record\PassthruRecord` object.
-
-We recommend to use in your action only the `get`, `getArguments` and `getPayload` method on the request
-object so that you action is independent of an HTTP request since your action can be used also in a different
-context, i.e. it can be invoked through RPC or another context. If needed you can get all details of the HTTP
-request through the `getContext` method. In case the action was invoked through an HTTP request the context
-contains a `Fusio\Engine\Request\HttpRequestContext` instance. The following example shows how you can access
-all details of the HTTP request object.
-
-#### Example
+The code of a PHP worker action is a PHP file which returns a function. Fusio calls this function on every invocation
+of the action and passes six arguments:
 
 ```php
-$request->get('id'); // returns a path or query parameter
-$request->getPayload(); // returns the request payload
-$request->getArguments(); // returns all available arguments as array
+<?php
 
-$context = $request->getContext();
-if ($context instanceof \Fusio\Engine\Request\HttpRequestContext) {
-    $context->getParameter('id'); // returns a path parameter
-    $context->getRequest()->getUri()->getParameter('count'); // returns a query parameter
-    $context->getRequest()->getMethod(); // returns the request method i.e. GET or POST
-    $context->getRequest()->getHeader('my-header'); // returns a request header
-    $context->getRequest()->getBody(); // returns the raw request body
-}
+use Fusio\Worker;
+use Fusio\Engine;
+use Psr\Log\LoggerInterface;
 
+return function(
+    Worker\ExecuteRequest $request,
+    Worker\ExecuteContext $context,
+    Engine\ConnectorInterface $connector,
+    Engine\Response\FactoryInterface $response,
+    Engine\DispatcherInterface $dispatcher,
+    LoggerInterface $logger
+) {
+    return $response->ok([
+        'hello' => 'world',
+    ]);
+};
 ```
 
-### $parameters
+| Argument      | Type                               | Description                                                     |
+|---------------|------------------------------------|-----------------------------------------------------------------|
+| `$request`    | `Fusio\Worker\ExecuteRequest`      | The incoming request, contains the arguments and the payload   |
+| `$context`    | `Fusio\Worker\ExecuteContext`      | Information about the invocation, i.e. the user and app        |
+| `$connector`  | `Fusio\Engine\ConnectorInterface`  | Returns the clients of your configured connections             |
+| `$response`   | `Fusio\Engine\Response\FactoryInterface` | Builds the response of your action                       |
+| `$dispatcher` | `Fusio\Engine\DispatcherInterface` | Dispatches events                                               |
+| `$logger`     | `Psr\Log\LoggerInterface`          | Writes log messages                                             |
 
-The parameters represent a general set of key values which is used in various places. As argument to the action method
-it contains the configuration parameters of the action. At the request object it contains the query and uri fragment
-parameters.
+## $request
 
-| Name	                             | Description                                         |
-|-----------------------------------|-----------------------------------------------------|
-| `get(string $key): ?string`	     | Returns a specific parameter                        |
-| `has(string $key)`	             | Checks whether a parameter is available             |
-| `set(string $key, mixed $value)`  | Sets a specific parameter                           |
-| `isEmpty(): bool`                 | Returns whether no parameter is available           |
-| `toArray(): array`                | Returns an array representation of this collection |
+The request contains all data which the client has sent.
 
-### $context
+| Method                                  | Description                                                                                  |
+|-----------------------------------------|----------------------------------------------------------------------------------------------|
+| `getArguments(): Record`                | All path and query parameters, i.e. the `id` of the path `/posts/:id` or `?search=foo`       |
+| `getPayload(): mixed`                   | The parsed request body, which was validated against the incoming schema of the operation   |
+| `getContext(): ExecuteRequestContext`   | Details of the HTTP request, i.e. the method and headers                                     |
 
-The context contains all information about the incoming request which is not HTTP related i.e. it contains the
-authenticated user and app or also the route id which was used.
+### Arguments
 
-| Name	                                       | Description                                                                                                                               |
-|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `getRouteId(): int`	                       | Returns the id of the route                                                                                                               |
-| `getBaseUrl(): string`	                   | Returns the base url of the system to generate i.e. HATEOAS links. The url has a trailing slash                                           |
-| `getApp(): AppInterface`	                   | Returns the app which was used for this request. Can also be an anonymous app if authorization is not required for the endpoint           |
-| `getUser(): UserInterface`	               | Returns the user which has authenticated through the app. Can also be an anonymous user if authorization is not required for the endpoint |
-| `getAction: ActionInterface`	               | Returns the current action                                                                                                                |
-| `withAction(ActionInterface $action): self` | Creates a new context containing the given action                                                                                         |
-| `getConnection(): mixed`	                   | Returns the connection which is currently used by the action                                                                              |
-| `withConnection(mixed $connection): self`   | Sets the currently used connection                                                                                                        |
+The arguments are a `PSX\Record\Record` which contains the path and query parameters:
 
-### $connector
+```php
+$arguments = $request->getArguments();
 
-Through the connector it is possible to access configured connection objects. A connection is i.e. a MYSQL connection
-which can be configured at the admin panel. Inside an action it is possible to access this connection through this
-class. Which objects is returned depends on the connection type i.e. the MYSQL connection returns a Doctrine DBAL
-Connection instance and the HTTP connection returns a Guzzle instance. There are already many adapters available for
-different kind of services i.e. ElasticSearch, MongoDB, AMQP, etc.
+$id = $arguments->get('id');                          // returns the value or null
+$count = $arguments->getOrDefault('count', 16);       // returns the value or a default
+$hasSearch = $arguments->containsKey('search');       // checks whether a parameter exists
+$all = $arguments->getAll();                          // returns all parameters as array
+```
 
-| Name	                                     | Description                                                                                                                                                     |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `getConnection(string/int $connectionId)` | Returns an arbitrary connection to a remote service. It is recommended to use the connection name but you can also use the actual database id of the connection |
+### Payload
 
-The following table shows the connection type mapping:
+The payload contains the request body. You can access the fields of a JSON body as properties:
 
-| Name          | Return                                       | Website                                            | Class                                                  |
-|---------------|----------------------------------------------|----------------------------------------------------|--------------------------------------------------------|
-| AMQP          | `PhpAmqpLib\Connection\AMQPStreamConnection` | https://github.com/php-amqplib/php-amqplib         | `Fusio\Adapter\Amqp\Connection\Amqp`                   |
-| Beanstalk     | `Pheanstalk\Pheanstalk`                      | https://github.com/pda/pheanstalk                  | `Fusio\Adapter\Beanstalk\Connection\Beanstalk`         |
-| Elasticsearch | `Elasticsearch\Client`                       | https://github.com/elastic/elasticsearch-php       | `Fusio\Adapter\Elasticsearch\Connection\Elasticsearch` |
-| GraphQL       | `Fusio\Adapter\GraphQL\ClientInterface`      | https://github.com/apioo/fusio-adapter-graphql/    | `Fusio\Adapter\GraphQL\Connection\GraphQL`             |
-| HTTP          | `GuzzleHttp\Client`                          | http://docs.guzzlephp.org/en/latest/               | `Fusio\Adapter\Http\Connection\Http`                   |
-| Memcache      | `Memcache`                                   | https://www.php.net/manual/book.memcache.php       | `Fusio\Adapter\Memcache\Connection\Memcache`           |
-| MongoDB       | `MongoDB\Database`                           | https://github.com/mongodb/mongo-php-library       | `Fusio\Adapter\Mongodb\Connection\MongoDB`             |
-| Redis         | `Predis\Client`                              | https://github.com/predis/predis                   | `Fusio\Adapter\Redis\Connection\Redis`                 |
-| SMTP          | `Symfony\Component\Mailer\Mailer`            | https://symfony.com/doc/current/mailer.html        | `Fusio\Adapter\Smtp\Connection\Smtp`                   |
-| SOAP          | `SoapClient`                                 | https://www.php.net/manual/class.soapclient.php    | `Fusio\Adapter\Soap\Connection\Soap`                   |
-| SQL           | `Doctrine\DBAL\Connection`                   | http://www.doctrine-project.org/projects/dbal.html | `Fusio\Adapter\Sql\Connection\Sql`                     |
+```php
+$payload = $request->getPayload();
 
+$title = $payload->title ?? null;
+$tags = $payload->tags ?? [];
+```
 
-### $response
+For `GET` and `DELETE` requests, or if the operation has no incoming schema, the payload is empty.
 
-The response factory MUST be used to create a response for an action. It is a factory method which returns a specific
-response object. Please always use this factory since this gives us the freedom to change the response implementation.
+### Request context
 
-| Name	                                                   | Description                                                 |
-|---------------------------------------------------------|-------------------------------------------------------------|
-| `build(int $statusCode, array $headers, mixed $body)`   | Builds a new response object                                |
-| `proxy(Response $response)`                             | Proxies a response from an internal HTTP request            |
-| `ok(mixed $body, array $headers = [])`                  | Builds an ok (200) success response                         |
-| `created(mixed $body, array $headers = [])`             | Builds a created (201) success response                     |
-| `accepted(mixed $body, array $headers = [])`            | Builds an accepted (202) success response                   |
-| `noContent(array $headers =  [])`                       | Builds a no content (204) success response                  |
-| `badRequest(mixed $body, array $headers = [])`          | Builds a bad request (400) client error response            |
-| `forbidden(mixed $body, array $headers = [])`           | Builds a forbidden (403) client error response              |
-| `notFound(mixed $body, array $headers = [])`            | Builds a not found (404) client error response              |
-| `conflict(mixed $body, array $headers = [])`            | Builds a conflict (409) client error response               |
-| `gone(mixed $body, array $headers = [])`                | Builds a gone (410) client error response                   |
-| `internalServerError(mixed $body, array $headers = [])` | Builds an internal server error (500) server error response |
-| `notImplemented(mixed $body, array $headers = [])`      | Builds a not implemented (501) server error response        |
+We recommend to read data only through `getArguments()` and `getPayload()`. Through this your action does not depend
+on HTTP and works the same way when it is invoked i.e. through a cronjob, a trigger or [MCP](/docs/protocol/mcp).
+If you need details of the HTTP request, i.e. a header, you can use the request context:
 
-### $processor
+| Method                          | Description                                       |
+|---------------------------------|---------------------------------------------------|
+| `getType(): ?string`            | The type of the context, i.e. an HTTP request     |
+| `getMethod(): ?string`          | The HTTP method, i.e. `POST`                      |
+| `getPath(): ?string`            | The requested path, i.e. `/posts/12`              |
+| `getUriFragments(): ?Record`    | The path parameters                               |
+| `getQueryParameters(): ?Record` | The query parameters                              |
+| `getHeaders(): ?Record`         | The request headers                               |
 
-The processor can be used to invoke another action. Normally an action should only contain simple logic but in some
-cases you may want to invoke an existing action.
+```php
+$requestContext = $request->getContext();
 
-| Name	                                                                                 | Description                                                                                                                                                                         |
-|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `execute(string/int $actionId, RequestInterface $request, ContextInterface $context)` | Executes a specific action using the request and context and returns a response. It is recommended to use the action name but you can also use the actual database id of the action |
+$method = $requestContext->getMethod();
+$userAgent = $requestContext->getHeaders()?->get('user-agent');
+```
 
-### $dispatcher
+If the action was not invoked through HTTP, i.e. through a cronjob, these values can be `null`.
 
-The dispatcher can be used to trigger specific events. A consumer can subscribe to such events and they will receive a
-HTTP POST call to the defined endpoint in case you dispatch an event. The call happens in the background through a
-cronjob so the dispatch operation is not expensive.
+## $context
 
-| Name	                                         | Description                                                                                                                                                          |
-|-----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dispatch(string $eventName, mixed $payload)` | Dispatches a specific event and sends the payload to all subscribers. The payload gets json encoded so it is recommended to use i.e. an array or stdClass data type |
+The context contains information about the invocation which is not part of the request.
 
-### $logger
+| Method                                | Description                                                  |
+|---------------------------------------|--------------------------------------------------------------|
+| `getOperationId(): ?int`              | The id of the operation which was invoked                    |
+| `getBaseUrl(): ?string`               | The base URL of your Fusio instance, i.e. to build links     |
+| `getTenantId(): ?string`              | The tenant id, in case you run Fusio with multiple tenants   |
+| `getAction(): ?string`                | The name of the action                                       |
+| `getApp(): ?ExecuteContextApp`        | The app which was used by the client                         |
+| `getUser(): ?ExecuteContextUser`      | The user which has invoked the action                        |
 
-See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md for the full interface specification.
+### App
 
-| Name	                                        | Description                                                                                                                                          |
-|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `emergency(string $message, array $context)` | System is unusable.                                                                                                                                  |
-| `alert(string $message, array $context)`	    | Action must be taken immediately. Example: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.       |
-| `critical(string $message, array $context)`  | Critical conditions. Example: Application component unavailable, unexpected exception.                                                               |
-| `error(string $message, array $context)`	    | Runtime errors that do not require immediate action but should typically be logged and monitored.                                                    |
-| `warning(string $message, array $context)`	| Exceptional occurrences that are not errors. Example: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong. |
-| `notice(string $message, array $context)`	| Normal but significant events.                                                                                                                       |
-| `info(string $message, array $context)`	    | Interesting events. Example: User logs in, SQL logs.                                                                                                 |
-| `debug(string $message, array $context)`	    | Detailed debug information.                                                                                                                          |
-| `log(string $message, array $context)`       | Logs with an arbitrary level.                                                                                                                        |
+| Method                     | Description                                                  |
+|----------------------------|--------------------------------------------------------------|
+| `getAnonymous(): ?bool`    | Whether the request was made without an app                  |
+| `getId(): ?int`            | The id of the app                                            |
+| `getName(): ?string`       | The name of the app                                          |
 
-### $cache
+### User
 
-See https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-16-simple-cache.md for the full interface specification.
+| Method                     | Description                                                  |
+|----------------------------|--------------------------------------------------------------|
+| `getAnonymous(): ?bool`    | Whether the request was made without an access token         |
+| `getId(): ?int`            | The id of the user                                           |
+| `getName(): ?string`       | The name of the user                                         |
+| `getEmail(): ?string`      | The email of the user                                        |
+| `getPoints(): ?int`        | The remaining points of the user, s. [Monetization](/docs/monetization) |
+| `getPlanId(): ?string`     | The id of the plan which the user has subscribed             |
 
-| Name	                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `get(string $key): mixed`	     | Fetches a value from the cache. MUST be thrown if the $key string is not a legal value.                                                                                                                                                                                                                                                                                                                                                                  |
-| `set(string $key, mixed $value)`	 | Persists data in the cache, uniquely referenced by a key with an optional expiration TTL time. the driver supports TTL then the library may set a default value for it or let the driver take care of that. MUST be thrown if the $key string is not a legal value.                                                                                                                                                                                      |
-| `delete(string $key)`	         | Delete an item from the cache by its unique key. MUST be thrown if the $key string is not a legal value.                                                                                                                                                                                                                                                                                                                                                 |
-| `clear()`	                     | Wipes clean the entire cache's keys.                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `getMultiple(array $keys)`        | Obtains multiple cache items by their unique keys. MUST be thrown if $keys is neither an array nor a Traversable, or if any of the $keys are not a legal value.                                                                                                                                                                                                                                                                                          |
-| `setMultiple(array $values)`	     | Persists a set of key => value pairs in the cache, with an optional TTL. the driver supports TTL then the library may set a default value for it or let the driver take care of that. MUST be thrown if $values is neither an array nor a Traversable, or if any of the $values are not a legal value.                                                                                                                                                   |
-| `deleteMultiple(array $keys)`     | Deletes multiple cache items in a single operation. MUST be thrown if $keys is neither an array nor a Traversable, or if any of the $keys are not a legal value.                                                                                                                                                                                                                                                                                         |
-| `has(string $key): bool`	         | Determines whether an item is present in the cache. NOTE: It is recommended that has() is only to be used for cache warming type purposes and not to be used within your live applications operations for get/set, as this method is subject to a race condition where your has() will return true and immediately after, another script can remove it making the state of your app out of date. MUST be thrown if the $key string is not a legal value. |
+The user is anonymous in case the operation is public and the client has sent no access token. The following example
+returns only the posts of the authenticated user:
 
+```php
+$user = $context->getUser();
+if ($user === null || $user->getAnonymous()) {
+    return $response->forbidden('Please login to see your posts');
+}
+
+$posts = $connector->getConnection('App')->fetchAllAssociative('SELECT * FROM app_post WHERE user_id = :user_id', [
+    'user_id' => $user->getId(),
+]);
+
+return $response->ok(['entries' => $posts]);
+```
+
+## $connector
+
+The connector returns a configured client for a [connection](/docs/backend/api/connection). You only provide the
+name of the connection, all credentials are managed at the backend:
+
+```php
+/** @var \Doctrine\DBAL\Connection $connection */
+$connection = $connector->getConnection('App');
+```
+
+| Method                                      | Description                                            |
+|---------------------------------------------|--------------------------------------------------------|
+| `getConnection(string\|int $connectionId)`  | Returns the client of a connection by its name         |
+
+The type of the returned client depends on the connection:
+
+| Connection     | Returned client                 | Documentation                                                                         |
+|----------------|---------------------------------|---------------------------------------------------------------------------------------|
+| SQL            | `Doctrine\DBAL\Connection`      | [Doctrine DBAL](https://www.doctrine-project.org/projects/dbal.html)                  |
+| SQL-Advanced   | `Doctrine\DBAL\Connection`      | [Doctrine DBAL](https://www.doctrine-project.org/projects/dbal.html)                  |
+| HTTP           | `GuzzleHttp\Client`             | [Guzzle](https://docs.guzzlephp.org/)                                                 |
+| MongoDB        | `MongoDB\Database`              | [MongoDB PHP library](https://www.mongodb.com/docs/php-library/current/)              |
+| Elasticsearch  | `Elasticsearch\Client`          | [Elasticsearch PHP client](https://github.com/elastic/elasticsearch-php)              |
+| Airtable       | `SdkFabric\Airtable\Client`     | [SDK Fabric](https://sdkfabric.com/)                                                  |
+| Discord        | `SdkFabric\Discord\Client`      | [SDK Fabric](https://sdkfabric.com/)                                                  |
+| Notion         | `SdkFabric\Notion\Client`       | [SDK Fabric](https://sdkfabric.com/)                                                  |
+| Twitter        | `SdkFabric\Twitter\Client`      | [SDK Fabric](https://sdkfabric.com/)                                                  |
+
+:::note
+The table lists the connections which are supported by the remote Worker-PHP. The Worker-PHP-Local action runs
+directly on your Fusio instance and can use every connection which is available at Fusio, s.
+[PHP API for custom actions](/docs/development/php_api#connector).
+:::
+
+## $response
+
+The response factory builds the response of your action. Always return the result of one of these methods:
+
+| Method                                                    | Status code                  | Body                                                |
+|-----------------------------------------------------------|------------------------------|-----------------------------------------------------|
+| `build(int $statusCode, array $headers, mixed $body)`     | Any                          | The provided body                                   |
+| `ok(mixed $body, array $headers = [])`                    | `200 OK`                     | The provided body                                   |
+| `created(mixed $body, array $headers = [])`               | `201 Created`                | The provided body                                   |
+| `accepted(mixed $body, array $headers = [])`              | `202 Accepted`               | The provided body                                   |
+| `noContent(array $headers = [])`                          | `204 No Content`             | No body                                             |
+| `badRequest(string $message, array $headers = [])`        | `400 Bad Request`            | `{"success": false, "message": "..."}`              |
+| `forbidden(string $message, array $headers = [])`         | `403 Forbidden`              | `{"success": false, "message": "..."}`              |
+| `notFound(string $message, array $headers = [])`          | `404 Not Found`              | `{"success": false, "message": "..."}`              |
+| `conflict(string $message, array $headers = [])`          | `409 Conflict`               | `{"success": false, "message": "..."}`              |
+| `gone(string $message, array $headers = [])`             | `410 Gone`                   | `{"success": false, "message": "..."}`              |
+| `internalServerError(string $message, array $headers = [])` | `500 Internal Server Error` | `{"success": false, "message": "..."}`              |
+| `notImplemented(string $message, array $headers = [])`    | `501 Not Implemented`        | `{"success": false, "message": "..."}`              |
+| `proxy(ResponseInterface $response)`                      | Of the proxied response      | Of the proxied response                             |
+
+The body can be any value which can be encoded as JSON, i.e. an array or object. The `proxy` method forwards a
+PSR-7 response, i.e. of the Guzzle client, unchanged to the client, s. [HTTP](./http#proxy-a-remote-api).
+
+```php
+return $response->created(['id' => $id], ['Location' => '/posts/' . $id]);
+```
+
+## $dispatcher
+
+The dispatcher dispatches an [event](/docs/backend/api/event). Fusio then sends the payload to all webhooks which
+have subscribed to the event and invokes all [triggers](/docs/backend/api/trigger) of the event. The delivery happens
+in the background, so dispatching an event does not slow down your action.
+
+| Method                                        | Description                                                         |
+|-----------------------------------------------|---------------------------------------------------------------------|
+| `dispatch(string $eventName, mixed $payload)` | Dispatches an event, the payload is encoded as JSON                 |
+
+```php
+$dispatcher->dispatch('post_created', ['id' => $id, 'title' => $title]);
+```
+
+## $logger
+
+The logger is a [PSR-3](https://www.php-fig.org/psr/psr-3/) logger which writes messages to the Fusio log. This helps
+you to debug your action:
+
+| Method                                       | Use case                                               |
+|----------------------------------------------|--------------------------------------------------------|
+| `debug(string $message, array $context = [])`   | Detailed debug information                          |
+| `info(string $message, array $context = [])`    | Interesting events, i.e. a post was created         |
+| `notice(string $message, array $context = [])`  | Normal but significant events                       |
+| `warning(string $message, array $context = [])` | Unusual events which are not errors                 |
+| `error(string $message, array $context = [])`   | Errors which should be monitored                    |
+| `critical(string $message, array $context = [])`| Critical conditions, i.e. a service is unavailable  |
+| `alert(string $message, array $context = [])`   | Action must be taken immediately                    |
+| `emergency(string $message, array $context = [])` | The system is unusable                            |
+
+```php
+$logger->error('Could not create post', ['title' => $title]);
+```
+
+## Complete example
+
+The following action creates a new post for the authenticated user. It validates the payload, inserts the post into
+the database, dispatches an event and returns the id of the new post:
+
+```php
+<?php
+
+use Fusio\Worker;
+use Fusio\Engine;
+use Psr\Log\LoggerInterface;
+
+return function(Worker\ExecuteRequest $request, Worker\ExecuteContext $context, Engine\ConnectorInterface $connector, Engine\Response\FactoryInterface $response, Engine\DispatcherInterface $dispatcher, LoggerInterface $logger) {
+    $user = $context->getUser();
+    if ($user === null || $user->getAnonymous()) {
+        return $response->forbidden('Please login to create a post');
+    }
+
+    $payload = $request->getPayload();
+    $title = $payload->title ?? null;
+    if (empty($title)) {
+        return $response->badRequest('Provided no title');
+    }
+
+    /** @var \Doctrine\DBAL\Connection $connection */
+    $connection = $connector->getConnection('App');
+
+    try {
+        $connection->insert('app_post', [
+            'user_id' => $user->getId(),
+            'title' => $title,
+            'content' => $payload->content ?? '',
+            'insert_date' => (new \DateTime())->format('Y-m-d H:i:s'),
+        ]);
+
+        $id = (int) $connection->lastInsertId();
+    } catch (\Doctrine\DBAL\Exception $e) {
+        $logger->error('Could not create post: ' . $e->getMessage());
+        return $response->internalServerError('Could not create post');
+    }
+
+    $dispatcher->dispatch('post_created', ['id' => $id, 'title' => $title]);
+
+    return $response->created(['id' => $id]);
+};
+```
+
+More examples for common tasks can be found at the [SQL](./sql) and [HTTP](./http) pages.
